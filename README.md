@@ -1,3 +1,3 @@
 # oereo
 
-...is palindrome made from the abbreviation **OER** _(**O**pen **E**ducational **R**esource)_
+A palindrome made by combining **OER** _(**O**pen **E**ducational **R**esource)_ and **oreo**.
