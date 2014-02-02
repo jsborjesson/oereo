@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Resource.create(url: 'www.google.com')
+Resource.create(url: 'www.lmgtfy.com')
+Resource.create(url: 'www.stackoverflow.com')
+Resource.create(url: 'www.wikipedia.org')
