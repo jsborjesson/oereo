@@ -11,6 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20140202224254) do
+
+  create_table "api_keys", force: true do |t|
+    t.string   "access_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "resources", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "url"
+  end
 
 end
