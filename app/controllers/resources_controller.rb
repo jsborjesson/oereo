@@ -31,4 +31,8 @@ class ResourcesController < ApplicationController
     head :unauthorized unless api_key
   end
 
+  def default_serializer_options
+    { root: false }
+  end
+
 end
