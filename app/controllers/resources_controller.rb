@@ -26,6 +26,7 @@ class ResourcesController < ApplicationController
 
   private
   def restrict_access
+    # TODO: support providing Authorization header
     api_key = ApiKey.find_by_access_token(params[:access_token])
     head :unauthorized unless api_key
   end
