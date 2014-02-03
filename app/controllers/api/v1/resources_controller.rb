@@ -2,7 +2,7 @@ module Api
   module V1
     class ResourcesController < ApplicationController
 
-      respond_to :json
+      respond_to :json, :xml
 
       before_filter :restrict_access
 
