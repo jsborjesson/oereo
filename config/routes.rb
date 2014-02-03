@@ -1,7 +1,12 @@
 Oereo::Application.routes.draw do
 
-  resources :resources
+  namespace :api do
+    namespace :v1 do
+      resources :resources
+    end
+  end
 
+  resources :resources
   root to: 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
