@@ -1,5 +1,7 @@
 # oereo
 
+_The tasty OER management API_
+
 A palindrome made by combining **OER** _(**O**pen **E**ducational **R**esource)_ and **oreo**.
 
 ## Testing
