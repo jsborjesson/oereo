@@ -11,7 +11,7 @@
 <%# accounts %>
 <div class="user_nav">
   <% if current_user %>
-    <p>Logged in as <%= current_user.email %>.</p>
+    Logged in as <%= current_user.email %>.
     <%= link_to 'Log out', log_out_path %>
   <% else %>
     <%= link_to 'Sign up', sign_up_path %> or <%= link_to 'log in', log_in_path %>
