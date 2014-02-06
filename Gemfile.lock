@@ -30,6 +30,7 @@ GEM
     addressable (2.3.5)
     arel (4.0.1)
     atomic (1.1.14)
+    bcrypt-ruby (3.1.2)
     builder (3.1.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -153,6 +154,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.8.1)
+  bcrypt-ruby (~> 3.1.2)
   capybara (~> 2.1.0)
   database_cleaner (~> 1.0.1)
   factory_girl_rails (~> 4.3.0)
