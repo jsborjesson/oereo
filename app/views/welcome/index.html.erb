@@ -1,3 +1,5 @@
 <h1>Welcome to Oereo</h1>
 
-<p>Your access token is</p><code><%= current_user.access_token %></code>
+<% if @access_token %>
+  <p>Your access token is</p><code><%= @access_token %></code>
+<% end %>
