@@ -1,7 +1,5 @@
 class User < ActiveRecord::Base
 
-  # api_key
-  has_one :api_key
 
   # password
   has_secure_password
@@ -11,7 +9,17 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
+
+  # api_key
+  has_one :api_key
+
+  def renew_access_token
+    self.api_key.destroy if self.api_key.exists?
+    self.create_api_key
+  end
+
   def access_token
     self.api_key.access_token
   end
+
 end
