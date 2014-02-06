@@ -2,6 +2,7 @@ require 'api_constraints'
 
 Oereo::Application.routes.draw do
 
+  get "users/new"
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :resources
