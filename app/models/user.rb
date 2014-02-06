@@ -1,11 +1,9 @@
 class User < ActiveRecord::Base
-
-
-  validates_presence_of :email
-  validates_uniqueness_of :email
-
+  # password
   has_secure_password
   validates_presence_of :password, on: :create
-  # validates_confirmation_of :password
 
+  # email
+  validates_presence_of :email
+  validates_uniqueness_of :email
 end
