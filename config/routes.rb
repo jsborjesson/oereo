@@ -1,4 +1,21 @@
+require 'api_constraints'
+
 Oereo::Application.routes.draw do
+
+  get 'log_in' => 'sessions#new', as: 'log_in'
+  resources :sessions
+  get 'sign_up' => 'users#new', as: 'sign_up'
+  root to: 'users#new'
+  resources :users
+
+  namespace :api, defaults: {format: 'json'} do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+      resources :resources
+    end
+  end
+
+  resources :resources
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
