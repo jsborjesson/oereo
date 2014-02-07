@@ -22,10 +22,13 @@ RSpec.configure do |config|
   # config.mock_with :rr
   # spec_helper.rb
 
-  # disable old should-syntax
+  # Disable old should-syntax
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  # Enable shorter syntax for factory girl
+  config.include FactoryGirl::Syntax::Methods
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
