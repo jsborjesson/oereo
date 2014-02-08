@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Tag do
 
-  it "cannot be empty" do
+  it "must have a name" do
     empty_tag = build(:tag, name: '')
     expect(empty_tag).not_to be_valid
   end

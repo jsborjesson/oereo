@@ -4,12 +4,13 @@ FactoryGirl.define do
   end
 
   factory :user do
-    email "MyString"
+    email "user@email.com"
     password_hash "MyString"
     password_salt "MyString"
   end
 
   factory :resource do
+    url "http://www.example.com"
   end
 
   factory :api_key do
