@@ -12,9 +12,11 @@ class User < ActiveRecord::Base
 
   # api_key
   has_one :api_key
+  # validates_presence_of :api_key
 
+  after_create :renew_access_token, on: :create
   def renew_access_token
-    self.api_key.destroy if self.api_key.exists?
+    self.api_key.destroy if self.api_key.present?
     self.create_api_key
   end
 
