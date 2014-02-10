@@ -19,5 +19,6 @@ class Resource < ActiveRecord::Base
     self.url = self.class.format_url(url)
   end
 
-  validates_format_of :url, with: url_regexp, message: "is not a valid URL"
+  validates_presence_of :url
+  validates_format_of :url, with: url_regexp
 end
