@@ -2,10 +2,7 @@ require 'spec_helper'
 
 describe Tag do
 
-  it "must have a name" do
-    empty_tag = build(:tag, name: '')
-    expect(empty_tag).not_to be_valid
-  end
+  it { should validate_presence_of(:name) }
 
   it "should lower the case of inputted text" do
     tag = create(:tag, name: 'TestTag')

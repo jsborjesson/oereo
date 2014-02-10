@@ -9,6 +9,8 @@ class Tag < ActiveRecord::Base
   protected
 
   def lower_name
-    self.name.downcase!
+    unless self.name.nil?
+      self.name.downcase!
+    end
   end
 end
