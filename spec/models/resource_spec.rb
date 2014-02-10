@@ -2,6 +2,13 @@ require 'spec_helper'
 
 # mostly stolen from railscasts #301 but updated to expectation-syntax
 describe Resource do
+
+  it "must have a url" do
+    resource = Resource.new
+    expect(resource).to be_invalid
+    expect(resource).to have(1).errors_on(:url)
+  end
+
   it "adds http:// to URL upon saving" do
     expect(Resource.create!(url: "example.com").url).to eq("http://example.com")
     expect(Resource.create!(url: "http://example.com").url).to eq("http://example.com")
