@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe User do
+  it { should have_secure_password }
 
   describe "email" do
     it { should validate_presence_of(:email) }
@@ -14,10 +15,8 @@ describe User do
 
   end
 
-  it { should have_secure_password }
 
   describe "api_key" do
-
     it { should have_one(:api_key) }
 
     it "should create an api key when user is created" do
@@ -25,9 +24,20 @@ describe User do
       expect(user.api_key).to_not be_nil
     end
 
-    it "can regenerate the api_key"
+    it "can regenerate the api_key" do
+      user = create(:user)
+      token = user.access_token
+      user.renew_access_token
+      expect(user.access_token).to_not eq token
+    end
 
-    it "doesn't regenerate the api_key unless told so"
+    it "doesn't regenerate the api_key unless told so" do
+      # make sure not accidentally renewing token before all validations
+      user = create(:user)
+      token = user.access_token
+      user.email = 'another@email.com'
+      expect(user.access_token).to eq token
+    end
   end
 
 end
