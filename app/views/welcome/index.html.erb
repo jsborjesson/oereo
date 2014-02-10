@@ -1,2 +1,5 @@
 <h1>Welcome to Oereo</h1>
-<p>The yummy OER manager!</p>
+
+<% if @access_token %>
+  <p>Your access token is</p><code><%= @access_token %></code>
+<% end %>

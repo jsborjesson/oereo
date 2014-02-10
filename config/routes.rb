@@ -2,12 +2,16 @@ require 'api_constraints'
 
 Oereo::Application.routes.draw do
 
-  get 'log_in' => 'sessions#new', as: 'log_in'
-  resources :sessions
-  get 'sign_up' => 'users#new', as: 'sign_up'
-  root to: 'users#new'
   resources :users
+  resources :sessions
 
+  get 'log_in' => 'sessions#new', as: 'log_in'
+  get 'log_out' => 'sessions#destroy', as: 'log_out'
+  get 'sign_up' => 'users#new', as: 'sign_up'
+
+  root to: 'welcome#index'
+
+  # api
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :resources

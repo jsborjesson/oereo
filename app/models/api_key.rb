@@ -1,4 +1,9 @@
 class ApiKey < ActiveRecord::Base
+
+  # must belong to a user
+  belongs_to :user
+  validates_presence_of :user
+
   before_create :generate_access_token
 
   private
