@@ -5,8 +5,9 @@ class ApiKey < ActiveRecord::Base
   validates_presence_of :user
 
   before_create :generate_access_token
+  validates_uniqueness_of :access_token
 
-  private
+private
   def generate_access_token
     begin
       self.access_token = SecureRandom.hex # TODO: unique db constraint
