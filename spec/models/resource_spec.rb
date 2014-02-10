@@ -4,6 +4,7 @@ require 'spec_helper'
 describe Resource do
 
   it { should validate_presence_of(:url) }
+  it { should have_and_belong_to_many(:tags) }
 
   it "adds http:// to URL upon saving" do
     expect(Resource.create!(url: "example.com").url).to eq("http://example.com")
