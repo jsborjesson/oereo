@@ -4,9 +4,9 @@ FactoryGirl.define do
   end
 
   factory :user do
-    email "user@email.com"
-    password_hash "MyString"
-    password_salt "MyString"
+    email "test@email.com"
+    password "test"
+    password_confirmation "test"
   end
 
   factory :resource do
