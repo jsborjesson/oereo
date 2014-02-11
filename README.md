@@ -40,6 +40,8 @@ Using [Heroku](https://www.heroku.com/), run:
 
     git push heroku master
 
+    heroku run rake db:migrate
+
 _Note that there are no production settings in `database.yml`, Heroku will set these up automatically._
 
 ## Testing
