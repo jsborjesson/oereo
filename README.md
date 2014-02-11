@@ -34,6 +34,12 @@ reflect your settings.
 
 To interact with the database, run `rails db`.
 
+## Deploying
+
+Using [Heroku](https://www.heroku.com/), run:
+
+    git push heroku master
+
 ## Testing
 
 Make sure the db is prepared:
