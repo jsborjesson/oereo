@@ -1,4 +1,3 @@
 site_name: Oereo
 pages:
 - [index.md, Home]
-theme: readthedocs
