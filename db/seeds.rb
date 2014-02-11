@@ -8,10 +8,10 @@
 
 User.create(email: 'test@email.com', password: 'test', password_confirmation: 'test')
 
-Resource.create!(url: 'www.google.com')
-Resource.create!(url: 'www.lmgtfy.com')
-Resource.create!(url: 'www.stackoverflow.com')
-Resource.create!(url: 'www.wikipedia.org')
+Resource.create!(title: 'Google', url: 'www.google.com')
+Resource.create!(title: 'Let Me Google That For You', url: 'www.lmgtfy.com')
+Resource.create!(title: 'Stack Overflow', url: 'www.stackoverflow.com')
+Resource.create!(title: 'Wikipedia', url: 'www.wikipedia.org')
 
 License.create!(title: 'MIT License', agreement_url: 'http://opensource.org/licenses/MIT')
 License.create!(title: 'GPL v2', agreement_url: 'http://www.gnu.org/licenses/gpl-2.0.html')
