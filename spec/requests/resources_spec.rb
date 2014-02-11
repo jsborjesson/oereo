@@ -11,13 +11,13 @@ describe "Resources API" do
     end
 
     it "returns all the resources" do
-      create :resource, title: 'resource #1'
-      create :resource, title: 'resource #2'
+      create_list(:resource, 10)
 
       get '/api/resources', {}, @valid_auth_headers
-
       expect(response).to be_success
 
+      json = JSON.parse(response.body)
+      expect(json['resources'].length).to eq(10)
     end
   end
 end
