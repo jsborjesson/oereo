@@ -40,6 +40,8 @@ Using [Heroku](https://www.heroku.com/), run:
 
     git push heroku master
 
+_Note that there are no production settings in `database.yml`, Heroku will set these up automatically._
+
 ## Testing
 
 Make sure the db is prepared:
