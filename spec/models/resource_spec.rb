@@ -3,12 +3,14 @@ require 'spec_helper'
 # mostly stolen from railscasts #301 but updated to expectation-syntax
 describe Resource do
 
-  it { should validate_presence_of(:url) }
   it { should have_and_belong_to_many(:tags) }
+  it { should validate_presence_of(:url) }
+  it { should validate_presence_of(:title) }
+  it { should ensure_length_of(:title).is_at_most(140) }
 
   it "adds http:// to URL upon saving" do
-    expect(Resource.create!(url: "example.com").url).to eq("http://example.com")
-    expect(Resource.create!(url: "http://example.com").url).to eq("http://example.com")
+    expect(create(:resource, url: "example.com").url).to eq("http://example.com")
+    expect(create(:resource, url: "http://example.com").url).to eq("http://example.com")
   end
 
   it "validates URL format" do

@@ -22,4 +22,6 @@ class Resource < ActiveRecord::Base
 
   validates_presence_of :url
   validates_format_of :url, with: url_regexp
+
+  validates :title, presence: true, length: { maximum: 140 }
 end

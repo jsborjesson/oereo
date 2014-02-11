@@ -5,12 +5,14 @@ FactoryGirl.define do
 
   factory :user do
     email "test@email.com"
-    password "test"
-    password_confirmation "test"
+    password "password"
+    password_confirmation "password"
   end
 
   factory :resource do
-    url "http://www.example.com"
+    sequence(:title) { |n| "resource#{n}" }
+    description "Description of a resource"
+    url "http://www.example.com/"
   end
 
   factory :api_key do
