@@ -16,7 +16,7 @@ describe "Resources API" do
 
       get '/api/resources', {}, @valid_auth_headers
 
-      expect(response.status).to eq 200
+      expect(response).to be_success
 
     end
   end
