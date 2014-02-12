@@ -58,3 +58,22 @@ To run the tests:
 
     bundle exec rspec
 
+
+## Documentation
+
+The [documentation site](http://alcesleo.github.io/oereo)
+
+The documentation is written in Markdown in the `docs/` folder.
+
+That folder is used to generate a documentation site with [Mkdocs](http://www.mkdocs.org/)
+and served by Github Pages. To update the docs simply update the content of the `docs/` folder
+and publish the changes like this:
+
+    # install mkdocs and ghp-import if it's not already installed
+    pip install mkdocs ghp-import
+
+    # build the documentation site
+    mkdocs build
+
+    # push it to the gh-pages branch
+    ghp-import -p site
