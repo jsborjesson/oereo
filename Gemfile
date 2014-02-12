@@ -6,6 +6,10 @@ gem 'rails', '4.0.2'
 # Databases
 gem 'pg'
 
+# Admin interface
+# TODO: Stop tracking edge as soon as Rails 4 support is stable
+gem 'activeadmin', github: 'gregbell/active_admin'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
