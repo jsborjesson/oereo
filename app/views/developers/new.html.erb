@@ -1,0 +1,20 @@
+<h1>Register a developer account</h1>
+
+<%= form_for @developer do |f| %>
+  <%= render partial: 'shared/error_messages', locals: {object: @developer} %>
+
+  <!-- Form -->
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <%= submit_tag "Register", :id => "submit", :name => "submit", :class => "form_submit", :disabled => false, :disable_with => "Please wait..." %>
+<% end %>

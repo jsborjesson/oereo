@@ -1,8 +1,8 @@
 class ApiKey < ActiveRecord::Base
 
-  # must belong to a user
-  belongs_to :user
-  validates_presence_of :user
+  # must belong to a developer
+  belongs_to :developer
+  validates_presence_of :developer
 
   before_create :generate_access_token
   validates_uniqueness_of :access_token

@@ -2,7 +2,7 @@
   <div class="error_messages">
     <h2>There were errors processing your form:</h2>
     <ul>
-      <% for message in @user.errors.full_messages %>
+      <% for message in object.errors.full_messages %>
         <li><%= message %></li>
       <% end %>
     </ul>

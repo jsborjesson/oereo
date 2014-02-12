@@ -3,7 +3,7 @@ ActiveAdmin.register ApiKey do
   actions :all, except: [:edit]
 
   index do
-    column :user
+    column :developer
     column :access_token
     column :created_at
     default_actions

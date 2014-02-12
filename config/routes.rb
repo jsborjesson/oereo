@@ -7,13 +7,11 @@ Oereo::Application.routes.draw do
   # ActiveAdmin
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :users
-  resources :sessions
 
   # Login/Registration
   get 'log_in' => 'sessions#new', as: 'log_in'
   get 'log_out' => 'sessions#destroy', as: 'log_out'
-  get 'sign_up' => 'users#new', as: 'sign_up'
+  get 'register' => 'developers#new', as: 'register'
 
   # API
   namespace :api, defaults: {format: 'json'} do
@@ -23,6 +21,8 @@ Oereo::Application.routes.draw do
   end
 
   resources :resources
+  resources :developers
+  resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
