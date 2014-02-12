@@ -2,7 +2,7 @@ describe "Resources API" do
   describe "GET /api/resources" do
 
     before(:each) do
-      @valid_auth_headers = { 'Authorization' => "Token token=\"#{ create(:user).access_token }\"" }
+      @valid_auth_headers = { 'Authorization' => "Token token=\"#{ create(:developer).access_token }\"" }
     end
 
     it "denies access without token" do
