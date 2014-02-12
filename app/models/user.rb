@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
     self.api_key.access_token
   end
 
+  def to_s
+    return self.email
+  end
+
 end
