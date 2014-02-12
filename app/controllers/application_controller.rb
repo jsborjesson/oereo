@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  def current_developer
+    @current_developer ||= Developer.find(session[:developer_id]) if session[:developer_id]
   end
-  helper_method :current_user
+  helper_method :current_developer
 end

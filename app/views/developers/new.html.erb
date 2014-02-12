@@ -1,7 +1,7 @@
-<h1>Sign up</h1>
+<h1>Register a developer account</h1>
 
-<%= form_for @user do |f| %>
-  <%= render partial: 'shared/error_messages', locals: {object: @user} %>
+<%= form_for @developer do |f| %>
+  <%= render partial: 'shared/error_messages', locals: {object: @developer} %>
 
   <!-- Form -->
   <p>
@@ -18,4 +18,3 @@
   </p>
   <%= submit_tag "Register", :id => "submit", :name => "submit", :class => "form_submit", :disabled => false, :disable_with => "Please wait..." %>
 <% end %>
-
