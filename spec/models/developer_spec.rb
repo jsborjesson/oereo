@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Developer do
 
-  # FIXME: Move this to isolated EmailValidator spec
   describe "email" do
     it "validates invalid email addresses" do
       [
