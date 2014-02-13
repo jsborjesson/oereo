@@ -58,6 +58,10 @@ To run the tests:
 
     bundle exec rspec
 
+To run the tests automatically on filesave:
+
+    guard
+
 
 ## Documentation
 
