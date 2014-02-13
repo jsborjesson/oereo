@@ -4,6 +4,7 @@ FactoryGirl.define do
   end
 
   factory :user do
+    sequence(:username) { |n| "user#{n}" }
     sequence(:email) { |n| "test#{n}@email.com" }
     password "password"
     password_confirmation "password"
@@ -16,12 +17,11 @@ FactoryGirl.define do
   end
 
   factory :api_key do
-    access_token "MyString"
   end
 
   factory :license do
-    title "MyString"
-    agreement "MyText"
+    title "MIT"
+    agreement_url "http://opensource.org/licenses/MIT"
   end
 
   factory :developer do
