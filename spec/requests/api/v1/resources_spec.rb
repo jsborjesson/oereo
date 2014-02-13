@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe "Resources API" do
   describe "GET /api/resources" do
 
