@@ -28,6 +28,9 @@ gem 'turbolinks'
 # JSON/XML API
 gem 'active_model_serializers', '~> 0.8.1'
 
+# url/email validation
+gem 'validates_formatting_of', '~> 0.8.1'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

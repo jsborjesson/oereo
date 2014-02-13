@@ -5,8 +5,8 @@ class Developer < ActiveRecord::Base
   validates_length_of :password, minimum: 5
 
   # email
-  validates_presence_of :email
-  validates_uniqueness_of :email
+  validates :email, presence: true, uniqueness: true
+  validates_formatting_of :email
 
   # api_key
   has_one :api_key

@@ -1,6 +1,35 @@
 require 'spec_helper'
 
 describe Developer do
+
+  describe "email" do
+    it "validates invalid email addresses" do
+      [
+        'email',
+        'email@com',
+        'www.google.com',
+        'http://google.com',
+        'email.email@email',
+        'email.com',
+        'email/email@.com'
+      ].each do |email|
+        dev = build(:developer, email: email)
+        expect(dev).to have(1).errors_on(:email)
+      end
+    end
+
+    it "validates valid email addresses" do
+      [
+        'email@email.com',
+        'abcd1234@email.com',
+        'firstname.surname@email.com',
+      ].each do |email|
+        dev = build(:developer, email: email)
+        expect(dev).to be_valid
+      end
+    end
+  end
+
   describe "api_key" do
     it { should have_one(:api_key) }
 

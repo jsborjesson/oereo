@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   # email
   validates_presence_of :email
   validates_uniqueness_of :email
+  validates_formatting_of :email
 
   def to_s
     return self.email
