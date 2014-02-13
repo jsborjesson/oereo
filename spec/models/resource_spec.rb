@@ -7,7 +7,7 @@ describe Resource do
   it { should validate_presence_of(:url) }
   it { should validate_presence_of(:title) }
   it { should ensure_length_of(:title).is_at_most(140) }
-  it { should belong_to(:resource_type) }
+  it { should belong_to(:resource_category) }
   it { should belong_to(:user) }
 
   # TODO: Implement smart protocol

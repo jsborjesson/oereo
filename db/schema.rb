@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140213114408) do
+ActiveRecord::Schema.define(version: 20140213133401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(version: 20140213114408) do
     t.datetime "updated_at"
   end
 
-  create_table "resource_types", force: true do |t|
-    t.string   "type"
+  create_table "resource_categories", force: true do |t|
+    t.string   "category"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(version: 20140213114408) do
     t.string   "url"
     t.string   "title"
     t.text     "description"
-    t.integer  "user_id"
-    t.integer  "resource_type_id"
+    t.integer  "user_id",              null: false
+    t.integer  "resource_category_id", null: false
   end
 
   create_table "resources_tags", force: true do |t|

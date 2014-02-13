@@ -10,10 +10,16 @@ FactoryGirl.define do
     password_confirmation "password"
   end
 
+  factory :resource_category do
+    category "TestCategory"
+  end
+
   factory :resource do
     sequence(:title) { |n| "resource#{n}" }
     description "Description of a resource"
     url "http://www.example.com/"
+    resource_category
+    user
   end
 
   factory :api_key do
