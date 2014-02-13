@@ -6,17 +6,17 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create!(username: 'test', email: 'test@email.com', password: 'password', password_confirmation: 'password')
+u = User.create!(username: 'test', email: 'test@email.com', password: 'password', password_confirmation: 'password')
 
-ResourceType.create!(type: 'YouTube')
-ResourceType.create!(type: 'Site')
-ResourceType.create!(type: 'Image')
-ResourceType.create!(type: 'Other')
+c = ResourceCategory.create!(category: 'Site')
+ResourceCategory.create!(category: 'YouTube')
+ResourceCategory.create!(category: 'Image')
+ResourceCategory.create!(category: 'Other')
 
-Resource.create!(title: 'Google', url: 'www.google.com')
-Resource.create!(title: 'Let Me Google That For You', url: 'www.lmgtfy.com')
-Resource.create!(title: 'Stack Overflow', url: 'www.stackoverflow.com')
-Resource.create!(title: 'Wikipedia', url: 'www.wikipedia.org')
+Resource.create!(user: u, resource_category: c, title: 'Google', url: 'http://www.google.com')
+Resource.create!(user: u, resource_category: c, title: 'Let Me Google That For You', url: 'http://www.lmgtfy.com')
+Resource.create!(user: u, resource_category: c, title: 'Stack Overflow', url: 'http://www.stackoverflow.com')
+Resource.create!(user: u, resource_category: c, title: 'Wikipedia', url: 'http://www.wikipedia.org')
 
 License.create!(title: 'MIT License', agreement_url: 'http://opensource.org/licenses/MIT')
 License.create!(title: 'GPL v2', agreement_url: 'http://www.gnu.org/licenses/gpl-2.0.html')
