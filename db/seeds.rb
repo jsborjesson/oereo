@@ -6,7 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create!(email: 'test@email.com', password: 'password', password_confirmation: 'password')
+User.create!(username: 'test', email: 'test@email.com', password: 'password', password_confirmation: 'password')
+
+ResourceType.create!(type: 'YouTube')
+ResourceType.create!(type: 'Site')
+ResourceType.create!(type: 'Image')
+ResourceType.create!(type: 'Other')
 
 Resource.create!(title: 'Google', url: 'www.google.com')
 Resource.create!(title: 'Let Me Google That For You', url: 'www.lmgtfy.com')
