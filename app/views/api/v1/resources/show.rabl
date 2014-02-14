@@ -1,7 +1,9 @@
 object @resource
 attributes :title, :description, :url, :created_at, :updated_at
-has_one :user
 
+child :user do
+  attributes :username
+end
 node :links do |resource|
   [
     { rel: 'self', href: api_resource_path(resource) },

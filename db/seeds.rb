@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+# TODO: Create a developer and more users
+
 u = User.create!(username: 'test', email: 'test@email.com', password: 'password', password_confirmation: 'password')
 
 c = ResourceCategory.create!(category: 'Site')
