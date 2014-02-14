@@ -25,3 +25,8 @@ License.create!(title: 'GPL v2', agreement_url: 'http://www.gnu.org/licenses/gpl
 License.create!(title: 'Apache License v2', agreement_url: 'http://www.apache.org/licenses/LICENSE-2.0.html')
 License.create!(title: 'Public Domain (no license)', agreement_url: 'http://en.wikipedia.org/wiki/Public_domain')
 License.create!(title: 'Creative Commons (CC BY 4.0)', agreement_url: 'http://creativecommons.org/licenses/by/4.0/deed.en_US')
+
+Tag.create!(tag_name: 'ruby')
+Tag.create!(tag_name: 'python')
+Tag.create!(tag_name: 'php')
+
