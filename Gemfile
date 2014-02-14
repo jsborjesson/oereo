@@ -25,9 +25,6 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
-# JSON/XML API
-gem 'active_model_serializers', '~> 0.8.1'
-
 # url/email validation
 gem 'validates_formatting_of', '~> 0.8.1'
 
