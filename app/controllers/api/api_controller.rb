@@ -2,13 +2,21 @@ class Api::ApiController < ApplicationController
 
   respond_to :json, :xml
 
-  before_filter :restrict_access
+  before_filter :authorize_token
+  before_filter :authorize_user # TODO: only on unsafe methods
 
   private
 
-  def restrict_access
-    authenticate_or_request_with_http_token do |token, options|
-      ApiKey.exists?(access_token: token)
+  def authorize_token
+    token = request.headers['X-AUTH-TOKEN']
+    unless ApiKey.exists?(access_token: token)
+      render :text => "Invalid access token", :status => :unauthorized
+    end
+  end
+
+  def authorize_user
+    authenticate_or_request_with_http_basic do |username, password|
+      User.find_by_username(username).authenticate(password)
     end
   end
 
