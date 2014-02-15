@@ -3,7 +3,7 @@ class Api::ApiController < ApplicationController
   respond_to :json, :xml
 
   before_filter :authorize_token
-  before_filter :authorize_user # TODO: only on unsafe methods
+  before_filter :authorize_user, except: [:index, :show]
 
   private
 
