@@ -65,6 +65,8 @@ To run the tests automatically on filesave:
 
 ## Documentation
 
+**Never change the `gh-pages` branch by hand.**
+
 The [documentation site](http://alcesleo.github.io/oereo)
 
 The documentation is written in Markdown in the `docs/` folder.
