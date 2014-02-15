@@ -16,6 +16,14 @@ GIT
       ransack (~> 1.0)
       sass-rails
 
+GIT
+  remote: git://github.com/jokklan/active_model_serializers.git
+  revision: 6c46204f5e7b9dbd553b6c8be047825f871ebf5f
+  branch: features/xml-support
+  specs:
+    active_model_serializers (0.9.0.pre)
+      activemodel (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -149,8 +157,6 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
-    rabl (0.9.3)
-      activesupport (>= 2.3.14)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -252,6 +258,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers!
   activeadmin!
   bcrypt-ruby (~> 3.1.2)
   capybara (~> 2.1.0)
@@ -262,7 +269,6 @@ DEPENDENCIES
   jquery-rails
   launchy (~> 2.3.0)
   pg
-  rabl (~> 0.9.3)
   rails (= 4.0.2)
   rails_12factor
   rspec-rails (~> 2.14.1)
