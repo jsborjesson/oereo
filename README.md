@@ -71,7 +71,7 @@ The [documentation site](http://alcesleo.github.io/oereo)
 
 The documentation is written in Markdown in the `docs/` folder.
 
-That folder is used to generate a documentation site with [Mkdocs](http://www.mkdocs.org/)
+That folder is used to generate a documentation site with [MkDocs](http://www.mkdocs.org/)
 and served by Github Pages. To update the docs simply update the content of the `docs/` folder
 and publish the changes like this:
 
