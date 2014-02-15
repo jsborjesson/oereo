@@ -5,7 +5,7 @@ class Api::ApiController < ApplicationController
   before_filter :authorize_token
   before_filter :authorize_user, except: [:index, :show]
 
-  private
+protected
 
   def authorize_token
     token = request.headers['X-AUTH-TOKEN']
