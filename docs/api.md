@@ -2,6 +2,9 @@
 
 ## Try it out
 
+First, register yourself as a developer at
+<http://oereo.herokuapp.com/register_developer> and get your **access_token**
+
 I strongly recommend [Postman](https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en)
 to play with the API. It supports sending all the needed headers and presents a
 simple interface with nicely formatted responses.
