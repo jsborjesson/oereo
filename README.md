@@ -1,4 +1,4 @@
-# oereo
+# oereo [![Build Status](https://travis-ci.org/alcesleo/oereo.png?branch=master)](https://travis-ci.org/alcesleo/oereo)
 
 _The tasty OER management API_
 
