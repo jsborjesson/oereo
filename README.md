@@ -19,6 +19,9 @@ Here is an invaluable screencast on [migrating to PostgreSQL](http://railscasts.
     # start the database server
     pg_ctl start -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log
 
+    # create the postgres user
+    createuser -s -r postgres
+
 
 Homebrew creates a user with your login name when installing
 Postgresql, you might need to change `database.yml` to
