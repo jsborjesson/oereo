@@ -2,6 +2,7 @@ require 'api_constraints'
 
 Oereo::Application.routes.draw do
 
+  get "tags/index"
   root to: 'home#index'
 
   # ActiveAdmin
@@ -13,17 +14,18 @@ Oereo::Application.routes.draw do
   get 'log_out' => 'sessions#destroy', as: 'log_out'
   get 'register_developer' => 'developers#new', as: 'register_developer'
 
+  resources :developers
+  resources :sessions
+
   # API
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :resources
       resources :users
+      resources :tags
     end
   end
 
-  resources :resources
-  resources :developers
-  resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
