@@ -9,7 +9,7 @@ class Api::V1::ResourcesController < Api::ApiController
   end
 
   def create
-    respond_with Resource.create(params[:resource])
+    respond_with Resource.create(resource_params)
   end
 
   def update
@@ -18,6 +18,19 @@ class Api::V1::ResourcesController < Api::ApiController
 
   def destroy
     respond_with Resource.destroy(params[:id])
+  end
+
+private
+
+  def resource_params
+    # FIXME: Hacking
+    {
+      title: params[:title],
+      description: params[:description],
+      url: params[:url],
+      user: User.all.first,
+      resource_category: ResourceCategory.all.first
+    }
   end
 
 end

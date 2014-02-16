@@ -4,10 +4,10 @@ class ResourceSerializer < ActiveModel::Serializer
   has_many :tags
 
   def links
-    # FIXME: bug in xml ams
+    # FIXME: Bug in the fork of AMS prevents access to url-methods
     [
-      {rel:"self", href: api_resource_url(object) },
-      {rel:"resources", href: api_resources_url }
+      {rel:"self", href: "..." },
+      {rel:"resources", href: "..." }
     ]
   end
 
