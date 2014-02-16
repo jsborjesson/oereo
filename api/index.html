@@ -103,8 +103,8 @@
 
 <h1 id="api">API</h1>
 <h2 id="try-it-out">Try it out</h2>
-<p>First, register yourself as a developer at
-<a href="http://oereo.herokuapp.com/register_developer">http://oereo.herokuapp.com/register_developer</a> and get your <strong>access_token</strong></p>
+<p>You can access the API at <a href="http://oereo.herokuapp.com/api/">http://oereo.herokuapp.com/api/</a>, first you should
+follow the <a href="#Authorization">authorization instructions</a>.</p>
 <p>I strongly recommend <a href="https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en">Postman</a>
 to play with the API. It supports sending all the needed headers and presents a
 simple interface with nicely formatted responses.</p>
@@ -114,6 +114,12 @@ and is recommended. To get the same result in XML simply append <code>.xml</code
 url.</p>
 <h2 id="authorization">Authorization</h2>
 <p>The API requires <em>both <strong>token</strong> and <strong>http basic</strong> authorization</em>.</p>
+<p>First you should <a href="http://oereo.herokuapp.com/register_developer">register a developer account</a>
+and get your <strong>access_token</strong>. Currently there is only internal support for
+users so you can use the <strong>test user account</strong> for now.</p>
+<pre class="prettyprint well"><code>username: test
+password: password
+</code></pre>
 <p>Authorizing with HTTP basic as a user is requested when needed, the
 application access token should be sent as a <code>X-AUTH-TOKEN</code> header.</p>
 <p>Headers sent for a fully authenticated request should look something like this:</p>
