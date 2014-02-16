@@ -94,6 +94,8 @@
         
             <li><a href="#authorization">Authorization</a></li>
         
+            <li><a href="#versioning">Versioning</a></li>
+        
     
     </ul>
 </div></div>
@@ -114,6 +116,27 @@ url.</p>
 <p>The API requires <em>both <strong>token</strong> and <strong>http basic</strong> authorization</em>.</p>
 <p>Authorizing with HTTP basic as a user is requested when needed, the
 application access token should be sent as a <code>X-AUTH-TOKEN</code> header.</p>
+<p>Headers sent for a fully authenticated request should look something like this:</p>
+<pre class="prettyprint well"><code>HTTP-AUTHORIZATION: Basic dGVzdDpwYXNzd29yZA==
+X-AUTH-TOKEN: fc0ba8c1538ba7f3c103f7bbbc2ba0f6
+</code></pre>
+<h2 id="versioning">Versioning</h2>
+<p>The API is still <strong>very</strong> unstable and <code>v1</code> of the API should be considered to
+be experimental.</p>
+<p>TODO: Choosing version - no point yet since there is only one.</p>
+<h3 id="endpoints">Endpoints</h3>
+<pre class="prettyprint well"><code># all resources
+/api/resources
+
+# resource with id 3
+/api/resources/3
+
+# resources tagged with 'ruby'
+/api/resources?tagged=ruby
+
+# list all tags
+/api/tags
+</code></pre>
 </div>
         </div>
 
