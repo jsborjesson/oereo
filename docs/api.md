@@ -21,3 +21,31 @@ The API requires _both **token** and **http basic** authorization_.
 
 Authorizing with HTTP basic as a user is requested when needed, the
 application access token should be sent as a `X-AUTH-TOKEN` header.
+
+Headers sent for a fully authenticated request should look something like this:
+
+    HTTP-AUTHORIZATION: Basic dGVzdDpwYXNzd29yZA==
+    X-AUTH-TOKEN: fc0ba8c1538ba7f3c103f7bbbc2ba0f6
+
+
+## Versioning
+
+The API is still **very** unstable and `v1` of the API should be considered to
+be experimental.
+
+TODO: Choosing version - no point yet since there is only one.
+
+### Endpoints
+
+    # all resources
+    /api/resources
+
+    # resource with id 3
+    /api/resources/3
+
+    # resources tagged with 'ruby'
+    /api/resources?tagged=ruby
+
+    # list all tags
+    /api/tags
+
