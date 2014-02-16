@@ -3,8 +3,10 @@ require 'spec_helper'
 describe "Resources API" do
   describe "GET /api/resources" do
 
+    # FIXME: it's REALLY slow to do this each time
     before(:each) do
-      @valid_auth_headers = { 'Authorization' => "Token token=\"#{ create(:developer).access_token }\"" }
+      token_auth
+      user_auth
     end
 
     it "denies access without token" do
@@ -15,8 +17,8 @@ describe "Resources API" do
     it "returns all the resources" do
       create_list(:resource, 10)
 
-      get '/api/resources', {}, @valid_auth_headers
-      expect(response).to be_success
+      get '/api/resources', {}, @env
+      expect(response.status).to be 200
 
       json = JSON.parse(response.body)
       expect(json['resources'].length).to eq(10)

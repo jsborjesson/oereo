@@ -7,7 +7,7 @@ class Api::ApiController < ApplicationController
 
   before_filter :authorize_token!
 
-  # move this to individual controllers
+  # TODO: move this to individual controllers?
   before_filter :authorize_user!, except: [:index, :show]
 
 protected
