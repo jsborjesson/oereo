@@ -2,9 +2,8 @@
 
 ## Try it out
 
-First, register yourself as a developer at
-<http://oereo.herokuapp.com/register_developer> and get your **access_token**.
-Then you can access the API at <http://oereo.herokuapp.com/api/>
+You can access the API at <http://oereo.herokuapp.com/api/>, first you should
+follow the [authorization instructions](#Authorization).
 
 I strongly recommend [Postman](https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en)
 to play with the API. It supports sending all the needed headers and presents a
@@ -19,6 +18,13 @@ url.
 ## Authorization
 
 The API requires _both **token** and **http basic** authorization_.
+
+First you should [register a developer account](http://oereo.herokuapp.com/register_developer)
+and get your **access_token**. Currently there is only internal support for
+users so you can use the **test user account** for now.
+
+    username: test
+    password: password
 
 Authorizing with HTTP basic as a user is requested when needed, the
 application access token should be sent as a `X-AUTH-TOKEN` header.
