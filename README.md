@@ -1,8 +1,12 @@
 # oereo [![Build Status](https://travis-ci.org/alcesleo/oereo.png?branch=master)](https://travis-ci.org/alcesleo/oereo)
 
-_The tasty OER management API_
+**An OER management API, very new and unstable.**
 
-A palindrome made by combining **OER** _(**O**pen **E**ducational **R**esource)_ and **oreo**.
+The name is a palindrome made by combining **OER** _(**O**pen **E**ducational **R**esource)_
+and **oreo**.
+
+It is [documented](http://alcesleo.github.io/oereo) and [running](http://oereo.herokuapp.com/)
+on Heroku.
 
 ## Installing
 
@@ -21,11 +25,6 @@ Here is an invaluable screencast on [migrating to PostgreSQL](http://railscasts.
 
     # create the postgres user
     createuser -s -r postgres
-
-
-Homebrew creates a user with your login name when installing
-Postgresql, you might need to change `database.yml` to
-reflect your settings.
 
     # let rails create the databases
     rake db:create:all
@@ -70,15 +69,13 @@ To run the tests automatically on filesave:
 
 **Never change the `gh-pages` branch by hand.**
 
-The [documentation site](http://alcesleo.github.io/oereo)
-
-The documentation is written in Markdown in the `docs/` folder.
+The [documentation](http://alcesleo.github.io/oereo) is written in Markdown in the `docs/` folder.
 
 That folder is used to generate a documentation site with [MkDocs](http://www.mkdocs.org/)
 and served by Github Pages. To update the docs simply update the content of the `docs/` folder
 and publish the changes like this:
 
-    # install mkdocs and ghp-import if it's not already installed
+    # install mkdocs and ghp-import if they're not already installed
     pip install mkdocs ghp-import
 
     # build the documentation site
