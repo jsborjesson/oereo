@@ -23,6 +23,7 @@ class Api::V1::ResourcesController < Api::ApiController
 private
 
   def resource_params
+    # TODO: each tag, first_or_create
     # FIXME: Hacking
     {
       title: params[:title],
