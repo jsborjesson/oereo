@@ -34,7 +34,6 @@ Headers sent for a fully authenticated request should look something like this:
     HTTP-AUTHORIZATION: Basic dGVzdDpwYXNzd29yZA==
     X-AUTH-TOKEN: fc0ba8c1538ba7f3c103f7bbbc2ba0f6
 
-
 ## Versioning
 
 The API is still **very** unstable and `v1` of the API should be considered to
@@ -55,4 +54,3 @@ TODO: Choosing version - no point yet since there is only one.
 
     # list all tags
     /api/tags
-

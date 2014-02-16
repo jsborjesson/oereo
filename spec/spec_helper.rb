@@ -22,6 +22,9 @@ RSpec.configure do |config|
   # Enable shorter syntax for factory girl
   config.include FactoryGirl::Syntax::Methods
 
+  # easier authentication
+  config.include AuthHelper, :type => :request
+
   # Configure database_cleaner
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation

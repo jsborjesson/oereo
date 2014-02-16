@@ -23,6 +23,7 @@ FactoryGirl.define do
   end
 
   factory :api_key do
+    developer
   end
 
   factory :license do
