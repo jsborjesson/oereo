@@ -1,5 +1,7 @@
 # Oereo documentation
 
-This is the official documentation of Oereo.
+This is the official documentation of Oereo, an API for managing your Open
+Educational Resources.
 
-**Soon to come...**
+The name is a palindrome made by combining **OER** _(**O**pen **E**ducational **R**esource)_
+and **oreo**.
