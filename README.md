@@ -78,6 +78,9 @@ and publish the changes like this:
     # install mkdocs and ghp-import if they're not already installed
     pip install mkdocs ghp-import
 
+    # while working you can serve the documentation site dynamically with
+    mkdocs serve
+
     # build the documentation site
     mkdocs build
 
