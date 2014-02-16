@@ -1,7 +1,13 @@
 class Api::V1::ResourcesController < Api::ApiController
 
   def index
-    respond_with Resource.all
+    # TODO: pagination
+    # TODO: support multiple tags
+    if params[:tagged]
+      respond_with Resource.includes(:tags).where('tags.tag_name' => params[:tagged])
+    else
+      respond_with Resource.all
+    end
   end
 
   def show
