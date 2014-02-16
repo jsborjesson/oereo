@@ -51,6 +51,7 @@ TODO: Choosing version - no point yet since there is only one.
 
     # resources tagged with 'ruby'
     /api/resources?tagged=ruby
+    /api/tags/ruby
 
     # list all tags
     /api/tags

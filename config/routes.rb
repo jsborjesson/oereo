@@ -2,7 +2,6 @@ require 'api_constraints'
 
 Oereo::Application.routes.draw do
 
-  get "tags/index"
   root to: 'home#index'
 
   # ActiveAdmin
@@ -23,6 +22,9 @@ Oereo::Application.routes.draw do
       resources :resources
       resources :users
       resources :tags
+
+      # nicer url for listing tags
+      get '/tags/:tagged' => 'resources#index'
     end
   end
 
