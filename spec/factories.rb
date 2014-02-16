@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :tag do
-    sequence(:name) { |n| "tag#{n}" }
+    sequence(:tag_name) { |n| "tag#{n}" }
   end
 
   factory :user do

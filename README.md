@@ -1,4 +1,4 @@
-# oereo
+# oereo [![Build Status](https://travis-ci.org/alcesleo/oereo.png?branch=master)](https://travis-ci.org/alcesleo/oereo)
 
 _The tasty OER management API_
 
@@ -18,6 +18,9 @@ Here is an invaluable screencast on [migrating to PostgreSQL](http://railscasts.
 
     # start the database server
     pg_ctl start -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log
+
+    # create the postgres user
+    createuser -s -r postgres
 
 
 Homebrew creates a user with your login name when installing
@@ -65,11 +68,13 @@ To run the tests automatically on filesave:
 
 ## Documentation
 
+**Never change the `gh-pages` branch by hand.**
+
 The [documentation site](http://alcesleo.github.io/oereo)
 
 The documentation is written in Markdown in the `docs/` folder.
 
-That folder is used to generate a documentation site with [Mkdocs](http://www.mkdocs.org/)
+That folder is used to generate a documentation site with [MkDocs](http://www.mkdocs.org/)
 and served by Github Pages. To update the docs simply update the content of the `docs/` folder
 and publish the changes like this:
 

@@ -11,7 +11,7 @@ Oereo::Application.routes.draw do
   # Login/Registration
   get 'log_in' => 'sessions#new', as: 'log_in'
   get 'log_out' => 'sessions#destroy', as: 'log_out'
-  get 'register' => 'developers#new', as: 'register'
+  get 'register_developer' => 'developers#new', as: 'register_developer'
 
   # API
   namespace :api, defaults: {format: 'json'} do

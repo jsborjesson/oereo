@@ -8,23 +8,52 @@
 </head>
 <body>
 
-<%# accounts %>
-<div class="developer_nav">
-  <% if current_developer %>
-    Logged in as <%= current_developer.email %>.
-    <%= link_to 'Log out', log_out_path %>
-  <% else %>
-    <%= link_to 'Register', register_path %> or <%= link_to 'log in', log_in_path %>
-  <% end %>
-</div>
+  <%# accounts %>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#"><strong>Oereo</strong></a>
+      </div>
 
-<%# flashes %>
-<% flash.each do |name, msg| %>
-  <%= content_tag :div, msg, class: name %>
-<% end %>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <%# Logged in %>
+        <% if current_developer %>
 
-<%# content %>
-<%= yield %>
+          <p class="navbar-text navbar-right"><span class="glyphicon glyphicon-user"></span> Signed in as <strong><%= current_developer.email %></strong></p>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="<%= log_out_path %>"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+          </ul>
+
+        <%# Logged out %>
+        <% else %>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="<%= register_developer_path %>"><span class="glyphicon glyphicon-pencil"></span> Register a developer account</a></li>
+            <li><a href="<%= log_in_path %>"><span class="glyphicon glyphicon-log-in"></span> Log in</a></li>
+          </ul>
+        <% end %>
+      </div><!-- /.navbar-collapse -->
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <%# flashes %>
+    <%# TODO: correct alert-classes %>
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-info"><%= msg %></div>
+    <% end %>
+
+    <%# content %>
+    <%= yield %>
+  </div>
 
 </body>
 </html>
