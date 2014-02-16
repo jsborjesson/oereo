@@ -21,3 +21,8 @@ The API requires _both **token** and **http basic** authorization_.
 
 Authorizing with HTTP basic as a user is requested when needed, the
 application access token should be sent as a `X-AUTH-TOKEN` header.
+
+Headers sent for a fully authenticated request should look something like this:
+
+    HTTP-AUTHORIZATION: Basic dGVzdDpwYXNzd29yZA==
+    X-AUTH-TOKEN: fc0ba8c1538ba7f3c103f7bbbc2ba0f6
