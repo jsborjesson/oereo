@@ -28,6 +28,9 @@ Oereo::Application.routes.draw do
     end
   end
 
+  # nicer response for api root
+  get '/api' => 'api/api#index'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

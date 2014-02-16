@@ -10,6 +10,11 @@ class Api::ApiController < ApplicationController
   # TODO: move this to individual controllers?
   before_filter :authorize_user!, except: [:index, :show]
 
+  # provide a nicer response at the root /api/
+  def index
+    respond_with resources: api_resources_url, tags: api_tags_url
+  end
+
 protected
 
   def authorize_token!
