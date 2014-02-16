@@ -16,7 +16,7 @@ ResourceCategory.create!(category: 'YouTube')
 ResourceCategory.create!(category: 'Image')
 ResourceCategory.create!(category: 'Other')
 
-Resource.create!(user: u, resource_category: c, title: 'Google', url: 'http://www.google.com')
+r = Resource.create!(user: u, resource_category: c, title: 'Google', url: 'http://www.google.com')
 Resource.create!(user: u, resource_category: c, title: 'Let Me Google That For You', url: 'http://www.lmgtfy.com')
 Resource.create!(user: u, resource_category: c, title: 'Stack Overflow', url: 'http://www.stackoverflow.com')
 Resource.create!(user: u, resource_category: c, title: 'Wikipedia', url: 'http://www.wikipedia.org')
@@ -27,7 +27,10 @@ License.create!(title: 'Apache License v2', agreement_url: 'http://www.apache.or
 License.create!(title: 'Public Domain (no license)', agreement_url: 'http://en.wikipedia.org/wiki/Public_domain')
 License.create!(title: 'Creative Commons (CC BY 4.0)', agreement_url: 'http://creativecommons.org/licenses/by/4.0/deed.en_US')
 
-Tag.create!(tag_name: 'ruby')
-Tag.create!(tag_name: 'python')
+t1 = Tag.create!(tag_name: 'ruby')
+t2 = Tag.create!(tag_name: 'python')
 Tag.create!(tag_name: 'php')
+
+r.tags << t1
+r.tags << t2
 
