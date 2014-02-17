@@ -73,6 +73,22 @@ A list of example URL:s
     # list all tags
     /api/tags
 
+### Posting
+
+You can post resources and attatch tags to them in one request:
+
+    {
+        "title": "Google",
+        "url": "http://www.google.com",
+        "description": "A search engine",
+        "tags": [
+            "searching",
+            "googling"
+        ]
+    }
+
+The owner will automatically be set to the authorized `User`.
+
 ### Pagination
 
 Pagination is done automatically, you can go to a specified page with requests

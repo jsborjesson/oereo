@@ -20,12 +20,11 @@ class Api::V1::ResourcesController < Api::ApiController
   end
 
   def create
-    # FIXME: Should :api really be needed? This took way to long to figure out
     @resource = Resource.create(resource_params)
+    apply_tag # TODO: optimize, don't save until tags are in?s
 
-
+    # FIXME: Should :api really be needed? This took way to long to figure out
     respond_with :api, @resource
-    # respond_with :api, Resource.create(resource_params)
   end
 
   def update
@@ -37,6 +36,20 @@ class Api::V1::ResourcesController < Api::ApiController
   end
 
 private
+
+  def apply_tags
+    if params[:tags].respond_to?('each')
+      params[:tags].each do |tag_name|
+        @resource.tags << get_tag(tag_name)
+      end
+    end
+  end
+
+  def get_tag(tag_name)
+    # NOTE: the first_or_create method returns the first one even if tag_name doesnt match
+    tag_name.downcase! # FIXME: ugly to do this manually
+    Tag.find_by_tag_name(tag_name) || Tag.create(tag_name: tag_name)
+  end
 
   def resource_params
     # TODO: each tag, first_or_create
