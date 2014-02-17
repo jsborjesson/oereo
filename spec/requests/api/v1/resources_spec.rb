@@ -24,4 +24,10 @@ describe "Resources API" do
       expect(json['resources'].length).to eq(10)
     end
   end
+
+  it "sets the current user on posted resources"
+  it "does not allow setting another user"
+  it "allows editing of owned resources"
+  it "does not allow editing of other's resources"
+
 end

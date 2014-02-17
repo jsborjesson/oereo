@@ -10,6 +10,7 @@ Developer.create!(email: 'dev@email.com', password: 'password', password_confirm
 
 # TODO: Create more users
 u = User.create!(username: 'test', email: 'test@email.com', password: 'password', password_confirmation: 'password')
+u2 = User.create!(username: 'test2', email: 'test2@email.com', password: 'password', password_confirmation: 'password')
 
 c = ResourceCategory.create!(category: 'Site')
 ResourceCategory.create!(category: 'YouTube')
