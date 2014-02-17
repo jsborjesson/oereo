@@ -15,7 +15,8 @@ class Api::V1::ResourcesController < Api::ApiController
   end
 
   def create
-    respond_with Resource.create(resource_params)
+    # FIXME: Should :api really be needed? This took way to long to figure out
+    respond_with :api, Resource.create(resource_params)
   end
 
   def update
