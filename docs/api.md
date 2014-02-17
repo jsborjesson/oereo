@@ -16,7 +16,7 @@ JSON, you may need to manually set the `Content-Type` header like this:
 
 Here is an example `POST` using Postman.
 
-![A postman request](/img/postman-1.png)
+![A postman request](/oereo/img/postman-1.png)
 
 ## Formats
 
