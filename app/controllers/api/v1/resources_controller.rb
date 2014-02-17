@@ -4,10 +4,11 @@ class Api::V1::ResourcesController < Api::ApiController
     # TODO: pagination
     # TODO: support multiple tags
     if params[:tagged]
-      respond_with Resource.includes(:tags).where('tags.tag_name' => params[:tagged])
+      resources = Resource.includes(:tags).where('tags.tag_name' => params[:tagged])
     else
-      respond_with Resource.all
+      resources = Resource.all
     end
+    respond_with resources.page(params[:page]).per(2)
   end
 
   def show
@@ -36,7 +37,7 @@ private
       title: params[:title],
       description: params[:description],
       url: params[:url],
-      user: User.all.first,
+      user: User.all.first, # TODO: current user
       resource_category: ResourceCategory.all.first
     }
   end

@@ -32,6 +32,8 @@ gem 'turbolinks'
 # to master or I can stop supporting this relic of a format entirely
 gem 'active_model_serializers', github: 'jokklan/active_model_serializers', branch: 'features/xml-support'
 
+gem 'kaminari', '~> 0.15.1'
+
 # url/email validation
 gem 'validates_formatting_of', '~> 0.8.1'
 
