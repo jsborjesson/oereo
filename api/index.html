@@ -156,6 +156,19 @@ be experimental.</p>
 # list all tags
 /api/tags
 </code></pre>
+<h3 id="posting">Posting</h3>
+<p>You can post resources and attatch tags to them in one request:</p>
+<pre class="prettyprint well"><code>{
+    "title": "Google",
+    "url": "http://www.google.com",
+    "description": "A search engine",
+    "tags": [
+        "searching",
+        "googling"
+    ]
+}
+</code></pre>
+<p>The owner will automatically be set to the authorized <code>User</code>.</p>
 <h3 id="pagination">Pagination</h3>
 <p>Pagination is done automatically, you can go to a specified page with requests
 like this:</p>
