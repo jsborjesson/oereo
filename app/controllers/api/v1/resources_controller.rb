@@ -21,7 +21,11 @@ class Api::V1::ResourcesController < Api::ApiController
 
   def create
     # FIXME: Should :api really be needed? This took way to long to figure out
-    respond_with :api, Resource.create(resource_params)
+    @resource = Resource.create(resource_params)
+
+
+    respond_with :api, @resource
+    # respond_with :api, Resource.create(resource_params)
   end
 
   def update
@@ -41,8 +45,8 @@ private
       title: params[:title],
       description: params[:description],
       url: params[:url],
-      user: User.all.first, # TODO: current user
-      resource_category: ResourceCategory.all.first
+      user: @user,
+      resource_category: ResourceCategory.all.first # TODO: category
     }
   end
 

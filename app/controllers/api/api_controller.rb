@@ -3,7 +3,7 @@ class Api::ApiController < ApplicationController
   respond_to :json, :xml
 
   # turn off csrf for api-calls
-  protect_from_forgery with: :null_session
+  skip_before_filter :verify_authenticity_token
 
   before_filter :authorize_token!
 
@@ -26,7 +26,9 @@ protected
 
   def authorize_user!
     authenticate_or_request_with_http_basic do |username, password|
-      User.find_by_username(username).authenticate(password)
+      # FIXME: this is sending 500 instead of 401
+      @user = User.find_by_username(username)
+      @user.authenticate(password)
     end
   end
 
