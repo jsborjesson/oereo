@@ -131,8 +131,12 @@ X-AUTH-TOKEN: fc0ba8c1538ba7f3c103f7bbbc2ba0f6
 be experimental.</p>
 <p>TODO: Choosing version - no point yet since there is only one.</p>
 <h3 id="endpoints">Endpoints</h3>
-<pre class="prettyprint well"><code># all resources
+<p>A list of example URL:s</p>
+<pre class="prettyprint well"><code># list resources
 /api/resources
+
+# list a specific page of resources
+/api/resources?page=2
 
 # resource with id 3
 /api/resources/3
@@ -144,6 +148,15 @@ be experimental.</p>
 # list all tags
 /api/tags
 </code></pre>
+<h3 id="pagination">Pagination</h3>
+<p>Pagination is done automatically, you can go to a specified page with requests
+like this:</p>
+<pre class="prettyprint well"><code>/api/resources?page=3
+</code></pre>
+<p>Links to other pages are sent in a header that looks something like this:</p>
+<pre class="prettyprint well"><code>Link: &lt;http://localhost:3000/api/resources?page=1&gt;; rel="first", &lt;http://localhost:3000/api/resources?page=2&gt;; rel="prev"
+</code></pre>
+<p>TODO: Document the <code>per_page</code> variable when it is implemented.</p>
 </div>
         </div>
 
