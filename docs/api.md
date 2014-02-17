@@ -43,8 +43,13 @@ TODO: Choosing version - no point yet since there is only one.
 
 ### Endpoints
 
-    # all resources
+A list of example URL:s
+
+    # list resources
     /api/resources
+
+    # list a specific page of resources
+    /api/resources?page=2
 
     # resource with id 3
     /api/resources/3
@@ -55,3 +60,16 @@ TODO: Choosing version - no point yet since there is only one.
 
     # list all tags
     /api/tags
+
+### Pagination
+
+Pagination is done automatically, you can go to a specified page with requests
+like this:
+
+    /api/resources?page=3
+
+Links to other pages are sent in a header that looks something like this:
+
+    Link: <http://localhost:3000/api/resources?page=1>; rel="first", <http://localhost:3000/api/resources?page=2>; rel="prev"
+
+TODO: Document the `per_page` variable when it is implemented.
