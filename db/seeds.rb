@@ -16,21 +16,23 @@ ResourceCategory.create!(category: 'YouTube')
 ResourceCategory.create!(category: 'Image')
 ResourceCategory.create!(category: 'Other')
 
-r = Resource.create!(user: u, resource_category: c, title: 'Google', url: 'http://www.google.com')
-Resource.create!(user: u, resource_category: c, title: 'Let Me Google That For You', url: 'http://www.lmgtfy.com')
-Resource.create!(user: u, resource_category: c, title: 'Stack Overflow', url: 'http://www.stackoverflow.com')
-Resource.create!(user: u, resource_category: c, title: 'Wikipedia', url: 'http://www.wikipedia.org')
-
-License.create!(title: 'MIT License', agreement_url: 'http://opensource.org/licenses/MIT')
+l = License.create!(title: 'MIT License', agreement_url: 'http://opensource.org/licenses/MIT')
 License.create!(title: 'GPL v2', agreement_url: 'http://www.gnu.org/licenses/gpl-2.0.html')
 License.create!(title: 'Apache License v2', agreement_url: 'http://www.apache.org/licenses/LICENSE-2.0.html')
 License.create!(title: 'Public Domain (no license)', agreement_url: 'http://en.wikipedia.org/wiki/Public_domain')
 License.create!(title: 'Creative Commons (CC BY 4.0)', agreement_url: 'http://creativecommons.org/licenses/by/4.0/deed.en_US')
 
+r = Resource.create!(user: u, resource_category: c, license: l, title: 'Google', url: 'http://www.google.com')
+Resource.create!(user: u, resource_category: c, license: l, title: 'Let Me Google That For You', url: 'http://www.lmgtfy.com')
+Resource.create!(user: u, resource_category: c, title: 'Stack Overflow', url: 'http://www.stackoverflow.com')
+Resource.create!(user: u, resource_category: c, title: 'Wikipedia', url: 'http://www.wikipedia.org')
+
 t1 = Tag.create!(tag_name: 'ruby')
 t2 = Tag.create!(tag_name: 'python')
 Tag.create!(tag_name: 'php')
 
+# Add a couple of tags to a resource
 r.tags << t1
 r.tags << t2
+r.save!
 

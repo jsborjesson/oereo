@@ -7,6 +7,8 @@ class Resource < ActiveRecord::Base
   belongs_to :resource_category
   validates_presence_of :resource_category
 
+  belongs_to :license
+
   validates :url, presence: true
   validates_formatting_of :url
 

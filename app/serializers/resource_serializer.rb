@@ -1,6 +1,8 @@
 class ResourceSerializer < ActiveModel::Serializer
   attributes :title, :url, :description, :links, :tags
 
+  has_one :license
+
   def tags
     @object.tags.pluck(:tag_name)
   end
