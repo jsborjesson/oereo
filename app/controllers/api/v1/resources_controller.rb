@@ -1,14 +1,18 @@
 class Api::V1::ResourcesController < Api::ApiController
 
+  # set pagination headers
+  after_filter only: [:index] { paginate(:resources) }
+
   def index
-    # TODO: pagination
-    # TODO: support multiple tags
     if params[:tagged]
-      resources = Resource.includes(:tags).where('tags.tag_name' => params[:tagged])
+      # TODO: support multiple tags
+      @resources = Tag.find_by_tag_name(params[:tagged]).resources
     else
-      resources = Resource.all
+      @resources = Resource.all
     end
-    respond_with resources.page(params[:page]).per(2)
+
+    # TODO: support per_page-parameter
+    respond_with @resources.page(params[:page]).per(10)
   end
 
   def show
