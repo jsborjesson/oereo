@@ -104,10 +104,16 @@
 <h1 id="api">API</h1>
 <h2 id="try-it-out">Try it out</h2>
 <p>You can access the API at <a href="http://oereo.herokuapp.com/api/">http://oereo.herokuapp.com/api/</a>, first you should
-follow the <a href="#Authorization">authorization instructions</a>.</p>
+follow the <a href="#authorization">authorization instructions</a>.</p>
 <p>I strongly recommend <a href="https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en">Postman</a>
 to play with the API. It supports sending all the needed headers and presents a
 simple interface with nicely formatted responses.</p>
+<p>When using Postman, sending form-data usually works fine, but if you're sending
+JSON, you may need to manually set the <code>Content-Type</code> header like this:</p>
+<pre class="prettyprint well"><code>Content-Type: application/json
+</code></pre>
+<p>Here is an example <code>POST</code> using Postman.</p>
+<p><img alt="A postman request" src="/img/postman-1.png" /></p>
 <h2 id="formats">Formats</h2>
 <p>The API supports both <strong>JSON</strong> and <strong>XML</strong>, however JSON is the standard format
 and is recommended. To get the same result in XML simply append <code>.xml</code> to the
@@ -120,12 +126,14 @@ users so you can use the <strong>test user account</strong> for now.</p>
 <pre class="prettyprint well"><code>username: test
 password: password
 </code></pre>
-<p>Authorizing with HTTP basic as a user is requested when needed, the
-application access token should be sent as a <code>X-AUTH-TOKEN</code> header.</p>
+<p>In Postman, you can set the header automatically by entering the credentials in
+the Basic Auth section, the application access token should be sent as an
+<code>X-AUTH-TOKEN</code> header.</p>
 <p>Headers sent for a fully authenticated request should look something like this:</p>
 <pre class="prettyprint well"><code>HTTP-AUTHORIZATION: Basic dGVzdDpwYXNzd29yZA==
 X-AUTH-TOKEN: fc0ba8c1538ba7f3c103f7bbbc2ba0f6
 </code></pre>
+<p><code>HTTP-AUTHORIZATION</code> and <code>Authorization</code> mean exactly the same thing.</p>
 <h2 id="versioning">Versioning</h2>
 <p>The API is still <strong>very</strong> unstable and <code>v1</code> of the API should be considered to
 be experimental.</p>
