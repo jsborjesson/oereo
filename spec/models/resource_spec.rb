@@ -9,6 +9,7 @@ describe Resource do
   it { should ensure_length_of(:title).is_at_most(140) }
   it { should belong_to(:resource_category) }
   it { should belong_to(:user) }
+  it { should belong_to(:license) }
 
   # TODO: Implement smart protocol
   xit "adds http:// to URL upon saving" do
