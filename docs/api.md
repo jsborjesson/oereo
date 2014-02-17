@@ -3,11 +3,20 @@
 ## Try it out
 
 You can access the API at <http://oereo.herokuapp.com/api/>, first you should
-follow the [authorization instructions](#Authorization).
+follow the [authorization instructions](#authorization).
 
 I strongly recommend [Postman](https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en)
 to play with the API. It supports sending all the needed headers and presents a
 simple interface with nicely formatted responses.
+
+When using Postman, sending form-data usually works fine, but if you're sending
+JSON, you may need to manually set the `Content-Type` header like this:
+
+    Content-Type: application/json
+
+Here is an example `POST` using Postman.
+
+![A postman request](/img/postman-1.png)
 
 ## Formats
 
@@ -26,13 +35,16 @@ users so you can use the **test user account** for now.
     username: test
     password: password
 
-Authorizing with HTTP basic as a user is requested when needed, the
-application access token should be sent as a `X-AUTH-TOKEN` header.
+In Postman, you can set the header automatically by entering the credentials in
+the Basic Auth section, the application access token should be sent as an
+`X-AUTH-TOKEN` header.
 
 Headers sent for a fully authenticated request should look something like this:
 
     HTTP-AUTHORIZATION: Basic dGVzdDpwYXNzd29yZA==
     X-AUTH-TOKEN: fc0ba8c1538ba7f3c103f7bbbc2ba0f6
+
+`HTTP-AUTHORIZATION` and `Authorization` mean exactly the same thing.
 
 ## Versioning
 
