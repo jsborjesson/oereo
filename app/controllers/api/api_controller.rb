@@ -3,7 +3,7 @@ class Api::ApiController < ApplicationController
   respond_to :json, :xml
 
   # turn off csrf for api-calls
-  skip_before_filter :verify_authenticity_token
+  protect_from_forgery with: :null_session
 
   before_filter :authorize_token!
 

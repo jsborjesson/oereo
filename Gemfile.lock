@@ -52,6 +52,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    api-pagination (2.1.1)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (4.0.2)
@@ -262,6 +263,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers!
   activeadmin!
+  api-pagination
   bcrypt-ruby (~> 3.1.2)
   bootstrap-sass (~> 3.1.1)
   capybara (~> 2.1.0)
@@ -270,6 +272,7 @@ DEPENDENCIES
   faker (~> 1.1.2)
   guard-rspec
   jquery-rails
+  kaminari (~> 0.15.1)
   launchy (~> 2.3.0)
   pg
   rails (= 4.0.2)
