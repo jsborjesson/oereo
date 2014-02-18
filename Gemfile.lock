@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: c9e7774c0768dadac82681d2d233b89d012b8dc5
+  revision: d7a26247de866fba5e3d2cce872ba978247f80a2
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -75,7 +75,7 @@ GEM
     celluloid-io (0.15.0)
       celluloid (>= 0.15.0)
       nio4r (>= 0.5.0)
-    childprocess (0.4.0)
+    childprocess (0.5.1)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -155,7 +155,7 @@ GEM
     pg (0.17.1)
     polyamorous (0.6.4)
       activerecord (>= 3.0)
-    polyglot (0.3.3)
+    polyglot (0.3.4)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
