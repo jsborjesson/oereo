@@ -18,6 +18,10 @@ Here is an example `POST` using Postman.
 
 ![A postman request](/oereo/img/postman-1.png)
 
+It is currently hosted on a free [Heroku](https://www.heroku.com/) account,
+that means it will be unloaded from memory after being inactive a while - the
+first request may be very slow.
+
 ## Formats
 
 The API supports both **JSON** and **XML**, however JSON is the standard format
