@@ -46,6 +46,18 @@ Using [Heroku](https://www.heroku.com/), run:
 
 _Note that there are no production settings in `database.yml`, Heroku will set these up automatically._
 
+### Administrating
+
+There is an admin interface at `/admin`.
+
+If resetting the database or deploying for the first time it will have one
+single superuser:
+
+    admin@example.com
+    password
+
+**Don't forget to delete this and create a proper superuser.***
+
 ## Testing
 
 Make sure the db is prepared:
