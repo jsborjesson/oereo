@@ -30,7 +30,7 @@ gem 'turbolinks'
 # JSON/XML api
 # I hate XML and love AMS, I'll use this branch to support XML until it either gets merged
 # to master or I can stop supporting this relic of a format entirely
-gem 'active_model_serializers', github: 'jokklan/active_model_serializers', branch: 'features/xml-support'
+gem 'active_model_serializers', github: 'jokklan/active_model_serializers', ref: '6c46204' #branch: 'features/xml-support'
 
 # Pagination
 gem 'kaminari', '~> 0.15.1'

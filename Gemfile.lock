@@ -19,7 +19,7 @@ GIT
 GIT
   remote: git://github.com/jokklan/active_model_serializers.git
   revision: 6c46204f5e7b9dbd553b6c8be047825f871ebf5f
-  branch: features/xml-support
+  ref: 6c46204
   specs:
     active_model_serializers (0.9.0.pre)
       activemodel (>= 3.2)
