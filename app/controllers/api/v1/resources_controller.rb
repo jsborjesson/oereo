@@ -29,7 +29,8 @@ class Api::V1::ResourcesController < Api::ApiController
 
   def update
     @resource = Resource.update(params[:id], resource_params)
-    apply_tags # FIXME: should remove old tags when PUTting new ones
+    @resource.tags.clear # TODO: Updating tags can be done more efficiently
+    apply_tags
     respond_with :api, @resource
   end
 
