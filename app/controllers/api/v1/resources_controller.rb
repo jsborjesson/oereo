@@ -21,14 +21,16 @@ class Api::V1::ResourcesController < Api::ApiController
 
   def create
     @resource = Resource.create(resource_params)
-    apply_tag # TODO: optimize, don't save until tags are in?s
+    apply_tags # TODO: optimize, don't save until tags are in?s
 
     # FIXME: Should :api really be needed? This took way to long to figure out
     respond_with :api, @resource
   end
 
   def update
-    respond_with Resource.update(params[:id], params[:resource])
+    @resource = Resource.update(params[:id], resource_params)
+    apply_tags # FIXME: should remove old tags when PUTting new ones
+    respond_with :api, @resource
   end
 
   def destroy

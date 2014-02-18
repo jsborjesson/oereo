@@ -57,7 +57,9 @@ be experimental.
 
 TODO: Choosing version - no point yet since there is only one.
 
-### Endpoints
+## Using the API
+
+### Reading resources
 
 A list of example URL:s
 
@@ -77,9 +79,11 @@ A list of example URL:s
     # list all tags
     /api/tags
 
-### Posting
+### Creating/changing resorces
 
 You can post resources and attatch tags to them in one request:
+
+    POST /api/resources
 
     {
         "title": "Google",
@@ -92,6 +96,20 @@ You can post resources and attatch tags to them in one request:
     }
 
 The owner will automatically be set to the authorized `User`.
+
+Changing a resource works the same way, but on a specific url
+
+    PUT /api/resources/1
+
+    {
+        "title": "Google Search",
+        "url": "http://www.google.com",
+        "description": "A search engine",
+        "tags": [
+            "searching",
+            "googling"
+        ]
+    }
 
 ### Pagination
 
