@@ -16,7 +16,7 @@ JSON, you may need to manually set the `Content-Type` header like this:
 
 Here is an example `POST` using Postman.
 
-![A postman request](/oereo/img/postman-1.png)
+![A postman request](../img/postman-1.png)
 
 It is currently hosted on a free [Heroku](https://www.heroku.com/) account,
 that means it will be unloaded from memory after being inactive a while - the
