@@ -21,6 +21,7 @@ Here is an invaluable screencast on [migrating to PostgreSQL](http://railscasts.
     initdb /usr/local/var/postgres
 
     # start the database server
+    # this is the only one you need to run again if you restart your computer
     pg_ctl start -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log
 
     # create the postgres user

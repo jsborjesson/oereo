@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/alcesleo/active_model_serializers.git
+  revision: 660e1309004c2952ea423897009689dfa7972451
+  branch: features/xml-support
+  specs:
+    active_model_serializers (0.9.0.alpha1)
+      activemodel (>= 3.2)
+
+GIT
   remote: git://github.com/gregbell/active_admin.git
   revision: d7a26247de866fba5e3d2cce872ba978247f80a2
   specs:
@@ -15,14 +23,6 @@ GIT
       rails (>= 3.2, < 4.1)
       ransack (~> 1.0)
       sass-rails
-
-GIT
-  remote: git://github.com/jokklan/active_model_serializers.git
-  revision: 6c46204f5e7b9dbd553b6c8be047825f871ebf5f
-  ref: 6c46204
-  specs:
-    active_model_serializers (0.9.0.pre)
-      activemodel (>= 3.2)
 
 GEM
   remote: https://rubygems.org/
