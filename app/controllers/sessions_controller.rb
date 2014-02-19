@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     developer = Developer.find_by_email(params[:email])
     if developer && developer.authenticate(params[:password])
       session[:developer_id] = developer.id
-      redirect_to root_url, notice: 'Successfully logged in'
+      redirect_to root_url, flash: { success: 'Successfully logged in' }
     else
       flash.now.alert = 'Invalid email or password'
       render 'new'

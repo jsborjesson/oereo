@@ -45,11 +45,7 @@
 
   <div class="container">
 
-    <%# flashes %>
-    <%# TODO: correct alert-classes %>
-    <% flash.each do |name, msg| %>
-      <div class="alert alert-info"><%= msg %></div>
-    <% end %>
+    <%= render partial: 'shared/flashes' %>
 
     <%# content %>
     <%= yield %>

@@ -6,7 +6,7 @@ class DevelopersController < ApplicationController
   def create
     @developer = Developer.new(developer_params)
     if @developer.save
-      redirect_to root_url, notice: 'Successfully registered.'
+      redirect_to root_url, flash: { success: 'Successfully registered.' }
     else
       render 'new'
     end
