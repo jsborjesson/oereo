@@ -49,9 +49,8 @@ private
   end
 
   def get_tag(tag_name)
-    # NOTE: the first_or_create method returns the first one even if tag_name doesnt match
-    tag_name.downcase! # FIXME: ugly to do this manually
-    Tag.find_by_tag_name(tag_name) || Tag.create(tag_name: tag_name)
+    tag_name.downcase! # FIXME: case insensitive search for tags?
+    Tag.where(tag_name: tag_name).first_or_create
   end
 
   def resource_params
