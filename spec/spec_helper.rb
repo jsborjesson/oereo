@@ -24,7 +24,7 @@ RSpec.configure do |config|
 
   # Easier authentication and parsing for api-tests
   config.include AuthHelper, type: :request
-  config.include ParsingHelper, type: :request
+  config.include JsonHelper, type: :request
 
   # Configure database_cleaner
   config.before(:suite) do

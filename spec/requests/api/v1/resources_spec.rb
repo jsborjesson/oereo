@@ -6,8 +6,7 @@ describe "Resources API" do
 
     # FIXME: it's REALLY slow to do this each time
     before(:each) do
-      token_auth
-      user_auth
+      full_auth
     end
 
     it "denies access without token" do
@@ -53,8 +52,6 @@ describe "Resources API" do
         # only 3 in the last page
         get '/api/resources?per_page=5&page=2', {}, @env
         expect(json['resources'].length).to eq(3)
-
-
       end
 
       it "sends an empty array if page is after the last" do
@@ -68,10 +65,77 @@ describe "Resources API" do
     end
   end
 
+  describe "POST /api/resources" do
+
+    # always send json
+    before(:each) { content_type_json }
+
+    it "creates a new resource" do
+      full_auth
+
+      # create the needed refs
+      create(:license)
+      create(:resource_category, category: 'YouTube')
+
+      json = '{
+        "title": "Google",
+        "url": "http://www.google.com",
+        "description": "A search engine",
+        "tags": [
+          "searching",
+          "googling"
+        ],
+        "resource_category": "YouTube",
+        "license_id": 1
+      }'
+
+      expect(Resource.count).to eq(0)
+      post '/api/resources', json, @env
+      expect(response.status).to be(201)
+      expect(Resource.count).to eq(1)
+    end
+
+    it "denies post request when not authorized as a user" do
+      token_auth
+      post '/api/resources', { test: 'value' }.to_json, @env
+      expect(response.status).to be(401)
+    end
+
+    it "does not allow setting a different user id" do
+
+      full_auth
+      user = create(:user)
+
+      # FIXME: DRY up tests
+      create(:license)
+      create(:resource_category, category: 'YouTube')
+
+      json = '{
+        "title": "Google",
+        "url": "http://www.google.com",
+        "description": "A search engine",
+        "tags": [
+          "searching",
+          "googling"
+        ],
+        "resource_category": "YouTube",
+        "license_id": 1,
+        "user_id": ' + user.id.to_s + '
+      }'
+
+      # it creates the resource, but still sets the current user, and not the one
+      # the hacker tried to inject
+      post '/api/resources', json, @env
+      expect(response.status).to be(201)
+      expect(Resource.find_by_user_id(user.id)).to be_nil
+      expect(Resource.find_by_user_id(@authorized_user.id)).to_not be_nil
+    end
+  end
+
   it "does not allow setting another user"
   it "allows editing of owned resources"
   it "does not allow editing of other's resources"
-  it "creates a new resource"
+
   it "sets the current user on posted resources"
   it "changes a resource"
   it "deletes resources if permitted"
