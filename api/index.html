@@ -167,8 +167,12 @@ be experimental.</p>
 
 # list all users
 /api/users
+
+# list all available categories
+/api/resource_categories
 </code></pre>
 <h3 id="creatingchanging-resorces">Creating/changing resorces</h3>
+<p>TODO: explain licenses and categories</p>
 <p>You can post resources and attatch tags to them in one request:</p>
 <pre class="prettyprint well"><code>POST /api/resources
 
@@ -179,10 +183,16 @@ be experimental.</p>
     "tags": [
         "searching",
         "googling"
-    ]
+    ],
+    "resource_category": "Site"
 }
 </code></pre>
-<p>The owner will automatically be set to the authorized <code>User</code>.</p>
+<ul>
+<li>The owner will automatically be set to the authorized <code>User</code>.</li>
+<li>The resource_category <strong>must be an exact match</strong> of a valid
+<code>resource_category</code>, you can find all valid values at
+<code>/api/resource_categories</code>.</li>
+</ul>
 <p>Changing a resource works the same way, but on a specific url</p>
 <pre class="prettyprint well"><code>PUT /api/resources/1
 
