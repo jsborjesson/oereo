@@ -1,4 +1,5 @@
 site_name: Oereo
 pages:
-- [index.md, Home]
-- [api.md, API]
+- ['index.md', 'Home']
+- ['api/getting-started.md', 'API', 'Getting started']
+- ['api/using-the-api.md', 'API', 'Using the API']
