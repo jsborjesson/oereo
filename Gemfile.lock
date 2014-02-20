@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/alcesleo/active_model_serializers.git
-  revision: 660e1309004c2952ea423897009689dfa7972451
+  revision: e0b876f183d3938ca66d277ad243dbab5d02dc17
   branch: features/xml-support
   specs:
     active_model_serializers (0.9.0.alpha1)
@@ -128,8 +128,8 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (4.1.1)
-      railties (>= 3.1.0)
+    jquery-ui-rails (4.2.0)
+      railties (>= 3.2.16)
     json (1.8.1)
     kaminari (0.15.1)
       actionpack (>= 3.0.0)
@@ -228,7 +228,7 @@ GEM
     shoulda-matchers (2.5.0)
       activesupport (>= 3.0.0)
     slop (3.4.7)
-    sprockets (2.10.1)
+    sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
