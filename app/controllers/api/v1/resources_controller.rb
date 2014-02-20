@@ -11,8 +11,8 @@ class Api::V1::ResourcesController < Api::ApiController
       @resources = Resource.all
     end
 
-    # TODO: support per_page-parameter
-    respond_with @resources.page(params[:page]).per(10)
+    per_page = params[:per_page] || 10
+    respond_with @resources.page(params[:page]).per(per_page)
   end
 
   def show

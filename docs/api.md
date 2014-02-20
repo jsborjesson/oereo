@@ -122,4 +122,7 @@ Links to other pages are sent in a header that looks something like this:
 
     Link: <http://localhost:3000/api/resources?page=1>; rel="first", <http://localhost:3000/api/resources?page=2>; rel="prev"
 
-TODO: Document the `per_page` variable when it is implemented.
+You can set how many records you want with the `per_page` variable:
+
+    # it defaults to 10
+    /api/resources?page=3&per_page=5
