@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+# TODO: use url-helpers instead of hardcoding urls?
+
 describe "Resources API" do
 
   describe "GET /api/resources" do
@@ -129,6 +131,20 @@ describe "Resources API" do
       expect(Resource.find_by_user_id(@authorized_user.id)).to_not be_nil
     end
 
+  end
+
+  describe "PUT /api/resources" do
+
+    # FIXME: DRY up tests
+    before(:each) do
+      # always send json
+      content_type_json
+
+      # create the some associations to work with
+      create(:license)
+      create(:resource_category, category: 'YouTube')
+    end
+
     it "changes a resource" do
       full_auth
 
@@ -166,12 +182,32 @@ describe "Resources API" do
       # make sure the title changed
       expect(Resource.find(resource_id).title).to eq("Google Search engine")
     end
+
+    it "doesn't change other's resources"
   end
 
-  it "allows editing of owned resources"
-  it "does not allow editing of other's resources"
+  describe "DELETE /api/resources" do
+    it "allows deletion of own resources" do
+      full_auth
+      owned_resource = create(:resource, user: @authorized_user)
 
-  it "sets the current user on posted resources"
+      delete "/api/resources/#{owned_resource.id}", {}, @env
+      expect(response.status).to eq 204 # no content
+      expect(Resource.count).to eq 0 # it's gone
+    end
 
-  it "deletes resources if permitted"
+    # TODO: implement permissons
+    xit "does not permit deletion of other's resources" do
+      full_auth
+
+      other_user = create(:user)
+      other_resource = create(:resource, user: other_user)
+
+      delete "/api/resources/#{other_resource.id}", {}, @env
+      expect(response.status).to eq 403 # forbidden
+      expect(Resource.count).to eq 1 # it's still there
+    end
+
+  end
+
 end
