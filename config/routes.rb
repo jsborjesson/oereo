@@ -2,17 +2,17 @@ require 'api_constraints'
 
 Oereo::Application.routes.draw do
 
+  # Homepage
   root to: 'home#index'
 
-  # ActiveAdmin
+  # Admin interface
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  # Login/Registration
+  # Developer Login/Registration
   get 'log_in' => 'sessions#new', as: 'log_in'
   get 'log_out' => 'sessions#destroy', as: 'log_out'
   get 'register_developer' => 'developers#new', as: 'register_developer'
-
   resources :developers
   resources :sessions
 
@@ -23,6 +23,7 @@ Oereo::Application.routes.draw do
       resources :users, only: [:index, :show]
       resources :tags
       resources :licenses, only: [:index, :show]
+      resources :resource_categories, only: [:index, :show]
 
       # nicer url for listing tags
       get '/tags/:tagged' => 'resources#index'

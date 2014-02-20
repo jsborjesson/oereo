@@ -54,14 +54,13 @@ private
   end
 
   def resource_params
-    # TODO: each tag, first_or_create
     # FIXME: Hacking
     {
       title: params[:title],
       description: params[:description],
       url: params[:url],
       user: @user, # from api_controller
-      resource_category: ResourceCategory.all.first # TODO: category
+      resource_category: ResourceCategory.find_by_category(params[:resource_category]) # TODO: category
     }
   end
 

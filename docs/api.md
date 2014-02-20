@@ -85,7 +85,12 @@ A list of example URL:s
     # list all users
     /api/users
 
+    # list all available categories
+    /api/resource_categories
+
 ### Creating/changing resorces
+
+TODO: explain licenses and categories
 
 You can post resources and attatch tags to them in one request:
 
@@ -98,10 +103,14 @@ You can post resources and attatch tags to them in one request:
         "tags": [
             "searching",
             "googling"
-        ]
+        ],
+        "resource_category": "Site"
     }
 
-The owner will automatically be set to the authorized `User`.
+* The owner will automatically be set to the authorized `User`.
+* The resource_category **must be an exact match** of a valid
+`resource_category`, you can find all valid values at
+`/api/resource_categories`.
 
 Changing a resource works the same way, but on a specific url
 

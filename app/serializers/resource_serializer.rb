@@ -1,6 +1,7 @@
 class ResourceSerializer < ActiveModel::Serializer
-  attributes :title, :url, :description, :links, :tags
+  attributes :title, :url, :description, :tags, :links
 
+  has_one :resource_category
   has_one :license
 
   def tags
