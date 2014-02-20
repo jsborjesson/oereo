@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Api::V1::UsersController do
+describe "Users API" do
 
 end

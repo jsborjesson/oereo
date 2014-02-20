@@ -60,7 +60,7 @@ private
       title: params[:title],
       description: params[:description],
       url: params[:url],
-      user: @user,
+      user: @user, # from api_controller
       resource_category: ResourceCategory.all.first # TODO: category
     }
   end
