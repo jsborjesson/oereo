@@ -11,7 +11,7 @@ FactoryGirl.define do
   end
 
   factory :resource_category do
-    category "TestCategory"
+    sequence(:category) { |n| "Category#{n}" }
   end
 
   factory :resource do
@@ -19,6 +19,7 @@ FactoryGirl.define do
     description "Description of a resource"
     url "http://www.example.com/"
     resource_category
+    license
     user
   end
 
@@ -27,7 +28,7 @@ FactoryGirl.define do
   end
 
   factory :license do
-    title "MIT"
+    sequence(:title) { |n| "MIT v#{n}" }
     agreement_url "http://opensource.org/licenses/MIT"
   end
 
