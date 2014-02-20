@@ -79,6 +79,12 @@ A list of example URL:s
     # list all tags
     /api/tags
 
+    # list all available licenses
+    /api/licenses
+
+    # list all users
+    /api/users
+
 ### Creating/changing resorces
 
 You can post resources and attatch tags to them in one request:
