@@ -54,13 +54,13 @@ private
   end
 
   def resource_params
-    # FIXME: Hacking
     {
       title: params[:title],
       description: params[:description],
       url: params[:url],
-      user: @user, # from api_controller
-      resource_category: ResourceCategory.find_by_category(params[:resource_category]) # TODO: category
+      user: @user, # set in api_controller
+      license: License.find_by_id(params[:license_id]),
+      resource_category: ResourceCategory.find_by_category(params[:resource_category])
     }
   end
 

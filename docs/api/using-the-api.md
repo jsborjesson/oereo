@@ -33,9 +33,7 @@ A list of example URL:s
 
 ## Creating/changing resorces
 
-TODO: explain licenses
-
-You can post resources and attatch tags to them in one request:
+This is a complete `POST` with all possible keys set.
 
     POST /api/resources
 
@@ -47,13 +45,20 @@ You can post resources and attatch tags to them in one request:
             "searching",
             "googling"
         ],
+        "license_id": 1, // MIT License
         "resource_category": "Site"
     }
 
-* The owner will automatically be set to the authorized `User`.
-* The resource_category **must be an exact match** of a valid
-`resource_category`, you can find all valid values at
-`/api/resource_categories`.
+|         Key         | Compulsory |                                                  Description                                                  |
+| ------------------: | :--------: | :------------------------------------------------------------------------------------------------------------ |
+|             `title` |  &#10004;  | Maximum 140 characters.                                                                                       |
+|               `url` |  &#10004;  | Needs to be a fully valid URL, including `http://`                                                            |
+|       `description` |            | Longer description of the resource.                                                                           |
+|              `tags` |            | are sent as an array of strings, they will be converted to lowercase.                                         |
+| `resource_category` |  &#10004;  | **must be an exact match** of a valid category, you can find all valid options at `/api/resource_categories`. |
+|        `license_id` |            | License is currently set by its **id**, you need to check out the current options at `/api/licenses`.         |
+
+**The owner will automatically be set to the authorized `User`.**
 
 Changing a resource works the same way, but on a specific url
 
@@ -66,7 +71,9 @@ Changing a resource works the same way, but on a specific url
         "tags": [
             "searching",
             "googling"
-        ]
+        ],
+        "license_id": 1, // MIT License
+        "resource_category": "Site"
     }
 
 ## Pagination
