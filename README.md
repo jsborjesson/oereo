@@ -77,6 +77,9 @@ To run the tests automatically on filesave:
 
     guard
 
+There are a few helpers in `spec/support` that you need to check out to
+understand the tests.
+
 
 ## Documentation
 
