@@ -20,8 +20,9 @@ Oereo::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :resources
-      resources :users
+      resources :users, only: [:index, :show]
       resources :tags
+      resources :licenses, only: [:index, :show]
 
       # nicer url for listing tags
       get '/tags/:tagged' => 'resources#index'
