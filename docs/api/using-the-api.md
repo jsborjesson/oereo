@@ -17,7 +17,6 @@ A list of example URL:s
 
     # resources tagged with 'ruby'
     /api/resources?tagged=ruby
-    /api/tags/ruby
 
     # list all tags
     /api/tags

@@ -26,6 +26,7 @@ Oereo::Application.routes.draw do
       resources :resource_categories, only: [:index, :show]
 
       # nicer url for listing tags
+      # FIXME: tags url isn't working
       get '/tags/:tagged' => 'resources#index'
     end
   end
