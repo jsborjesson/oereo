@@ -161,6 +161,12 @@ be experimental.</p>
 
 # list all tags
 /api/tags
+
+# list all available licenses
+/api/licenses
+
+# list all users
+/api/users
 </code></pre>
 <h3 id="creatingchanging-resorces">Creating/changing resorces</h3>
 <p>You can post resources and attatch tags to them in one request:</p>
@@ -198,7 +204,10 @@ like this:</p>
 <p>Links to other pages are sent in a header that looks something like this:</p>
 <pre class="prettyprint well"><code>Link: &lt;http://localhost:3000/api/resources?page=1&gt;; rel="first", &lt;http://localhost:3000/api/resources?page=2&gt;; rel="prev"
 </code></pre>
-<p>TODO: Document the <code>per_page</code> variable when it is implemented.</p>
+<p>You can set how many records you want with the <code>per_page</code> variable:</p>
+<pre class="prettyprint well"><code># it defaults to 10
+/api/resources?page=3&amp;per_page=5
+</code></pre>
 </div>
         </div>
 
