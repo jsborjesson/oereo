@@ -25,9 +25,12 @@ describe "Resources API" do
     end
   end
 
-  it "sets the current user on posted resources"
   it "does not allow setting another user"
   it "allows editing of owned resources"
   it "does not allow editing of other's resources"
-
+  it "sends link-headers"
+  it "creates a new resource"
+  it "sets the current user on posted resources"
+  it "changes a resource"
+  it "deletes resources if permitted"
 end
