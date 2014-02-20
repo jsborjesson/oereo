@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+        <title>Using the API - Oereo</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/prettify-1.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Oereo</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="../..">Home</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">API <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../getting-started/">Getting started</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href="./">Using the API</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li >
+                    <a rel="next" href="../getting-started/">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a rel="prev" >
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#using-the-api">Using the API</a></li>
+        
+            <li><a href="#reading-resources">Reading resources</a></li>
+        
+            <li><a href="#creatingchanging-resorces">Creating/changing resorces</a></li>
+        
+            <li><a href="#pagination">Pagination</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="using-the-api">Using the API</h1>
+<p>How to use the API, shown with working examples</p>
+<h2 id="reading-resources">Reading resources</h2>
+<p>A list of example URL:s</p>
+<pre class="prettyprint well"><code># list resources
+/api/resources
+
+# list a specific page of resources
+/api/resources?page=2
+
+# resource with id 3
+/api/resources/3
+
+# resources tagged with 'ruby'
+/api/resources?tagged=ruby
+/api/tags/ruby
+
+# list all tags
+/api/tags
+
+# list all available licenses
+/api/licenses
+
+# list all users
+/api/users
+
+# list all available categories
+/api/resource_categories
+</code></pre>
+<h2 id="creatingchanging-resorces">Creating/changing resorces</h2>
+<p>TODO: explain licenses</p>
+<p>You can post resources and attatch tags to them in one request:</p>
+<pre class="prettyprint well"><code>POST /api/resources
+
+{
+    "title": "Google",
+    "url": "http://www.google.com",
+    "description": "A search engine",
+    "tags": [
+        "searching",
+        "googling"
+    ],
+    "resource_category": "Site"
+}
+</code></pre>
+<ul>
+<li>The owner will automatically be set to the authorized <code>User</code>.</li>
+<li>The resource_category <strong>must be an exact match</strong> of a valid
+<code>resource_category</code>, you can find all valid values at
+<code>/api/resource_categories</code>.</li>
+</ul>
+<p>Changing a resource works the same way, but on a specific url</p>
+<pre class="prettyprint well"><code>PUT /api/resources/1
+
+{
+    "title": "Google Search",
+    "url": "http://www.google.com",
+    "description": "A search engine",
+    "tags": [
+        "searching",
+        "googling"
+    ]
+}
+</code></pre>
+<h2 id="pagination">Pagination</h2>
+<p>Pagination is done automatically, you can go to a specified page with requests
+like this:</p>
+<pre class="prettyprint well"><code>/api/resources?page=3
+</code></pre>
+<p>Links to other pages are sent in a header that looks something like this:</p>
+<pre class="prettyprint well"><code>Link: &lt;http://localhost:3000/api/resources?page=1&gt;; rel="first", &lt;http://localhost:3000/api/resources?page=2&gt;; rel="prev"
+</code></pre>
+<p>You can set how many records you want with the <code>per_page</code> variable:</p>
+<pre class="prettyprint well"><code># it defaults to 10
+/api/resources?page=3&amp;per_page=5
+</code></pre>
+</div>
+        </div>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
+        <script src="../../js/base.js"></script>
+    </body>
+</html>
