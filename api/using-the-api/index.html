@@ -140,8 +140,7 @@
 /api/resource_categories
 </code></pre>
 <h2 id="creatingchanging-resorces">Creating/changing resorces</h2>
-<p>TODO: explain licenses</p>
-<p>You can post resources and attatch tags to them in one request:</p>
+<p>This is a complete <code>POST</code> with all possible keys set.</p>
 <pre class="prettyprint well"><code>POST /api/resources
 
 {
@@ -152,15 +151,52 @@
         "searching",
         "googling"
     ],
+    "license_id": 1, // MIT License
     "resource_category": "Site"
 }
 </code></pre>
-<ul>
-<li>The owner will automatically be set to the authorized <code>User</code>.</li>
-<li>The resource_category <strong>must be an exact match</strong> of a valid
-<code>resource_category</code>, you can find all valid values at
-<code>/api/resource_categories</code>.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Compulsory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>&#10004;</td>
+<td>Maximum 140 characters.</td>
+</tr>
+<tr>
+<td><code>url</code></td>
+<td>&#10004;</td>
+<td>Needs to be a fully valid URL, including <code>http://</code></td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td></td>
+<td>Longer description of the resource.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td></td>
+<td>are sent as an array of strings, they will be converted to lowercase.</td>
+</tr>
+<tr>
+<td><code>resource_category</code></td>
+<td>&#10004;</td>
+<td><strong>must be an exact match</strong> of a valid category, you can find all valid options at <code>/api/resource_categories</code>.</td>
+</tr>
+<tr>
+<td><code>license_id</code></td>
+<td></td>
+<td>License is currently set by its <strong>id</strong>, you need to check out the current options at <code>/api/licenses</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The owner will automatically be set to the authorized <code>User</code>.</strong></p>
 <p>Changing a resource works the same way, but on a specific url</p>
 <pre class="prettyprint well"><code>PUT /api/resources/1
 
@@ -171,7 +207,9 @@
     "tags": [
         "searching",
         "googling"
-    ]
+    ],
+    "license_id": 1, // MIT License
+    "resource_category": "Site"
 }
 </code></pre>
 <h2 id="pagination">Pagination</h2>
