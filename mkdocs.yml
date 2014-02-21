@@ -1,4 +1,5 @@
 site_name: Oereo
+repo_url: https://github.com/alcesleo/oereo/
 pages:
 - ['index.md', 'Home']
 - ['api/getting-started.md', 'API', 'Getting started']
