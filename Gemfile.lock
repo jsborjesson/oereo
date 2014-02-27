@@ -52,6 +52,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    angularjs-rails (1.2.13)
     api-pagination (2.1.1)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
@@ -269,6 +270,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers!
   activeadmin!
+  angularjs-rails
   api-pagination
   bcrypt-ruby (~> 3.1.2)
   bootstrap-sass (~> 3.1.1)
