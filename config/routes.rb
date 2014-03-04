@@ -2,8 +2,9 @@ require 'api_constraints'
 
 Oereo::Application.routes.draw do
 
+
   # Homepage
-  root to: 'developers#index'
+  root to: 'spa#index'
 
   # Admin interface
   devise_for :admin_users, ActiveAdmin::Devise.config
