@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
+
 ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -30,14 +32,13 @@ gem 'jquery-rails'
 
 # SPA
 gem 'angularjs-rails'
+gem 'rails-assets-restangular'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
 # JSON/XML api
-# I hate XML and love AMS, I'll use this branch to support XML until it either gets merged
-# to master or I can stop supporting this relic of a format entirely
-# gem 'active_model_serializers', github: 'jokklan/active_model_serializers', ref: '6c46204' #branch: 'features/xml-support'
+# TODO: Start using official repo
 gem 'active_model_serializers', github: 'alcesleo/active_model_serializers', branch: 'features/xml-support'
 
 # Pagination
