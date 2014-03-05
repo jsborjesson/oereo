@@ -3,7 +3,7 @@
 <head>
   <title>Oereo</title>
   <%= stylesheet_link_tag    "spa", media: "all" %>
-  <%= javascript_include_tag "angular" %>
+  <%= javascript_include_tag "spa" %>
 </head>
 <body>
 
@@ -14,6 +14,10 @@
     <input type="text" ng-model="sometext" />
 
     <h1>Hello {{ sometext }}</h1>
+
+    <ul ng-controller="HomeController">
+      <li ng-repeat="resource in resources"><a href="{{ resource.url }}">{{ resource.url }}</a></li>
+    </ul>
   </div>
 
 </body>
