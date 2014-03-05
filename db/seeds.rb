@@ -6,7 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Developer.create!(email: 'dev@email.com', password: 'password', password_confirmation: 'password')
+d = Developer.create!(email: 'dev@email.com', password: 'password', password_confirmation: 'password')
+
+# Simpler access token for development
+ApiKey.create!(developer: d).update(access_token: 'access_token')
 
 # TODO: Create more users
 u = User.create!(username: 'test', email: 'test@email.com', password: 'password', password_confirmation: 'password')

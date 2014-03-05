@@ -1,4 +1,11 @@
 class DevelopersController < ApplicationController
+
+  def index
+    if current_developer
+      @access_token = current_developer.access_token
+    end
+  end
+
   def new
     @developer = Developer.new
   end
