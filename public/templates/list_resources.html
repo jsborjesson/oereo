@@ -1,8 +1,8 @@
-Write some text in textbox:
-<input type="text" ng-model="sometext" />
+<h1>Resources</h1>
 
-<h1>Hello {{ sometext }}</h1>
+Filter the results
+<input type="text" ng-model="resourceFilter" />
 
 <ul ng-controller="HomeController">
-  <li ng-repeat="resource in resources"><a href="{{ resource.url }}">{{ resource.url }}</a></li>
+  <li ng-repeat="resource in resources | filter:resourceFilter"><a href="{{ resource.url }}">{{ resource.url }}</a></li>
 </ul>
