@@ -5,7 +5,7 @@ oereoApp.config(function ($routeProvider, RestangularProvider) {
     $routeProvider.
         when('/', {
             controller: 'HomeController',
-            templateUrl: 'test.html'
+            templateUrl: '<%= asset_url("templates/list_resources.html") %>'
         }).
         otherwise({redirectTo: '/'});
 
