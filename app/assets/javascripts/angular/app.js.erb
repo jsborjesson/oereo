@@ -2,28 +2,42 @@ var oereoApp = angular.module('oereoApp', ['restangular', 'ngRoute']);
 
 oereoApp.config(function ($routeProvider, RestangularProvider) {
 
-    $routeProvider.
-        when('/', {
-            controller: 'HomeController',
-            templateUrl: '<%= asset_url("templates/list_resources.html") %>'
-        }).
-        otherwise({redirectTo: '/'});
+  $routeProvider
+    .when('/', {
+      controller: 'ListController',
+      templateUrl: '<%= asset_url("templates/resource_list.html") %>'
+    })
+    .when('/new', {
+      controller: 'CreateController',
+      templateUrl: '<%= asset_url("templates/resource_detail.html") %>'
+    })
+    .otherwise({redirectTo: '/'});
 
-    RestangularProvider.setBaseUrl('/api');
-    RestangularProvider.setDefaultHeaders({ 'X-AUTH-TOKEN': 'access_token' }); // FIXME: secure access token
+  RestangularProvider.setBaseUrl('/api');
+  RestangularProvider.setDefaultHeaders({ 'X-AUTH-TOKEN': 'access_token' }); // FIXME: secure access token
 
-    // Parse the response
-    RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
-      if (operation === "getList") {
-        return response.resources; // FIXME: This will break VERY soon.
-      }
-      return response;
-    });
+  // Parse the response
+  RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
+    if (operation === "getList") {
+      return response.resources; // FIXME: This will break VERY soon.
+    }
+    return response;
+  });
 
 });
 
-function HomeController($scope, Restangular) {
-    Restangular.all('resources').getList().then(function (resources) {
-        $scope.resources = resources;
+// FIXME: register on app instead of global
+
+function ListController($scope, Restangular) {
+  $scope.resources = Restangular.all("resources").getList().$object;
+}
+
+
+function CreateController($scope, $location, Restangular) {
+  $scope.save = function() {
+    console.log($scope.resource);
+    Restangular.all('resources').post($scope.resource).then(function (resource) {
+      $location.path('/');
     });
+  }
 }
