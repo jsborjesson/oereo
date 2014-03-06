@@ -37,6 +37,26 @@ Here is an invaluable screencast on [migrating to PostgreSQL](http://railscasts.
 
 To interact with the database, run `rails db`.
 
+## Developing
+
+The `seeds.rb` contains some simple to remember and valid credentials that you can use in development:
+
+#### ApiKey
+
+* access_token: `access_token`
+
+#### User
+
+* username: `test`
+* email: `test@email.com`
+* password: `password`
+
+#### Developer
+
+* email: `dev@email.com`
+* password: `password`
+
+
 ## Deploying
 
 Using [Heroku](https://www.heroku.com/), run:
