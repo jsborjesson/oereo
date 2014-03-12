@@ -30,6 +30,12 @@ oereoApp.config(function ($routeProvider, RestangularProvider) {
 
 function ListController($scope, Restangular) {
   $scope.resources = Restangular.all("resources").getList().$object;
+
+  $scope.delete = function (resource) {
+    resource.remove().then(function () {
+      $scope.resources = _.without($scope.resources, resource);
+    });
+  }
 }
 
 

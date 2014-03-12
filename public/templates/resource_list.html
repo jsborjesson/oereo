@@ -4,7 +4,10 @@ Filter the results
 <input type="text" ng-model="resourceFilter" />
 
 <ul ng-controller="ListController">
-  <li ng-repeat="resource in resources | filter:resourceFilter"><a href="{{ resource.url }}">{{ resource.url }}</a></li>
+  <li ng-repeat="resource in resources | filter:resourceFilter">
+    <a href="{{ resource.url }}">{{ resource.url }}</a>
+    <a ng-click="delete(resource)" class="btn btn-danger btn-xs">Delete</a>
+  </li>
 </ul>
 
 
