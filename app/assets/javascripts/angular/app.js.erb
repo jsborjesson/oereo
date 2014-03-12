@@ -35,7 +35,10 @@ function ListController($scope, Restangular) {
 
 function CreateController($scope, $location, Restangular) {
   $scope.save = function() {
-    console.log($scope.resource);
+
+    // Add http://
+    $scope.resource.url = 'http://' + $scope.resource.url;
+
     Restangular.all('resources').post($scope.resource).then(function (resource) {
       $location.path('/');
     });
