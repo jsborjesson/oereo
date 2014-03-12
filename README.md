@@ -39,6 +39,11 @@ To interact with the database, run `rails db`.
 
 ## Developing
 
+Don't forget to start the database server, if you get a `PG::ConnectionBad` error, you
+should run this command again to start the database.
+
+    pg_ctl start -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log
+
 The `seeds.rb` contains some simple to remember and valid credentials that you can use in development:
 
 #### ApiKey
