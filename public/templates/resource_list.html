@@ -1,4 +1,4 @@
-<h1>Resources</h1>
+<h1>List resources</h1>
 
 Filter the results
 <input type="text" ng-model="resourceFilter" />
@@ -6,3 +6,6 @@ Filter the results
 <ul ng-controller="ListController">
   <li ng-repeat="resource in resources | filter:resourceFilter"><a href="{{ resource.url }}">{{ resource.url }}</a></li>
 </ul>
+
+
+<a href="#/new" class="btn btn-success" type="button">New resource</a href="#/new">

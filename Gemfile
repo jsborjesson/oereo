@@ -16,9 +16,9 @@ gem 'thin'
 # TODO: Stop tracking edge as soon as Rails 4 support is stable
 gem 'activeadmin', github: 'gregbell/active_admin'
 
-# Use SCSS for stylesheets
+# Styles
 gem 'sass-rails', '~> 4.0.0'
-
+gem 'compass-rails'
 gem 'bootstrap-sass', '~> 3.1.1'
 
 # Use Uglifier as compressor for JavaScript assets
