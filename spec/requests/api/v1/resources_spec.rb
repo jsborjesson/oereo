@@ -89,7 +89,7 @@ describe "Resources API" do
           "searching",
           "googling"
         ],
-        "resource_category": "YouTube",
+        "resource_category_id": 1,
         "license_id": 1
       }'
 
@@ -118,7 +118,7 @@ describe "Resources API" do
           "searching",
           "googling"
         ],
-        "resource_category": "YouTube",
+        "resource_category_id": 1,
         "license_id": 1,
         "user_id": ' + user.id.to_s + '
       }'
@@ -157,7 +157,7 @@ describe "Resources API" do
           "searching",
           "googling"
         ],
-        "resource_category": "YouTube",
+        "resource_category_id": 1,
         "license_id": 1
       }'
 
@@ -174,7 +174,7 @@ describe "Resources API" do
           "searching",
           "googling"
         ],
-        "resource_category": "YouTube",
+        "resource_category_id": 1,
         "license_id": 1
       }'
       put "/api/resources/#{resource_id}", changed_json, @env

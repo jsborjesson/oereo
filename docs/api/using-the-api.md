@@ -45,7 +45,7 @@ This is a complete `POST` with all possible keys set.
             "googling"
         ],
         "license_id": 1, // MIT License
-        "resource_category": "Site"
+        "resource_category_id": 1 // Site
     }
 
 |         Key         | Compulsory |                                                  Description                                                  |
