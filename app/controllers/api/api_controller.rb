@@ -12,7 +12,10 @@ class Api::ApiController < ApplicationController
 
   # provide a nicer response at the root /api/
   def index
-    respond_with resources: api_resources_url, tags: api_tags_url
+    respond_with resources: api_resources_url,
+                 tags: api_tags_url,
+                 licenses: api_licenses_url,
+                 resource_categories: api_resource_categories_url
   end
 
 protected
