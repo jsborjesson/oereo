@@ -8,6 +8,8 @@ Filter the results
     <h3><a href=" {{ resource.url }}">{{ resource.title }}</a> <small>{{ resource.url }}</small></h3>
     <p>{{ resource.description }}</p>
     <p>by: <strong>{{ resource.username }}</strong></p>
+    <p ng-if="resource.tags">tags: {{ resource.tags | commatize }}</p>
+
     <a href="#/edit/{{ resource.id }}" class="btn btn-warning btn-xs">Edit</a>
     <a ng-click="delete(resource)" class="btn btn-danger btn-xs">Delete</a>
   </div>
