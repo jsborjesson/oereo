@@ -24,8 +24,8 @@ h1, h2, h3, h4, h5, h6 {
 .animate-repeat.ng-move,
 .animate-repeat.ng-enter,
 .animate-repeat.ng-leave {
-  -webkit-transition:all linear 0.5s;
-  transition:all linear 0.5s;
+  -webkit-transition:all linear 0.2s;
+  transition:all linear 0.2s;
 }
 
 .animate-repeat.ng-leave.ng-leave-active,
@@ -51,10 +51,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 .animate-slide.ng-enter,
 .animate-slide.ng-leave {
-    -webkit-transition: all 1s ease;
-    -moz-transition: all 1s ease;
-    -o-transition: all 1s ease;
-    transition: all 1s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 .animate-slide.ng-enter {
     left: 100%;
