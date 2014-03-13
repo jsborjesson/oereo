@@ -75,6 +75,12 @@ Changing a resource works the same way, but on a specific url
         "resource_category": "Site"
     }
 
+## Deleting resources
+
+As simple as can be:
+
+    DELETE /api/resources/1
+
 ## Pagination
 
 Pagination is done automatically, you can go to a specified page with requests
