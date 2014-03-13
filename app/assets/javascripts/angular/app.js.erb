@@ -1,4 +1,4 @@
-var oereoApp = angular.module('oereoApp', ['restangular', 'ngRoute', 'ngAnimate']);
+var oereoApp = angular.module('oereoApp', ['restangular', 'ngRoute', 'ngAnimate', 'ui.bootstrap']);
 
 oereoApp.config(function ($routeProvider, RestangularProvider) {
 
@@ -11,6 +11,15 @@ oereoApp.config(function ($routeProvider, RestangularProvider) {
       controller: 'CreateController',
       templateUrl: '<%= asset_url("templates/resource_detail.html") %>'
     })
+    .when('/edit/:resourceId', {
+      controller:EditController,
+      templateUrl: '<%= asset_url("templates/resource_detail.html") %>',
+      resolve: {
+        resource: function(Restangular, $route) {
+          return Restangular.one('resources', $route.current.params.resourceId).get().$object;
+        }
+      }
+    })
     .otherwise({redirectTo: '/'});
 
   RestangularProvider.setBaseUrl('/api');
@@ -18,10 +27,8 @@ oereoApp.config(function ($routeProvider, RestangularProvider) {
 
   // Parse the response
   RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
-    if (operation === "getList") {
-      return response.resources; // FIXME: This will break VERY soon.
-    }
-    return response;
+    // handle the first level, e.g response.resources
+    return response[what];
   });
 
 });
@@ -32,21 +39,52 @@ function ListController($scope, Restangular) {
   $scope.resources = Restangular.all("resources").getList().$object;
 
   $scope.delete = function (resource) {
-    resource.remove().then(function () {
-      $scope.resources = _.without($scope.resources, resource);
+    if (confirm('Really delete?')) {
+      resource.remove().then(function () {
+        $scope.resources = _.without($scope.resources, resource);
+      });
+    }
+  };
+}
+
+function EditController($scope, $location, Restangular, resource) {
+
+  // BUG: this doesn't get the resource correctly
+  var original = resource;
+  $scope.resource = Restangular.copy(resource);
+
+  console.log($scope.resource);
+
+  $scope.isClean = function () {
+    return angular.equals(original, $scope.resource);
+  };
+
+  $scope.delete = function () {
+    original.remove().then(function () {
+      $location.path('/');
     });
-  }
+  };
+
+  $scope.save = function () {
+    $scope.resource.put().then(function () {
+      $location.path('/');
+    });
+  };
 }
 
 
 function CreateController($scope, $location, Restangular) {
+  // TODO: set initial
+  // $scope.resource.resource_category_id = 1;
+
   $scope.save = function() {
 
     // Add http://
+    // TODO: support https, maybe just remove this...
     $scope.resource.url = 'http://' + $scope.resource.url;
 
     Restangular.all('resources').post($scope.resource).then(function (resource) {
       $location.path('/');
     });
-  }
+  };
 }

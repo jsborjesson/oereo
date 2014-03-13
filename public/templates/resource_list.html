@@ -3,13 +3,15 @@
 Filter the results
 <input type="text" ng-model="resourceFilter" />
 
-<ul ng-controller="ListController">
-  <li ng-repeat="resource in resources | filter:resourceFilter" class="animate-repeat">
-    <a href="{{ resource.url }}">{{ resource.url }}</a>
+<div class="resource-list" ng-controller="ListController">
+  <div class="resource" ng-repeat="resource in resources | filter:resourceFilter" class="animate-repeat">
+    <h3><a href=" {{ resource.url }}">{{ resource.title }}</a> <small>{{ resource.url }}</small></h3>
+    <p>{{ resource.description }}</p>
     <a href="#/edit/{{ resource.id }}" class="btn btn-warning btn-xs">Edit</a>
     <a ng-click="delete(resource)" class="btn btn-danger btn-xs">Delete</a>
-  </li>
-</ul>
+  </div>
+</div>
 
-
-<a href="#/new" class="btn btn-success" type="button">New resource</a href="#/new">
+<div class="pull-right">
+  <a href="#/new" class="btn btn-success" type="button">New resource</a href="#/new">
+</div>

@@ -7,10 +7,9 @@
     <input type="text" ng-model="resource.title" class="form-control" id="resource-title" placeholder="My resource" />
   </div>
 
-  <!-- TODO: select -->
   <div class="form-group">
-    <label for="resource-category">Category</label>
-    <input type="text" ng-model="resource.resource_category" class="form-control" id="resource-category" placeholder="Site" />
+    <label for="resource-description">Description</label>
+    <textarea ng-model="resource.description" class="form-control" id="resource-description" placeholder="Optional description"></textarea>
   </div>
 
   <div class="form-group">
@@ -19,6 +18,14 @@
       <span class="input-group-addon">http://</span>
       <input type="text" ng-model="resource.url" class="form-control" id="resource-url" placeholder="www.example.com"/>
     </div>
+  </div>
+
+  <!-- FIXME: don't depend on id:s -->
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary" ng-model="resource.resource_category_id" btn-radio="1">Site</button>
+    <button type="button" class="btn btn-primary" ng-model="resource.resource_category_id" btn-radio="2">YouTube</button>
+    <button type="button" class="btn btn-primary" ng-model="resource.resource_category_id" btn-radio="3">Image</button>
+    <button type="button" class="btn btn-primary" ng-model="resource.resource_category_id" btn-radio="4">Other</button>
   </div>
 
   <div class="pull-right">
