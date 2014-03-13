@@ -1,10 +1,14 @@
 class ResourceSerializer < ActiveModel::Serializer
-  attributes :id, :title, :url, :description, :tags, :links
+  attributes :id, :title, :url, :description, :tags, :links, :username
 
   embed :ids, include: true
 
   has_one :resource_category
   has_one :license
+
+  def username
+    @object.user.username
+  end
 
   def tags
     @object.tags.pluck(:tag_name)
