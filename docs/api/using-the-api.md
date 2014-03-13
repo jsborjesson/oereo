@@ -45,7 +45,7 @@ This is a complete `POST` with all possible keys set.
             "googling"
         ],
         "license_id": 1, // MIT License
-        "resource_category": "Site"
+        "resource_category_id": 1 // Site
     }
 
 |         Key         | Compulsory |                                                  Description                                                  |
@@ -72,8 +72,14 @@ Changing a resource works the same way, but on a specific url
             "googling"
         ],
         "license_id": 1, // MIT License
-        "resource_category": "Site"
+        "resource_category": 1 // Site
     }
+
+## Deleting resources
+
+As simple as can be:
+
+    DELETE /api/resources/1
 
 ## Pagination
 

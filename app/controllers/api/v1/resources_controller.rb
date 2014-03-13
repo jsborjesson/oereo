@@ -59,8 +59,8 @@ private
       description: params[:description],
       url: params[:url],
       user: @user, # set in api_controller
-      license: License.find_by_id(params[:license_id]),
-      resource_category: ResourceCategory.find_by_category(params[:resource_category])
+      license: License.find_by(id: params[:license_id]),
+      resource_category: ResourceCategory.find_by(id: params[:resource_category_id])
     }
   end
 

@@ -1,5 +1,5 @@
 class TagSerializer < ActiveModel::Serializer
-  attributes :tag_name, :links
+  attributes :id, :tag_name, :links
 
   def links
     # FIXME: Dynamic url

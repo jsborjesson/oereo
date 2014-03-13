@@ -16,11 +16,6 @@ gem 'thin'
 # TODO: Stop tracking edge as soon as Rails 4 support is stable
 gem 'activeadmin', github: 'gregbell/active_admin'
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
-
-gem 'bootstrap-sass', '~> 3.1.1'
-
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -33,6 +28,12 @@ gem 'jquery-rails'
 # SPA
 gem 'angularjs-rails'
 gem 'rails-assets-restangular'
+
+# Styles
+gem 'sass-rails', '~> 4.0.0'
+gem 'compass-rails'
+gem 'bootstrap-sass', '~> 3.1.1'
+gem 'angular-ui-bootstrap-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

@@ -1,3 +1,3 @@
 class ResourceCategorySerializer < ActiveModel::Serializer
-  attributes :category
+  attributes :id, :category
 end
