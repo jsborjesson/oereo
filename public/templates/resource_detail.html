@@ -21,5 +21,6 @@
     </div>
   </div>
 
-  <button class="btn btn-success btn-lg pull-right" ng-click="save()">Save</button>
+  <a class="btn btn-success btn-lg pull-right" ng-click="save()" ng-disabled="isClean() || myForm.$invalid">Save</a>
+  <a class="btn btn-default btn-lg pull-right" href="#/">Cancel</a>
 </form>
