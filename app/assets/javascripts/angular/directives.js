@@ -9,6 +9,7 @@ angular.module('directives', [])
 
       // http://stackoverflow.com/questions/15242592/angular-js-how-to-autocapitalize-an-input-field
       var capitalize = function(input) {
+        input = input || '';
         var capitalized = input.charAt(0).toUpperCase() + input.substring(1);
 
         // Live update the view
