@@ -112,6 +112,8 @@
         
             <li><a href="#creatingchanging-resorces">Creating/changing resorces</a></li>
         
+            <li><a href="#deleting-resources">Deleting resources</a></li>
+        
             <li><a href="#pagination">Pagination</a></li>
         
     
@@ -160,7 +162,7 @@
         "googling"
     ],
     "license_id": 1, // MIT License
-    "resource_category": "Site"
+    "resource_category_id": 1 // Site
 }
 </code></pre>
 <table>
@@ -217,8 +219,12 @@
         "googling"
     ],
     "license_id": 1, // MIT License
-    "resource_category": "Site"
+    "resource_category": 1 // Site
 }
+</code></pre>
+<h2 id="deleting-resources">Deleting resources</h2>
+<p>As simple as can be:</p>
+<pre class="prettyprint well"><code>DELETE /api/resources/1
 </code></pre>
 <h2 id="pagination">Pagination</h2>
 <p>Pagination is done automatically, you can go to a specified page with requests
