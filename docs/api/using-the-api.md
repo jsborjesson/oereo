@@ -72,7 +72,7 @@ Changing a resource works the same way, but on a specific url
             "googling"
         ],
         "license_id": 1, // MIT License
-        "resource_category": "Site"
+        "resource_category": 1 // Site
     }
 
 ## Deleting resources
