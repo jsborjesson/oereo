@@ -8,6 +8,14 @@ and **oreo**.
 It is [documented](http://alcesleo.github.io/oereo) and [running](http://oereo.herokuapp.com/)
 on Heroku.
 
+## Paths
+
+At the root `/` there is an AngularJS application that uses the API
+
+At `/developers` you can register to get a key to use the API in your own app.
+
+At `/admin` an administrator can manage the database.
+
 ## Installing
 
 ### Set up the database
