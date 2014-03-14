@@ -105,6 +105,10 @@ To run the tests automatically on filesave:
 There are a few helpers in `spec/support` that you need to check out to
 understand the tests.
 
+To run the javascript tests:
+
+    RAILS_ENV=test bundle exec rake spec:javascript
+
 
 ## Documentation
 
