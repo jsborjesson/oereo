@@ -22,7 +22,7 @@ oereoApp.config(function ($routeProvider, RestangularProvider) {
       controller:EditController,
       templateUrl: '<%= asset_url("templates/resource_detail.html") %>',
       resolve: {
-        resource: function(Restangular, $route) {
+        data: function (Restangular, $route) {
           return Restangular.one('resources', $route.current.params.resourceId).get();
         }
       }
@@ -34,8 +34,16 @@ oereoApp.config(function ($routeProvider, RestangularProvider) {
 
   // Parse the response
   RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
-    // handle the first level, e.g response.resources
-    return response[what];
+
+    console.info('Response: ', response);
+    if (operation === 'getList') {
+      var res = response[what];
+      // Add other needed elements here if needed
+
+      console.info('Extracted: ', res);
+      return res;
+    }
+    return response;
   });
 
 });
@@ -43,7 +51,8 @@ oereoApp.config(function ($routeProvider, RestangularProvider) {
 // FIXME: register on app instead of global
 
 function ListController($scope, Restangular) {
-  $scope.resources = Restangular.all("resources").getList().$object;
+
+  $scope.resources = Restangular.all('resources').getList().$object;
 
   $scope.delete = function (resource) {
     if (confirm('Really delete?')) {
@@ -54,23 +63,22 @@ function ListController($scope, Restangular) {
   };
 }
 
-function EditController($scope, $location, Restangular, resource) {
+function EditController($scope, $location, Restangular, data) {
 
   // BUG: this doesn't get the resource correctly
-  var original = resource;
-  $scope.resource = Restangular.copy(resource);
-
-  console.log($scope.resource);
+  var original = data.resource;
+  $scope.resource = Restangular.copy(data.resource);
 
   $scope.isClean = function () {
+    // BUG: does not work
     return angular.equals(original, $scope.resource);
   };
 
-  $scope.delete = function () {
-    original.remove().then(function () {
-      $location.path('/');
-    });
-  };
+  // $scope.delete = function () {
+  //   original.remove().then(function () {
+  //     $location.path('/');
+  //   });
+  // };
 
   $scope.save = function () {
     $scope.resource.put().then(function () {

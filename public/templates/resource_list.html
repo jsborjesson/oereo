@@ -5,8 +5,10 @@ Filter the results
 
 <div class="resource-list" ng-controller="ListController">
   <div class="resource" ng-repeat="resource in resources | filter:resourceFilter" class="animate-repeat">
+
     <h3><a href=" {{ resource.url }}">{{ resource.title }}</a> <small>{{ resource.url }}</small></h3>
     <p>{{ resource.description }}</p>
+
     <p>by: <strong>{{ resource.username }}</strong></p>
     <p ng-if="resource.tags">tags: {{ resource.tags | commatize }}</p>
 
