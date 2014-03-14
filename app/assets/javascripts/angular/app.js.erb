@@ -23,7 +23,7 @@ oereoApp.config(function ($routeProvider, RestangularProvider) {
       templateUrl: '<%= asset_url("templates/resource_detail.html") %>',
       resolve: {
         resource: function(Restangular, $route) {
-          return Restangular.one('resources', $route.current.params.resourceId).get().$object;
+          return Restangular.one('resources', $route.current.params.resourceId).get();
         }
       }
     })
@@ -81,8 +81,9 @@ function EditController($scope, $location, Restangular, resource) {
 
 
 function CreateController($scope, $location, Restangular) {
-  // TODO: set initial
-  // $scope.resource.resource_category_id = 1;
+
+  $scope.resource = $scope.resource || {};
+  $scope.resource.resource_category_id = 1;
 
   $scope.save = function() {
 
