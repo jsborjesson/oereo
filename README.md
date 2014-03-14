@@ -72,6 +72,19 @@ Using [Heroku](https://www.heroku.com/), run:
 
 _Note that there are no production settings in `database.yml`, Heroku will set these up automatically._
 
+### Caveats
+
+To get the assets working on heroku I had to enable these in `config/environments/production.rb`
+
+```ruby
+# these are to make the assets load properly
+config.serve_static_assets = true
+config.assets.compile = true
+
+# this is so that the javascript compression doesn't screw up angulars dependency injection
+config.assets.js_compressor = Uglifier.new(:mangle => false)
+```
+
 ### Administrating
 
 There is an admin interface at `/admin`.
