@@ -93,6 +93,11 @@ config.assets.compile = true
 config.assets.js_compressor = Uglifier.new(:mangle => false)
 ```
 
+Heroku does not allow dropping a database, so things like `rake db:reset` will
+not work, instead you can run:
+
+    heroku pg:reset
+
 ### Administrating
 
 There is an admin interface at `/admin`.
