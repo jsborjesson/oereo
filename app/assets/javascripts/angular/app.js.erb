@@ -9,6 +9,8 @@ var oereoApp = angular.module('oereoApp', [
 
 oereoApp.config(function ($routeProvider, RestangularProvider) {
 
+  // ROUTING
+
   $routeProvider
     .when('/', {
       controller: 'ListController',
@@ -29,20 +31,21 @@ oereoApp.config(function ($routeProvider, RestangularProvider) {
     })
     .otherwise({redirectTo: '/'});
 
+  // CONFIGURE API
+
   RestangularProvider.setBaseUrl('/api');
   RestangularProvider.setDefaultHeaders({ 'X-AUTH-TOKEN': 'access_token' }); // FIXME: secure access token
 
   // Parse the response
   RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
-
     console.info('Response: ', response);
+
     if (operation === 'getList') {
       var res = response[what];
-      // Add other needed elements here if needed
-
       console.info('Extracted: ', res);
       return res;
     }
+
     return response;
   });
 
