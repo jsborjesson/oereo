@@ -31,7 +31,6 @@ gem 'rails-assets-restangular'
 
 # Styles
 gem 'sass-rails', '~> 4.0.0'
-gem 'compass-rails'
 gem 'bootstrap-sass', '~> 3.1.1'
 gem 'angular-ui-bootstrap-rails'
 
