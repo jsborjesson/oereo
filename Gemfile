@@ -58,6 +58,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.14.1'
   gem 'factory_girl_rails', '~> 4.3.0'
   gem 'guard-rspec'
+  gem 'jasmine-rails', '~> 0.6.0'
 end
 
 group :test do

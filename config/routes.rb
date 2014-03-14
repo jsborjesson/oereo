@@ -2,7 +2,6 @@ require 'api_constraints'
 
 Oereo::Application.routes.draw do
 
-
   # Homepage
   root to: 'spa#index'
 
@@ -34,6 +33,9 @@ Oereo::Application.routes.draw do
 
   # nicer response for api root
   get '/api' => 'api/api#index'
+
+  # Enable javascript tests to run from rspec
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
 
 
   # The priority is based upon order of creation: first created -> highest priority.
