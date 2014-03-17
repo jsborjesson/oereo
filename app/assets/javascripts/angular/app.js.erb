@@ -24,7 +24,7 @@ oereoApp.config(function ($routeProvider, RestangularProvider) {
       controller:EditController,
       templateUrl: '<%= asset_url("templates/resource_detail.html") %>',
       resolve: {
-        data: function (Restangular, $route) {
+        resource: function (Restangular, $route) {
           return Restangular.one('resources', $route.current.params.resourceId).get();
         }
       }
@@ -38,12 +38,15 @@ oereoApp.config(function ($routeProvider, RestangularProvider) {
 
   // Parse the response
   RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
-    console.info('Response: ', response);
+    console.info('Received: ', response);
 
     if (operation === 'getList') {
-      var res = response[what];
-      console.info('Extracted: ', res);
-      return res;
+      response = response[what];
+      console.info('Extracted list: ', response);
+    }
+    else if (operation === 'get') {
+      response = response[what.slice(0, -1)]; // Remove the S
+      console.info('Extracted object: ', response);
     }
 
     return response;

@@ -13,14 +13,13 @@ function ListController($scope, Restangular) {
   };
 }
 
-function EditController($scope, $location, Restangular, data) {
+function EditController($scope, $location, Restangular, resource) {
 
   // BUG: this doesn't get the resource correctly
-  var original = data.resource;
-  $scope.resource = Restangular.copy(data.resource);
+  var original = resource;
+  $scope.resource = Restangular.copy(resource);
 
   $scope.isClean = function () {
-    // BUG: does not work
     return angular.equals(original, $scope.resource);
   };
 
