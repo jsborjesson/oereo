@@ -69,6 +69,12 @@ The `seeds.rb` contains some simple to remember and valid credentials that you c
 * email: `dev@email.com`
 * password: `password`
 
+### Dummy content
+
+You can also dump a bunch of data into the database to play with by running:
+
+    rake oereo:dummy_data
+
 
 ## Deploying
 

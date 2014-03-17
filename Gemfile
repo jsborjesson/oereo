@@ -62,7 +62,7 @@ end
 
 group :test do
   gem 'shoulda-matchers'
-  gem 'faker', '~> 1.1.2'
+  gem 'faker', '~> 1.3'
   gem 'capybara', '~> 2.1.0'
   gem 'database_cleaner', '~> 1.2.0'
   gem 'launchy', '~> 2.3.0'
