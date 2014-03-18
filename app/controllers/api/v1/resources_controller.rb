@@ -13,18 +13,8 @@ class Api::V1::ResourcesController < Api::ApiController
       @resources = Resource.all
     end
 
-
     @resources = @resources.page(params[:page]).per(params[:per_page])
-    meta = {
-      total: @resources.total_count,
-      page: @resources.current_page,
-      count: @resources.count,
-      num_pages: @resources.num_pages,
-    }
-
-
-    respond_with @resources, meta: meta
-
+    respond_with @resources, meta: pagination_meta
   end
 
   def show
@@ -51,6 +41,16 @@ class Api::V1::ResourcesController < Api::ApiController
   end
 
 private
+
+  def pagination_meta
+    # TODO: Maybe just send the navigation links here as well, the header is hard to work with
+    {
+      total: @resources.total_count,
+      page: @resources.current_page,
+      count: @resources.count,
+      num_pages: @resources.num_pages,
+    }
+  end
 
   def unauthorized_unless_owner!
     head :forbidden unless Resource.find(params[:id]).user == @user
