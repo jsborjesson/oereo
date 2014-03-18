@@ -82,17 +82,7 @@ describe "Resources API" do
     it "creates a new resource" do
       full_auth
 
-      json = '{
-        "title": "Google",
-        "url": "http://www.google.com",
-        "description": "A search engine",
-        "tags": [
-          "searching",
-          "googling"
-        ],
-        "resource_category_id": 1,
-        "license_id": 1
-      }'
+      json = json_for(:resource)
 
       expect(Resource.count).to eq(0)
       post '/api/resources', json, @env
@@ -107,36 +97,34 @@ describe "Resources API" do
     end
 
     it "does not allow setting a different user id" do
-
       full_auth
-      user = create(:user)
 
-      json = '{
-        "title": "Google",
-        "url": "http://www.google.com",
-        "description": "A search engine",
-        "tags": [
-          "searching",
-          "googling"
-        ],
-        "resource_category_id": 1,
-        "license_id": 1,
-        "user_id": ' + user.id.to_s + '
-      }'
+      user = create(:user)
+      json = json_for(:resource, user: user)
 
       # it creates the resource, but still sets the current user, and not the one
       # the hacker tried to inject
       post '/api/resources', json, @env
       expect(response.status).to be(201)
-      expect(Resource.find_by_user_id(user.id)).to be_nil
-      expect(Resource.find_by_user_id(@authorized_user.id)).to_not be_nil
+      expect(Resource.find_by(user_id: user.id)).to be_nil
+      expect(Resource.find_by(user_id: @authorized_user.id)).to_not be_nil
+    end
+
+    it "sends unauthorized with malformatted authorization headers" do
+
+      token_auth
+      @env['HTTP_AUTHORIZATION'] = 'Basic asdfdGVzdDpwYXNzd29yZA=='
+
+      json = json_for(:resource)
+
+      post "/api/resources", json, @env
+      expect(response.status).to be(401)
     end
 
   end
 
   describe "PUT /api/resources" do
 
-    # FIXME: DRY up tests
     before(:each) do
       # always send json
       content_type_json
@@ -148,64 +136,16 @@ describe "Resources API" do
 
     it "changes a resource" do
       full_auth
-
-      # FIXME: cleaner tests, FactoryGirl json_for?
-      # Remove this
-      json = '{
-        "title": "Google",
-        "url": "http://www.google.com",
-        "description": "A search engine",
-        "tags": [
-          "searching",
-          "googling"
-        ],
-        "resource_category_id": 1,
-        "license_id": 1
-      }'
-
-      # post a resource
-      post '/api/resources', json, @env
-      resource_id = response_json['resource']['id']
-
-      # change the title with PUT
-      changed_json = '{
-        "title": "Google Search engine",
-        "url": "http://www.google.com",
-        "description": "A search engine",
-        "tags": [
-          "searching",
-          "googling"
-        ],
-        "resource_category_id": 1,
-        "license_id": 1
-      }'
-      put "/api/resources/#{resource_id}", changed_json, @env
-
-      # make sure the title changed
-      expect(Resource.find(resource_id).title).to eq("Google Search engine")
-    end
-
-    it "sends unauthorized with malformatted authorization headers" do
       resource = create(:resource)
 
-      token_auth
-      @env['HTTP_AUTHORIZATION'] = 'Basic asdfdGVzdDpwYXNzd29yZA=='
-
-      json = '{
-        "title": "Google Search engine",
-        "url": "http://www.google.com",
-        "description": "A search engine",
-        "tags": [
-          "searching",
-          "googling"
-        ],
-        "resource_category_id": 1,
-        "license_id": 1
-      }'
-
+      # change the title with PUT
+      json = json_for(:resource, title: 'Google Search engine')
       put "/api/resources/#{resource.id}", json, @env
-      expect(response.status).to be(401)
+
+      # make sure the title changed
+      expect(Resource.find(resource.id).title).to eq("Google Search engine")
     end
+
 
     it "doesn't change other's resources"
   end

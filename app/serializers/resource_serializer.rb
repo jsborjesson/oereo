@@ -1,6 +1,7 @@
 class ResourceSerializer < ActiveModel::Serializer
   attributes :id, :title, :url, :description, :tags, :links, :username
 
+  # FIXME: Deprecation notice
   embed :ids, include: true
 
   has_one :resource_category

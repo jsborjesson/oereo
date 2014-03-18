@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(version: 20140217113944) do
     t.string   "url"
     t.string   "title"
     t.text     "description"
-    t.integer  "user_id",              null: false
-    t.integer  "resource_category_id", null: false
+    t.integer  "user_id"
+    t.integer  "resource_category_id"
     t.integer  "license_id"
   end
 
