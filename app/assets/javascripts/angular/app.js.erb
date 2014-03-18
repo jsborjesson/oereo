@@ -37,7 +37,7 @@ oereoApp.config(function ($routeProvider, RestangularProvider) {
   RestangularProvider.setDefaultHeaders({ 'X-AUTH-TOKEN': 'access_token' }); // FIXME: secure access token
 
   // Parse the response
-  RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
+  RestangularProvider.addResponseInterceptor(function(response, operation, what, url) {
     console.info('Received: ', response);
 
     if (operation === 'getList') {
