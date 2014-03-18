@@ -30,7 +30,7 @@ describe "Resources API" do
 
       xit "sends link-headers" do
         get '/api/resources', {}, @env
-        # not working?
+        # FIXME: not working?
         expect(response.headers['Link']).to_not be_nil
       end
 
@@ -61,6 +61,60 @@ describe "Resources API" do
         # pages after that should be empty
         get '/api/resources?per_page=5&page=3', {}, @env
         expect(response_json['resources'].length).to eq(0)
+      end
+
+      describe "meta" do
+
+        # TODO: let/before-block?
+
+        it "sends correct total" do
+          create_list(:resource, 15)
+          get '/api/resources', {}, @env
+          expect(response_json['meta']['total']).to eq 15
+        end
+
+        it "sends correct page" do
+          create_list(:resource, 15)
+          get '/api/resources', {}, @env
+          expect(response_json['meta']['page']).to eq 1
+        end
+
+        it "sends correct per_page" do
+          create_list(:resource, 15)
+          get '/api/resources', {}, @env
+          expect(response_json['meta']['per_page']).to eq 10
+        end
+
+        it "sends correct num_pages" do
+          create_list(:resource, 15)
+          get '/api/resources', {}, @env
+          expect(response_json['meta']['num_pages']).to eq 2
+        end
+
+        it "sends correct total with option" do
+          create_list(:resource, 15)
+          get 'api/resources?page=2&per_page=5', {}, @env
+          expect(response_json['meta']['total']).to eq 15
+        end
+
+        it "sends correct page with option" do
+          create_list(:resource, 15)
+          get 'api/resources?page=2&per_page=5', {}, @env
+          expect(response_json['meta']['page']).to eq 2
+        end
+
+        it "sends correct per_page with option" do
+          create_list(:resource, 15)
+          get 'api/resources?page=2&per_page=5', {}, @env
+          expect(response_json['meta']['per_page']).to eq 5
+        end
+
+        it "sends correct num_pages with option" do
+          create_list(:resource, 15)
+          get 'api/resources?page=2&per_page=5', {}, @env
+          expect(response_json['meta']['num_pages']).to eq 3
+        end
+
       end
 
     end

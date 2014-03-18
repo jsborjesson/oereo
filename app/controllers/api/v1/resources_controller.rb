@@ -13,8 +13,18 @@ class Api::V1::ResourcesController < Api::ApiController
       @resources = Resource.all
     end
 
-    per_page = params[:per_page] || 10
-    respond_with @resources.page(params[:page]).per(per_page)
+
+    @resources = @resources.page(params[:page]).per(params[:per_page])
+    meta = {
+      total: @resources.total_count,
+      page: @resources.current_page,
+      per_page: @resources.count,
+      num_pages: @resources.num_pages,
+    }
+
+
+    respond_with @resources, meta: meta
+
   end
 
   def show
