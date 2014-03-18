@@ -108,14 +108,6 @@ You will get a bit of useful info in the `meta` object.
         "num_pages": 3
     }
 
-TODO: this needs too much explaining, just use longer keys...
-
-- `total`: the total number of resources
-- `page`: the current page
-- `count`: the number of resources on the current page
-- `num_pages`: the total number of pages
-
-
 ## Troubleshooting
 
 ### It says some fields are missing in a put/post but they're clearly there
