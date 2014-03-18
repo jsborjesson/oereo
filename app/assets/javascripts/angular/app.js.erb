@@ -5,11 +5,10 @@ var oereoApp = angular.module('oereoApp', [
   'ui.bootstrap',
   'directives',
   'filters',
+  'factories',
 ]);
 
-oereoApp.config(function ($routeProvider, RestangularProvider) {
-
-  // ROUTING
+oereoApp.config(function ($routeProvider) {
 
   $routeProvider
     .when('/', {
@@ -30,46 +29,5 @@ oereoApp.config(function ($routeProvider, RestangularProvider) {
       }
     })
     .otherwise({redirectTo: '/'});
-
-  // CONFIGURE API
-
-  RestangularProvider.setBaseUrl('/api');
-  RestangularProvider.setDefaultHeaders({ 'X-AUTH-TOKEN': 'access_token' }); // FIXME: secure access token
-
-  // Parse the response
-  RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response) {
-    console.info('Received: ', data);
-
-    if (operation === 'getList') {
-      data = data[what];
-      data.pagination = formatPaginationHeader(response.headers('Link'));
-      console.info('Extracted list: ', data);
-    }
-    else if (operation === 'get') {
-      data = data[what.slice(0, -1)]; // Remove the S
-      console.info('Extracted object: ', data);
-    }
-
-    return data;
-  });
-
-  // TODO: Break this out, maybe a service?
-  // Turns a Link header with pagination into an object, parses things like this:
-  // <http://localhost:3000/api/resources?page=2>; rel="next", <http://localhost:3000/api/resources?page=3>; rel="last"
-  function formatPaginationHeader(header) {
-    var links = {},
-        matches,
-        regex = /<(.+)>; rel="(.+)"/
-
-    if (typeof header !== 'string') {
-      return links;
-    }
-
-    header.split(', ').forEach(function (link) {
-      matches = link.match(regex);
-      links[matches[2]] = matches[1];
-    });
-    return links;
-  }
 
 });
