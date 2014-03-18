@@ -15,7 +15,7 @@ class ResourceSerializer < ActiveModel::Serializer
   end
 
   def links
-    # FIXME: Bug in the fork of AMS prevents access to url-methods
+    # TODO: Support for url_helpers was removed in AMS 0.9, it seems like they're bringing it back sooon
     [
       {rel:"self", href: "/api/resources/#{@object.id}" },
       {rel:"resources", href: "/api/resources/" }

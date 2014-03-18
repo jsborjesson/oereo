@@ -28,10 +28,14 @@ protected
   end
 
   def authorize_user!
-    authenticate_or_request_with_http_basic do |username, password|
-      # FIXME: this is sending 500 instead of 401
-      @user = User.find_by_username(username)
-      @user.authenticate(password)
+    begin
+      authenticate_or_request_with_http_basic do |username, password|
+        # FIXME: this is sending 500 instead of 401
+        @user = User.find_by_username(username)
+        @user.authenticate(password)
+      end
+    rescue
+      render :text => "HTTP Basic: Malformatted header.", :status => :unauthorized
     end
   end
 
