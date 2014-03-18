@@ -99,6 +99,22 @@ You can set how many records you want with the `per_page` variable:
     # it defaults to 10
     /api/resources?page=3&per_page=5
 
+You will get a bit of useful info in the `meta` object.
+
+    "meta": {
+        "total": 26,
+        "page": 2,
+        "count": 10,
+        "num_pages": 3
+    }
+
+TODO: this needs too much explaining, just use longer keys...
+
+- `total`: the total number of resources
+- `page`: the current page
+- `count`: the number of resources on the current page
+- `num_pages`: the total number of pages
+
 
 ## Troubleshooting
 
