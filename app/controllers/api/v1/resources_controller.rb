@@ -3,6 +3,8 @@ class Api::V1::ResourcesController < Api::ApiController
   # set pagination headers
   after_filter only: [:index] { paginate(:resources) }
 
+  before_filter :unauthorized_unless_owner!, only: [:update, :destroy]
+
   def index
     if params[:tagged]
       # TODO: support multiple tags
@@ -39,6 +41,10 @@ class Api::V1::ResourcesController < Api::ApiController
   end
 
 private
+
+  def unauthorized_unless_owner!
+    head :forbidden unless Resource.find(params[:id]).user == @user
+  end
 
   def apply_tags
     if params[:tags].respond_to?('each')

@@ -30,6 +30,7 @@ protected
   def authorize_user!
     begin
       authenticate_or_request_with_http_basic do |username, password|
+        # TODO: should I really rely on the instance variable?
         @user = User.find_by_username(username)
         @user.authenticate(password)
       end

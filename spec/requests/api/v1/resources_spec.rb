@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-# TODO: use url-helpers instead of hardcoding urls?
-
 describe "Resources API" do
 
   describe "GET /api/resources" do
@@ -136,7 +134,7 @@ describe "Resources API" do
 
     it "changes a resource" do
       full_auth
-      resource = create(:resource)
+      resource = create(:resource, user: @authorized_user)
 
       # change the title with PUT
       json = json_for(:resource, title: 'Google Search engine')
@@ -147,7 +145,19 @@ describe "Resources API" do
     end
 
 
-    it "doesn't change other's resources"
+    it "does not permit changing of other's resources" do
+      full_auth
+
+      other_user = create(:user)
+      other_resource = create(:resource, user: other_user, title: 'Original')
+
+      json = json_for(:resource, title: 'Changed')
+      put "/api/resources/#{other_resource.id}", json, @env
+
+      expect(response.status).to eq 403 # forbidden
+      other_resource.reload
+      expect(other_resource.title).to eq 'Original'
+    end
   end
 
   describe "DELETE /api/resources" do
@@ -161,7 +171,7 @@ describe "Resources API" do
     end
 
     # TODO: implement permissons
-    xit "does not permit deletion of other's resources" do
+    it "does not permit deletion of other's resources" do
       full_auth
 
       other_user = create(:user)
