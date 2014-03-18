@@ -1,8 +1,13 @@
 angular.module('oereoApp')
 
-.controller('ListController', function ($scope, Restangular) {
+.controller('ListController', function ($scope, Restangular, $routeParams) {
 
-  $scope.resources = Restangular.all('resources').getList().$object;
+  Restangular.all('resources').getList({page: $routeParams.page}).then(function (resources) {
+    $scope.resources = resources;
+
+    $scope.currentPage = resources.meta.page;
+    $scope.totalItems = resources.meta.total;
+  });
 
   $scope.delete = function (resource) {
     if (confirm('Really delete?')) {
