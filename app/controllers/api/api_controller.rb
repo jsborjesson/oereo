@@ -30,7 +30,6 @@ protected
   def authorize_user!
     begin
       authenticate_or_request_with_http_basic do |username, password|
-        # FIXME: this is sending 500 instead of 401
         @user = User.find_by_username(username)
         @user.authenticate(password)
       end
