@@ -1,6 +1,6 @@
-// FIXME: register on app instead of global
+angular.module('oereoApp')
 
-function ListController($scope, Restangular) {
+.controller('ListController', function ($scope, Restangular) {
 
   $scope.resources = Restangular.all('resources').getList().$object;
 
@@ -11,9 +11,9 @@ function ListController($scope, Restangular) {
       });
     }
   };
-}
+})
 
-function EditController($scope, $location, Restangular, resource) {
+.controller('EditController', function ($scope, $location, Restangular, resource) {
 
   // BUG: this doesn't get the resource correctly
   var original = resource;
@@ -23,21 +23,14 @@ function EditController($scope, $location, Restangular, resource) {
     return angular.equals(original, $scope.resource);
   };
 
-  // $scope.delete = function () {
-  //   original.remove().then(function () {
-  //     $location.path('/');
-  //   });
-  // };
-
   $scope.save = function () {
     $scope.resource.put().then(function () {
       $location.path('/');
     });
   };
-}
+})
 
-
-function CreateController($scope, $location, Restangular) {
+.controller('CreateController', function ($scope, $location, Restangular) {
 
   $scope.resource = $scope.resource || {};
   $scope.resource.resource_category_id = 1;
@@ -52,4 +45,4 @@ function CreateController($scope, $location, Restangular) {
       $location.path('/');
     });
   };
-}
+});

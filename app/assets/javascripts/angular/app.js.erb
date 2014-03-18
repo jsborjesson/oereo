@@ -20,7 +20,7 @@ oereoApp.config(function ($routeProvider) {
       templateUrl: '<%= asset_url("templates/resource_detail.html") %>'
     })
     .when('/edit/:resourceId', {
-      controller:EditController,
+      controller: 'EditController',
       templateUrl: '<%= asset_url("templates/resource_detail.html") %>',
       resolve: {
         resource: function (Restangular, $route) {
