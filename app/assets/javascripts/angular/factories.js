@@ -14,7 +14,12 @@ angular.module('factories', [])
 
     header.split(', ').forEach(function (link) {
       matches = link.match(regex);
-      links[matches[2]] = matches[1];
+
+      // 0 is the entire string, it's null if no matches are found
+      if (matches && matches.length === 3) {
+        links[matches[2]] = matches[1];
+      }
+
     });
     return links;
 
