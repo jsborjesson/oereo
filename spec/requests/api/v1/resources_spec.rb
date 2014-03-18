@@ -11,6 +11,7 @@ describe "Resources API" do
       full_auth
     end
 
+    # TODO: break out into authorization test?
     it "denies access without token" do
       get '/api/resources'
       expect(response.status).to eq 401 # unauthorized
@@ -148,7 +149,8 @@ describe "Resources API" do
     it "changes a resource" do
       full_auth
 
-      # FIXME: cleaner tests
+      # FIXME: cleaner tests, FactoryGirl json_for?
+      # Remove this
       json = '{
         "title": "Google",
         "url": "http://www.google.com",
@@ -181,6 +183,28 @@ describe "Resources API" do
 
       # make sure the title changed
       expect(Resource.find(resource_id).title).to eq("Google Search engine")
+    end
+
+    it "sends unauthorized with malformatted authorization headers" do
+      resource = create(:resource)
+
+      token_auth
+      @env['HTTP_AUTHORIZATION'] = 'Basic asdfdGVzdDpwYXNzd29yZA=='
+
+      json = '{
+        "title": "Google Search engine",
+        "url": "http://www.google.com",
+        "description": "A search engine",
+        "tags": [
+          "searching",
+          "googling"
+        ],
+        "resource_category_id": 1,
+        "license_id": 1
+      }'
+
+      put "/api/resources/#{resource.id}", json, @env
+      expect(response.status).to be(401)
     end
 
     it "doesn't change other's resources"
