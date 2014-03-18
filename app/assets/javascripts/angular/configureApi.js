@@ -13,7 +13,7 @@ oereoApp.run(function (Restangular, parsePaginationHeader) {
     if (operation === 'getList') {
       extracted = data[what];
       extracted.links = parsePaginationHeader(response.headers('Link'));
-      extracted.meta = data['meta'];
+      extracted.meta = data.meta;
       console.log('Extracted list: ', extracted);
     }
     else if (operation === 'get') {
