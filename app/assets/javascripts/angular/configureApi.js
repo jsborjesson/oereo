@@ -7,16 +7,16 @@ oereoApp.run(function (Restangular, parsePaginationHeader) {
 
   // Parse the response
   Restangular.addResponseInterceptor(function(data, operation, what, url, response) {
-    console.info('Received: ', data);
+    console.log('Received: ', data);
 
     if (operation === 'getList') {
       data = data[what];
       data.pagination = parsePaginationHeader(response.headers('Link'));
-      console.info('Extracted list: ', data);
+      console.log('Extracted list: ', data);
     }
     else if (operation === 'get') {
       data = data[what.slice(0, -1)]; // Remove the S
-      console.info('Extracted object: ', data);
+      console.log('Extracted object: ', data);
     }
 
     return data;
