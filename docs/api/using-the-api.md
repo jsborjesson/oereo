@@ -96,3 +96,10 @@ You can set how many records you want with the `per_page` variable:
 
     # it defaults to 10
     /api/resources?page=3&per_page=5
+
+
+## Troubleshooting
+
+### It says some fields are missing in a put/post but they're clearly there
+
+If you're using Postman, you must not forget to set the `Content-Type: application/json` header.
