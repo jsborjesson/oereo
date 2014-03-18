@@ -79,10 +79,10 @@ describe "Resources API" do
           expect(response_json['meta']['page']).to eq 1
         end
 
-        it "sends correct per_page" do
+        it "sends correct count" do
           create_list(:resource, 15)
           get '/api/resources', {}, @env
-          expect(response_json['meta']['per_page']).to eq 10
+          expect(response_json['meta']['count']).to eq 10
         end
 
         it "sends correct num_pages" do
@@ -103,10 +103,10 @@ describe "Resources API" do
           expect(response_json['meta']['page']).to eq 2
         end
 
-        it "sends correct per_page with option" do
+        it "sends correct count with option" do
           create_list(:resource, 15)
           get 'api/resources?page=2&per_page=5', {}, @env
-          expect(response_json['meta']['per_page']).to eq 5
+          expect(response_json['meta']['count']).to eq 5
         end
 
         it "sends correct num_pages with option" do

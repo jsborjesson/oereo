@@ -18,7 +18,7 @@ class Api::V1::ResourcesController < Api::ApiController
     meta = {
       total: @resources.total_count,
       page: @resources.current_page,
-      per_page: @resources.count,
+      count: @resources.count,
       num_pages: @resources.num_pages,
     }
 
