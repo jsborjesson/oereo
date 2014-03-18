@@ -116,6 +116,8 @@
         
             <li><a href="#pagination">Pagination</a></li>
         
+            <li><a href="#troubleshooting">Troubleshooting</a></li>
+        
     
     </ul>
 </div></div>
@@ -234,10 +236,29 @@ like this:</p>
 <p>Links to other pages are sent in a header that looks something like this:</p>
 <pre class="prettyprint well"><code>Link: &lt;http://localhost:3000/api/resources?page=1&gt;; rel="first", &lt;http://localhost:3000/api/resources?page=2&gt;; rel="prev"
 </code></pre>
+<p>The <code>Link</code> header will only be sent if the result is paginated.</p>
 <p>You can set how many records you want with the <code>per_page</code> variable:</p>
 <pre class="prettyprint well"><code># it defaults to 10
 /api/resources?page=3&amp;per_page=5
 </code></pre>
+<p>You will get a bit of useful info in the <code>meta</code> object.</p>
+<pre class="prettyprint well"><code>"meta": {
+    "total": 26,
+    "page": 2,
+    "count": 10,
+    "num_pages": 3
+}
+</code></pre>
+<p>TODO: this needs too much explaining, just use longer keys...</p>
+<ul>
+<li><code>total</code>: the total number of resources</li>
+<li><code>page</code>: the current page</li>
+<li><code>count</code>: the number of resources on the current page</li>
+<li><code>num_pages</code>: the total number of pages</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="it-says-some-fields-are-missing-in-a-putpost-but-theyre-clearly-there">It says some fields are missing in a put/post but they're clearly there</h3>
+<p>If you're using Postman, you must not forget to set the <code>Content-Type: application/json</code> header.</p>
 </div>
         </div>
 
