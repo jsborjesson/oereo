@@ -32,7 +32,7 @@ describe "Resources API" do
         r2 = create(:resource, tags: ['ruby'])
         r3 = create(:resource, tags: ['python'])
 
-        get '/api/resources?tagged=ruby', {}, @env
+        get '/api/resources?tags=ruby', {}, @env
 
         # TODO: can I do this without reading the json?
         # make sure it only returns 2 and none of them is r3
@@ -48,7 +48,7 @@ describe "Resources API" do
         r3 = create(:resource, tags: ['python'])
         r4 = create(:resource, tags: ['java'])
 
-        get '/api/resources?tagged=ruby,python', {}, @env
+        get '/api/resources?tags=ruby,python', {}, @env
 
         # TODO: can I do this without reading the json?
         # make sure it only returns 3 and none of them is r4

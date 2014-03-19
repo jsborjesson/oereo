@@ -27,7 +27,10 @@ A list of example URL:s
 ### Filtering the result
 
     # resources tagged with 'ruby'
-    /api/resources?tagged=ruby
+    /api/resources?tags=ruby
+
+    # you can list multiple tags separated by comma
+    /api/resources?tags=ruby,python
 
     # resources with license of id 1
     /api/resources?license=1

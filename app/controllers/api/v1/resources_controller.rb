@@ -44,7 +44,7 @@ class Api::V1::ResourcesController < Api::ApiController
 private
 
   def filter_by_tags
-    @resources.where!("tags && (ARRAY[?]::varchar[])", params[:tagged].split(',')) unless params[:tagged].nil?
+    @resources.where!("tags && (ARRAY[?]::varchar[])", params[:tags].split(',')) unless params[:tags].nil?
   end
 
   def filter_by_search
