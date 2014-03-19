@@ -7,14 +7,16 @@ class Api::V1::ResourcesController < Api::ApiController
 
   def index
 
-    # TODO: this smells, refactor
+    # TODO: This is lazy in Rails 4 right.. right?
+    @resources = Resource.all
+    # TODO: this smells, refactor into filter_by tags
     if params[:tagged]
       # TODO: support multiple tags
       @resources = Tag.find_by_tag_name(params[:tagged]).resources
     else
       @resources = Resource.all
     end
-
+    filter_by_tags
     filter_by_license
     filter_by_search
 
@@ -46,6 +48,10 @@ class Api::V1::ResourcesController < Api::ApiController
   end
 
 private
+
+  def filter_by_tags
+    # TODO: Implement this
+  end
 
   def filter_by_search
     # ILIKE is a case insensitive search,

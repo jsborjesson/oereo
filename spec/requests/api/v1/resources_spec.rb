@@ -43,6 +43,26 @@ describe "Resources API" do
         expect(response_json['resources'][1]['id']).to_not eq r3.id
       end
 
+      it "filters based on multiple tags" do
+        ruby = Tag.create(tag_name: 'ruby')
+        python = Tag.create(tag_name: 'python')
+        java = Tag.create(tag_name: 'java')
+
+        r1 = create(:resource, tags: [ruby, python])
+        r2 = create(:resource, tags: [ruby])
+        r3 = create(:resource, tags: [python])
+        r4 = create(:resource, tags: [java])
+
+        get '/api/resources?tagged=ruby,python', {}, @env
+
+        # TODO: can I do this without reading the json?
+        # make sure it only returns 3 and none of them is r4
+        expect(response_json['resources'].length).to eq 3
+        expect(response_json['resources'][0]['id']).to_not eq r4.id
+        expect(response_json['resources'][1]['id']).to_not eq r4.id
+        expect(response_json['resources'][2]['id']).to_not eq r4.id
+      end
+
       it "filters based on license" do
         l1 = create(:license)
         l2 = create(:license)
