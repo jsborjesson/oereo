@@ -36,10 +36,35 @@ describe "Resources API" do
 
         get '/api/resources?tagged=ruby', {}, @env
 
+        # TODO: can I do this without reading the json?
         # make sure it only returns 2 and none of them is r3
         expect(response_json['resources'].length).to eq 2
         expect(response_json['resources'][0]['id']).to_not eq r3.id
         expect(response_json['resources'][1]['id']).to_not eq r3.id
+      end
+
+      it "filters based on license" do
+        l1 = create(:license)
+        l2 = create(:license)
+
+        r1 = create(:resource, license: l1)
+        r2 = create(:resource, license: l2)
+
+        get "/api/resources?license=#{l1.id}", {}, @env
+
+        expect(response_json['resources'].length).to eq 1
+        expect(response_json['resources'][0]['id']).to eq r1.id
+      end
+
+      it "searches for resources by title" do
+
+        r1 = create(:resource, title: "One")
+        r2 = create(:resource, title: "Two")
+
+        get "/api/resources?search=one", {}, @env
+
+        expect(response_json['resources'].length).to eq 1
+        expect(response_json['resources'][0]['id']).to eq r1.id
       end
     end
 
