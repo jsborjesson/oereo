@@ -4,11 +4,20 @@ angular.module('oereoApp')
 
 
   $scope.resources = resources;
-  $scope.currentPage = resources.meta.page;
+
+  $scope.query = {};
+  $scope.query.currentPage = resources.meta.page;
   $scope.totalItems = resources.meta.total;
 
-  $scope.setPage = function(pageNumber) {
-    $location.search({page: pageNumber});
+
+  // Filtering
+  Restangular.all('licenses').getList().then(function (licenses) {
+    $scope.licenses = licenses;
+    // TODO: set the select to the correct value
+  });
+
+  $scope.loadQuery = function(pageNumber) {
+    $location.search($scope.query);
     $route.reload();
   };
 

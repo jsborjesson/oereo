@@ -16,7 +16,14 @@ oereoApp.config(function ($routeProvider) {
       templateUrl: '<%= asset_url("templates/resource_list.html") %>',
       resolve: {
         resources: function (Restangular, $route) {
-          return Restangular.all('resources').getList({ page: $route.current.params.page || 1 });
+          options = {};
+
+          page: $route.current.params.page || 1;
+          if ($route.current.params.license) {
+            options.license = $route.current.params.license;
+          }
+
+          return Restangular.all('resources').getList(options);
         }
       }
     })

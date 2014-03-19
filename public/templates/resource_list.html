@@ -1,15 +1,32 @@
 <h1>List resources</h1>
 
-Filter the results
-<input type="text" ng-model="resourceFilter" />
+
+<div>
+  <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Search and filter</button>
+  <hr />
+  <div collapse="isCollapsed">
+    <div class="well well-lg">
+      <input type="text" ng-model="query.search" />
+
+      <select ng-model="query.license" ng-options="l.id as l.title for l in licenses">
+        <option value="">-- filter on license --</option>
+      </select>
+
+      <button class="btn btn-success" ng-click="loadQuery()">Go!</button>
+
+    </div>
+  </div>
+
+</div>
 
 <div class="resource-list">
-  <div class="resource" ng-repeat="resource in resources | filter:resourceFilter" class="animate-repeat">
+  <div class="resource" ng-repeat="resource in resources" class="animate-repeat">
 
     <h3><a href=" {{ resource.url }}">{{ resource.title }}</a> <small>{{ resource.url }}</small></h3>
     <p>{{ resource.description }}</p>
 
     <p>by: <strong>{{ resource.username }}</strong></p>
+    <p>license: <strong>{{ resource.license.title }}</strong></p>
     <p ng-if="resource.tags">tags: {{ resource.tags | commatize }}</p>
 
     <a href="#/edit/{{ resource.id }}" class="btn btn-warning btn-xs">Edit</a>
@@ -21,4 +38,4 @@ Filter the results
   <a href="#/new" class="btn btn-success" type="button">New resource</a href="#/new">
 </div>
 
-<pagination total-items="totalItems" page="currentPage" on-select-page="setPage(page)"></pagination>
+<pagination total-items="totalItems" page="query.currentPage" on-select-page="loadQuery()"></pagination>
