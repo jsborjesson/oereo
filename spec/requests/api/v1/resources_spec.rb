@@ -11,7 +11,7 @@ describe "Resources API" do
 
     # TODO: break out into authorization test?
     it "denies access without token" do
-      get '/api/resources'
+      get '/api/resources' # not sending auth headers
       expect(response.status).to eq 401 # unauthorized
     end
 
@@ -25,12 +25,30 @@ describe "Resources API" do
       expect(response_json['resources'].length).to eq(10)
     end
 
+    describe "search and filter" do
+      it "filters based on tag" do
+        ruby = Tag.create(tag_name: 'ruby')
+        python = Tag.create(tag_name: 'python')
+
+        r1 = create(:resource, tags: [ruby, python])
+        r2 = create(:resource, tags: [ruby])
+        r3 = create(:resource, tags: [python])
+
+        get '/api/resources?tagged=ruby', {}, @env
+
+        # make sure it only returns 2 and none of them is r3
+        expect(response_json['resources'].length).to eq 2
+        expect(response_json['resources'][0]['id']).to_not eq r3.id
+        expect(response_json['resources'][1]['id']).to_not eq r3.id
+      end
+    end
+
 
     describe "pagination" do
 
+      # FIXME: not working?
       xit "sends link-headers" do
         get '/api/resources', {}, @env
-        # FIXME: not working?
         expect(response.headers['Link']).to_not be_nil
       end
 
