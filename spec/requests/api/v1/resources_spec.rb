@@ -194,6 +194,18 @@ describe "Resources API" do
       expect(Resource.count).to eq(1)
     end
 
+    it "creates a new resource with tags" do
+      full_auth
+
+      tags = ['ruby', 'python']
+      json = json_for(:resource, tags: tags)
+
+      post '/api/resources', json, @env
+
+      expect(response.status).to be(201)
+      expect(Resource.first.tags).to eq tags
+    end
+
     it "denies post request when not authorized as a user" do
       token_auth
       post '/api/resources', { test: 'value' }.to_json, @env
@@ -247,7 +259,22 @@ describe "Resources API" do
       put "/api/resources/#{resource.id}", json, @env
 
       # make sure the title changed
-      expect(Resource.find(resource.id).title).to eq("Google Search engine")
+      expect(response.status).to be(204)
+      resource.reload
+      expect(resource.title).to eq("Google Search engine")
+    end
+
+    it "changes a resource's tags" do
+      full_auth
+      resource = create(:resource, user: @authorized_user, tags: ['ruby', 'django'])
+
+      json = json_for(:resource, tags: ['ruby', 'rails'])
+
+      put "/api/resources/#{resource.id}", json, @env
+
+      expect(response.status).to be(204)
+      resource.reload
+      expect(resource.tags).to eq ['ruby', 'rails']
     end
 
 
