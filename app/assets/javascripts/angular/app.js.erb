@@ -18,10 +18,15 @@ oereoApp.config(function ($routeProvider) {
         resources: function (Restangular, $route) {
           options = {};
 
-          page: $route.current.params.page || 1;
+          options.page = $route.current.params.page || 1;
           if ($route.current.params.license) {
             options.license = $route.current.params.license;
           }
+          if ($route.current.params.search) {
+            options.search = $route.current.params.search;
+          }
+
+          console.log('Requested with options:', options);
 
           return Restangular.all('resources').getList(options);
         }

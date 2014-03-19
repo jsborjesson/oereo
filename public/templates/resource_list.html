@@ -38,4 +38,4 @@
   <a href="#/new" class="btn btn-success" type="button">New resource</a href="#/new">
 </div>
 
-<pagination total-items="totalItems" page="query.currentPage" on-select-page="loadQuery()"></pagination>
+<pagination total-items="totalItems" page="query.page" on-select-page="loadQuery({page: page})"></pagination>

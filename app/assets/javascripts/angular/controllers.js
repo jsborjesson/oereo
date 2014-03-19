@@ -6,7 +6,7 @@ angular.module('oereoApp')
   $scope.resources = resources;
 
   $scope.query = {};
-  $scope.query.currentPage = resources.meta.page;
+  $scope.query.page = resources.meta.page;
   $scope.totalItems = resources.meta.total;
 
 
@@ -16,8 +16,9 @@ angular.module('oereoApp')
     // TODO: set the select to the correct value
   });
 
-  $scope.loadQuery = function(pageNumber) {
-    $location.search($scope.query);
+  $scope.loadQuery = function(opts) {
+    params = _.extend($scope.query, opts);
+    $location.search(params);
     $route.reload();
   };
 
