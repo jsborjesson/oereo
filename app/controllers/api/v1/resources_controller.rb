@@ -9,13 +9,7 @@ class Api::V1::ResourcesController < Api::ApiController
 
     # TODO: This is lazy in Rails 4 right.. right?
     @resources = Resource.all
-    # TODO: this smells, refactor into filter_by tags
-    if params[:tagged]
-      # TODO: support multiple tags
-      @resources = Tag.find_by_tag_name(params[:tagged]).resources
-    else
-      @resources = Resource.all
-    end
+
     filter_by_tags
     filter_by_license
     filter_by_search
@@ -50,7 +44,7 @@ class Api::V1::ResourcesController < Api::ApiController
 private
 
   def filter_by_tags
-    # TODO: Implement this
+    @resources.where!("tags && (ARRAY[?]::varchar[])", params[:tagged].split(',')) unless params[:tagged].nil?
   end
 
   def filter_by_search
@@ -78,12 +72,8 @@ private
   end
 
   def apply_tags
-    # if params[:tags].respond_to?('each')
-    #   params[:tags].each do |tag_name|
-    #     @resource.tags << get_tag(tag_name)
-    #   end
-    # end
     @resource.tags = params[:tags].map! { |tag| tag.downcase } unless params[:tags].nil?
+    @resource.save!
   end
 
   def resource_params
