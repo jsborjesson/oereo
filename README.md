@@ -3,7 +3,7 @@
 **An OER management API, very new and unstable.**
 
 The name is a palindrome made by combining **OER** _(**O**pen **E**ducational **R**esource)_
-and **oreo**.
+and **oreo**. It is an API build with Rails and an AngularJS app.
 
 It is [documented](http://alcesleo.github.io/oereo) and [running](http://oereo.herokuapp.com/)
 on Heroku.
@@ -163,3 +163,10 @@ and publish the changes like this:
 
     # push it to the gh-pages branch
     ghp-import -p site
+
+## Changes made to API
+
+The API was built before the SPA, here are the changes to the API I had to make
+for it to work:
+
+- Add a `meta` object with more pagination info in `/api/resources`
