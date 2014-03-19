@@ -3,7 +3,7 @@
 Filter the results
 <input type="text" ng-model="resourceFilter" />
 
-<div class="resource-list" ng-controller="ListController">
+<div class="resource-list">
   <div class="resource" ng-repeat="resource in resources | filter:resourceFilter" class="animate-repeat">
 
     <h3><a href=" {{ resource.url }}">{{ resource.title }}</a> <small>{{ resource.url }}</small></h3>
@@ -21,4 +21,4 @@ Filter the results
   <a href="#/new" class="btn btn-success" type="button">New resource</a href="#/new">
 </div>
 
-<pagination total-items="totalItems" page="currentPage"></pagination>
+<pagination total-items="totalItems" page="currentPage" on-select-page="setPage(page)"></pagination>

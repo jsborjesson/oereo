@@ -13,7 +13,12 @@ oereoApp.config(function ($routeProvider) {
   $routeProvider
     .when('/', {
       controller: 'ListController',
-      templateUrl: '<%= asset_url("templates/resource_list.html") %>'
+      templateUrl: '<%= asset_url("templates/resource_list.html") %>',
+      resolve: {
+        resources: function (Restangular, $route) {
+          return Restangular.all('resources').getList({ page: $route.current.params.page || 1 });
+        }
+      }
     })
     .when('/new', {
       controller: 'CreateController',
