@@ -6,13 +6,24 @@
   <hr />
   <div collapse="isCollapsed">
     <div class="well well-lg">
-      <input type="text" ng-model="query.search" />
+      <label>
+        <input type="text" ng-model="query.search" />
+        Search
+      </label>
+      <br />
+
+      <label>
+        <input type="text" ng-model="query.tags" />
+        Tags (separated by comma)
+      </label>
+      <br />
 
       <select ng-model="query.license" ng-options="l.id as l.title for l in licenses">
         <option value="">-- filter on license --</option>
       </select>
+      <br />
 
-      <button class="btn btn-success" ng-click="loadQuery()">Go!</button>
+      <button class="btn btn-success pull-right" ng-click="loadQuery()">Go!</button>
 
     </div>
   </div>
