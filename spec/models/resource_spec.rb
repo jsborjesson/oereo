@@ -10,12 +10,6 @@ describe Resource do
   it { should belong_to(:user) }
   it { should belong_to(:license) }
 
-  # TODO: Implement smart protocol
-  xit "adds http:// to URL upon saving" do
-    expect(create(:resource, url: "example.com").url).to eq("http://example.com")
-    expect(create(:resource, url: "http://example.com").url).to eq("http://example.com")
-  end
-
   it "leaves an invalid url unchanged" do
     expect(build(:resource, url: "foo bar").url).to eq("foo bar")
     expect(build(:resource, url: nil).url).to eq(nil)
