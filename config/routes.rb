@@ -21,7 +21,6 @@ Oereo::Application.routes.draw do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :resources
       resources :users, only: [:index, :show]
-      resources :tags
       resources :licenses, only: [:index, :show]
       resources :resource_categories, only: [:index, :show]
 

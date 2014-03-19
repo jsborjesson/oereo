@@ -27,12 +27,10 @@ describe "Resources API" do
 
     describe "search and filter" do
       it "filters based on tag" do
-        ruby = Tag.create(tag_name: 'ruby')
-        python = Tag.create(tag_name: 'python')
 
-        r1 = create(:resource, tags: [ruby, python])
-        r2 = create(:resource, tags: [ruby])
-        r3 = create(:resource, tags: [python])
+        r1 = create(:resource, tags: ['ruby', 'python'])
+        r2 = create(:resource, tags: ['ruby'])
+        r3 = create(:resource, tags: ['python'])
 
         get '/api/resources?tagged=ruby', {}, @env
 
@@ -44,14 +42,11 @@ describe "Resources API" do
       end
 
       it "filters based on multiple tags" do
-        ruby = Tag.create(tag_name: 'ruby')
-        python = Tag.create(tag_name: 'python')
-        java = Tag.create(tag_name: 'java')
 
-        r1 = create(:resource, tags: [ruby, python])
-        r2 = create(:resource, tags: [ruby])
-        r3 = create(:resource, tags: [python])
-        r4 = create(:resource, tags: [java])
+        r1 = create(:resource, tags: ['ruby', 'python'])
+        r2 = create(:resource, tags: ['ruby'])
+        r3 = create(:resource, tags: ['python'])
+        r4 = create(:resource, tags: ['java'])
 
         get '/api/resources?tagged=ruby,python', {}, @env
 

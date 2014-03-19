@@ -8,9 +8,9 @@ class ResourceSerializer < ActiveModel::Serializer
     @object.user.username
   end
 
-  def tags
-    @object.tags.pluck(:tag_name)
-  end
+  # def tags
+  #   @object.tags.pluck(:tag_name)
+  # end
 
   def links
     # TODO: Support for url_helpers was removed in AMS 0.9, it seems like they're bringing it back sooon

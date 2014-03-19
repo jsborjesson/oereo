@@ -78,16 +78,12 @@ private
   end
 
   def apply_tags
-    if params[:tags].respond_to?('each')
-      params[:tags].each do |tag_name|
-        @resource.tags << get_tag(tag_name)
-      end
-    end
-  end
-
-  def get_tag(tag_name)
-    tag_name.downcase! # FIXME: case insensitive search for tags?
-    Tag.where(tag_name: tag_name).first_or_create
+    # if params[:tags].respond_to?('each')
+    #   params[:tags].each do |tag_name|
+    #     @resource.tags << get_tag(tag_name)
+    #   end
+    # end
+    @resource.tags = params[:tags].map! { |tag| tag.downcase } unless params[:tags].nil?
   end
 
   def resource_params

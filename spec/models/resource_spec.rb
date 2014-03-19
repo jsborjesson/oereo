@@ -3,7 +3,6 @@ require 'spec_helper'
 # mostly stolen from railscasts #301 but updated to expectation-syntax
 describe Resource do
 
-  it { should have_and_belong_to_many(:tags) }
   it { should validate_presence_of(:url) }
   it { should validate_presence_of(:title) }
   it { should ensure_length_of(:title).is_at_most(140) }
