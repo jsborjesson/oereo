@@ -6,12 +6,17 @@ class Api::V1::ResourcesController < Api::ApiController
   before_filter :unauthorized_unless_owner!, only: [:update, :destroy]
 
   def index
+
+    # TODO: this smells, refactor
     if params[:tagged]
       # TODO: support multiple tags
       @resources = Tag.find_by_tag_name(params[:tagged]).resources
     else
       @resources = Resource.all
     end
+
+    filter_by_license
+    filter_by_search
 
     @resources = @resources.page(params[:page]).per(params[:per_page])
     respond_with @resources, meta: pagination_meta
@@ -41,6 +46,16 @@ class Api::V1::ResourcesController < Api::ApiController
   end
 
 private
+
+  def filter_by_search
+    # ILIKE is a case insensitive search,
+    # the param is wrapped in % to indicate it can be placed anywhere in the string
+    @resources.where!("title ILIKE ?", "%#{params[:search]}%")
+  end
+
+  def filter_by_license
+    @resources.where!(license_id: params[:license]) unless params[:license].nil?
+  end
 
   def pagination_meta
     # TODO: Maybe just send the navigation links here as well, the header is hard to work with
