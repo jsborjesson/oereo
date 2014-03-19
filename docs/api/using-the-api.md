@@ -15,9 +15,6 @@ A list of example URL:s
     # resource with id 3
     /api/resources/3
 
-    # list all tags
-    /api/tags
-
     # list all available licenses
     /api/licenses
 
