@@ -15,9 +15,6 @@ A list of example URL:s
     # resource with id 3
     /api/resources/3
 
-    # resources tagged with 'ruby'
-    /api/resources?tagged=ruby
-
     # list all tags
     /api/tags
 
@@ -29,6 +26,17 @@ A list of example URL:s
 
     # list all available categories
     /api/resource_categories
+
+### Filtering the result
+
+    # resources tagged with 'ruby'
+    /api/resources?tagged=ruby
+
+    # resources with license of id 1
+    /api/resources?license=1
+
+    # resources with a title containing 'something'
+    /api/resources?search=something
 
 ## Creating/changing resorces
 
