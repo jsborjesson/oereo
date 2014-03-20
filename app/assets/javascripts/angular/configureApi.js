@@ -26,11 +26,11 @@ oereoApp.run(function (Restangular, parsePaginationHeader) {
 
   Restangular.addRequestInterceptor(function (data, operation, what, url) {
     if (data) {
-      if (data.tags) {
+      if (_.isString(data.tags)) {
         data.tags = data.tags.split(',');
       }
-      console.log('Requested ' + url + ' with: ', data);
     }
+    console.log('Requested ' + url + ' with: ', data);
     return data;
   });
 
