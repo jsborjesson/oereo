@@ -13,6 +13,26 @@ describe('modules', function () {
 
   });
 
+  describe('capitalize', function () {
+    beforeEach(module('directives'));
+    beforeEach(inject(function ($compile, $rootScope) {
+      $scope = $rootScope;
+      element = angular.element('<form name="form"><textarea capitalize ng-model="subject" name="subject"></textarea></form>');
+      $compile(element)($scope);
+      $scope.$digest();
+    }));
+
+
+    it('should capitalize the first letter', function () {
+      $scope.form.subject.$setViewValue('capitalized');
+
+      // It sets both the model and the view to the capitalized result
+      expect($scope.subject).toBe('Capitalized');
+      expect($scope.form.subject.$viewValue).toBe('Capitalized');
+    });
+  });
+
+
   describe('parsePaginationHeader', function () {
     beforeEach(module('factories'));
 
