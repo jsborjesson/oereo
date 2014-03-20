@@ -86,6 +86,8 @@ Using [Heroku](https://www.heroku.com/), run:
 
 _Note that there are no production settings in `database.yml`, Heroku will set these up automatically._
 
+**Don't forget to update the documentation**
+
 ### Caveats
 
 To get the assets working on heroku I had to enable these in `config/environments/production.rb`
