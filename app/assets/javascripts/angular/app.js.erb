@@ -16,7 +16,25 @@ oereoApp.config(function ($routeProvider) {
       templateUrl: '<%= asset_url("templates/resource_list.html") %>',
       resolve: {
         resources: function (Restangular, $route) {
-          return Restangular.all('resources').getList({ page: $route.current.params.page || 1 });
+          var options = {},
+              params = $route.current.params;
+
+          options.page = params.page || 1;
+
+          // TODO: Maybe just send all the params up without checks, the API should not break anyway
+          if (params.license_id && params.license_id != 'null') {
+            options.license_id = params.license_id;
+          }
+          if (params.search) {
+            options.search = params.search;
+          }
+          if (params.tags) {
+            options.tags = params.tags;
+          }
+
+          console.log('Requesting with options:', options);
+
+          return Restangular.all('resources').getList(options);
         }
       }
     })

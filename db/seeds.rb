@@ -26,17 +26,7 @@ License.create!(title: 'GPL v2', agreement_url: 'http://www.gnu.org/licenses/gpl
 License.create!(title: 'Apache License v2', agreement_url: 'http://www.apache.org/licenses/LICENSE-2.0.html')
 License.create!(title: 'Creative Commons (CC BY 4.0)', agreement_url: 'http://creativecommons.org/licenses/by/4.0/deed.en_US')
 
-r = Resource.create!(user: u, resource_category: c, license: l2, title: 'Ruby Tapas', url: 'http://www.rubytapas.com/')
-Resource.create!(user: u, resource_category: c, license: l2, title: 'RailsCasts', url: 'http://railscasts.com/')
-Resource.create!(user: u, resource_category: c, license: l2, title: 'SemVer', url: 'http://semver.org/', description: 'Semantic software versioning')
-Resource.create!(user: u, resource_category: c, license: l2, title: 'Stack Overflow', url: 'http://www.stackoverflow.com')
-
-t1 = Tag.create!(tag_name: 'ruby')
-t2 = Tag.create!(tag_name: 'python')
-Tag.create!(tag_name: 'php')
-
-# Add a couple of tags to a resource
-r.tags << t1
-r.tags << t2
-r.save!
-
+r = Resource.create!(user: u, resource_category: c, license: l2, title: 'Ruby Tapas', url: 'http://www.rubytapas.com/', tags: ['ruby'])
+Resource.create!(user: u, resource_category: c, license: l2, title: 'RailsCasts', url: 'http://railscasts.com/', tags: ['ruby', 'rails'])
+Resource.create!(user: u, resource_category: c, license: l2, title: 'SemVer', url: 'http://semver.org/', description: 'Semantic software versioning' tags: ['dev'])
+Resource.create!(user: u, resource_category: c, license: l2, title: 'Stack Overflow', url: 'http://www.stackoverflow.com', tags: ['dev'])

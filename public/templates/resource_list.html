@@ -1,15 +1,44 @@
 <h1>List resources</h1>
 
-Filter the results
-<input type="text" ng-model="resourceFilter" />
+
+<div>
+  <button class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Search and filter</button>
+  <hr />
+  <div collapse="isCollapsed">
+    <div class="well well-lg">
+      <form ng-submit="loadQuery()">
+        <label>
+          <input type="text" ng-model="query.search" />
+          Search
+        </label>
+        <br />
+
+        <label>
+          <input type="text" ng-model="query.tags" />
+          Tags (separated by comma)
+        </label>
+        <br />
+
+        <select ng-model="query.license_id" ng-options="l.id as l.title for l in licenses">
+          <option value="">-- filter on license --</option>
+        </select>
+        <br />
+
+        <button class="btn btn-success pull-right">Go!</button>
+      </form>
+    </div>
+  </div>
+
+</div>
 
 <div class="resource-list">
-  <div class="resource" ng-repeat="resource in resources | filter:resourceFilter" class="animate-repeat">
+  <div class="resource" ng-repeat="resource in resources">
 
     <h3><a href=" {{ resource.url }}">{{ resource.title }}</a> <small>{{ resource.url }}</small></h3>
     <p>{{ resource.description }}</p>
 
     <p>by: <strong>{{ resource.username }}</strong></p>
+    <p>license: <strong>{{ resource.license.title }}</strong></p>
     <p ng-if="resource.tags">tags: {{ resource.tags | commatize }}</p>
 
     <a href="#/edit/{{ resource.id }}" class="btn btn-warning btn-xs">Edit</a>
@@ -21,4 +50,4 @@ Filter the results
   <a href="#/new" class="btn btn-success" type="button">New resource</a href="#/new">
 </div>
 
-<pagination total-items="totalItems" page="currentPage" on-select-page="setPage(page)"></pagination>
+<pagination total-items="meta.total" page="meta.page" on-select-page="loadQuery({page: page})"></pagination>

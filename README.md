@@ -170,3 +170,5 @@ The API was built before the SPA, here are the changes to the API I had to make
 for it to work:
 
 - Add a `meta` object with more pagination info in `/api/resources`
+- Stopped embedding id:s, it's a little redundant but **so** much easier to
+just dump the objects where they belong

@@ -2,13 +2,17 @@ angular.module('oereoApp')
 
 .controller('ListController', function ($scope, $location, $route, Restangular, resources) {
 
-
   $scope.resources = resources;
-  $scope.currentPage = resources.meta.page;
-  $scope.totalItems = resources.meta.total;
 
-  $scope.setPage = function(pageNumber) {
-    $location.search({page: pageNumber});
+  $scope.query = $route.current.params;
+  $scope.meta = resources.meta;
+
+  // Filtering
+  $scope.licenses = Restangular.all('licenses').getList().$object;
+
+  $scope.loadQuery = function(opts) {
+    params = _.extend($scope.query, opts);
+    $location.search(params);
     $route.reload();
   };
 

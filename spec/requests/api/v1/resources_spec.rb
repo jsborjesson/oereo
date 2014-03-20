@@ -27,19 +27,59 @@ describe "Resources API" do
 
     describe "search and filter" do
       it "filters based on tag" do
-        ruby = Tag.create(tag_name: 'ruby')
-        python = Tag.create(tag_name: 'python')
 
-        r1 = create(:resource, tags: [ruby, python])
-        r2 = create(:resource, tags: [ruby])
-        r3 = create(:resource, tags: [python])
+        r1 = create(:resource, tags: ['ruby', 'python'])
+        r2 = create(:resource, tags: ['ruby'])
+        r3 = create(:resource, tags: ['python'])
 
-        get '/api/resources?tagged=ruby', {}, @env
+        get '/api/resources?tags=ruby', {}, @env
 
+        # TODO: can I do this without reading the json?
         # make sure it only returns 2 and none of them is r3
         expect(response_json['resources'].length).to eq 2
         expect(response_json['resources'][0]['id']).to_not eq r3.id
         expect(response_json['resources'][1]['id']).to_not eq r3.id
+      end
+
+      it "filters based on multiple tags" do
+
+        r1 = create(:resource, tags: ['ruby', 'python'])
+        r2 = create(:resource, tags: ['ruby'])
+        r3 = create(:resource, tags: ['python'])
+        r4 = create(:resource, tags: ['java'])
+
+        get '/api/resources?tags=ruby,python', {}, @env
+
+        # TODO: can I do this without reading the json?
+        # make sure it only returns 3 and none of them is r4
+        expect(response_json['resources'].length).to eq 3
+        expect(response_json['resources'][0]['id']).to_not eq r4.id
+        expect(response_json['resources'][1]['id']).to_not eq r4.id
+        expect(response_json['resources'][2]['id']).to_not eq r4.id
+      end
+
+      it "filters based on license" do
+        l1 = create(:license)
+        l2 = create(:license)
+
+        r1 = create(:resource, license: l1)
+        r2 = create(:resource, license: l2)
+
+        get "/api/resources?license_id=#{l1.id}", {}, @env
+
+        expect(response_json['resources'].length).to eq 1
+        expect(response_json['resources'][0]['id']).to eq r1.id
+      end
+
+      it "searches for resources by title" do
+
+        r1 = create(:resource, title: "One")
+        r2 = create(:resource, title: "Two")
+
+        get "/api/resources?search=one", {}, @env
+
+        expect(response_json['resources'].length).to eq 1
+        expect(response_json['resources'][0]['id']).to eq r1.id
       end
     end
 
@@ -154,6 +194,18 @@ describe "Resources API" do
       expect(Resource.count).to eq(1)
     end
 
+    it "creates a new resource with tags" do
+      full_auth
+
+      tags = ['ruby', 'python']
+      json = json_for(:resource, tags: tags)
+
+      post '/api/resources', json, @env
+
+      expect(response.status).to be(201)
+      expect(Resource.first.tags).to eq tags
+    end
+
     it "denies post request when not authorized as a user" do
       token_auth
       post '/api/resources', { test: 'value' }.to_json, @env
@@ -207,7 +259,22 @@ describe "Resources API" do
       put "/api/resources/#{resource.id}", json, @env
 
       # make sure the title changed
-      expect(Resource.find(resource.id).title).to eq("Google Search engine")
+      expect(response.status).to be(204)
+      resource.reload
+      expect(resource.title).to eq("Google Search engine")
+    end
+
+    it "changes a resource's tags" do
+      full_auth
+      resource = create(:resource, user: @authorized_user, tags: ['ruby', 'django'])
+
+      json = json_for(:resource, tags: ['ruby', 'rails'])
+
+      put "/api/resources/#{resource.id}", json, @env
+
+      expect(response.status).to be(204)
+      resource.reload
+      expect(resource.tags).to eq ['ruby', 'rails']
     end
 
 

@@ -6,12 +6,13 @@ class Api::V1::ResourcesController < Api::ApiController
   before_filter :unauthorized_unless_owner!, only: [:update, :destroy]
 
   def index
-    if params[:tagged]
-      # TODO: support multiple tags
-      @resources = Tag.find_by_tag_name(params[:tagged]).resources
-    else
-      @resources = Resource.all
-    end
+
+    # TODO: This is lazy in Rails 4 right.. right?
+    @resources = Resource.all
+
+    filter_by_tags
+    filter_by_license
+    filter_by_search
 
     @resources = @resources.page(params[:page]).per(params[:per_page])
     respond_with @resources, meta: pagination_meta
@@ -42,6 +43,20 @@ class Api::V1::ResourcesController < Api::ApiController
 
 private
 
+  def filter_by_tags
+    @resources.where!("tags && (ARRAY[?]::varchar[])", params[:tags].split(',')) unless params[:tags].nil?
+  end
+
+  def filter_by_search
+    # ILIKE is a case insensitive search,
+    # the param is wrapped in % to indicate it can be placed anywhere in the string
+    @resources.where!("title ILIKE ?", "%#{params[:search]}%")
+  end
+
+  def filter_by_license
+    @resources.where!(license_id: params[:license_id]) unless params[:license_id].nil?
+  end
+
   def pagination_meta
     # TODO: Maybe just send the navigation links here as well, the header is hard to work with
     {
@@ -57,16 +72,8 @@ private
   end
 
   def apply_tags
-    if params[:tags].respond_to?('each')
-      params[:tags].each do |tag_name|
-        @resource.tags << get_tag(tag_name)
-      end
-    end
-  end
-
-  def get_tag(tag_name)
-    tag_name.downcase! # FIXME: case insensitive search for tags?
-    Tag.where(tag_name: tag_name).first_or_create
+    @resource.tags = params[:tags].map! { |tag| tag.downcase } unless params[:tags].nil?
+    @resource.save!
   end
 
   def resource_params
