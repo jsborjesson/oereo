@@ -54,7 +54,7 @@ private
   end
 
   def filter_by_license
-    @resources.where!(license_id: params[:license]) unless params[:license].nil?
+    @resources.where!(license_id: params[:license_id]) unless params[:license_id].nil?
   end
 
   def pagination_meta

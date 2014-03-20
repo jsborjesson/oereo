@@ -33,7 +33,7 @@ A list of example URL:s
     /api/resources?tags=ruby,python
 
     # resources with license of id 1
-    /api/resources?license=1
+    /api/resources?license_id=1
 
     # resources with a title containing 'something'
     /api/resources?search=something

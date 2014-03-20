@@ -65,7 +65,7 @@ describe "Resources API" do
         r1 = create(:resource, license: l1)
         r2 = create(:resource, license: l2)
 
-        get "/api/resources?license=#{l1.id}", {}, @env
+        get "/api/resources?license_id=#{l1.id}", {}, @env
 
         expect(response_json['resources'].length).to eq 1
         expect(response_json['resources'][0]['id']).to eq r1.id
