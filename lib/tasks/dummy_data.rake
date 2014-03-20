@@ -1,7 +1,7 @@
-require 'faker'
-
 namespace :oereo do
   task :dummy_data => :environment do
+    require 'faker'
+
     5.times do
       User.create(
         username: Faker::Internet.user_name,
