@@ -7,12 +7,12 @@ class Api::V1::ResourcesController < Api::ApiController
 
   def index
 
-    # TODO: This is lazy in Rails 4 right.. right?
-    @resources = Resource.all
-
+    # TODO: refactor to a method-object
+    set_resources
     filter_by_tags
     filter_by_license
     filter_by_search
+    filter_by_username
 
     @resources = @resources.page(params[:page]).per(params[:per_page])
     respond_with @resources, meta: pagination_meta
@@ -43,6 +43,15 @@ class Api::V1::ResourcesController < Api::ApiController
 
 private
 
+  def set_resources
+    # TODO: This is lazy in Rails 4 right.. right?
+    @resources = Resource.all
+  end
+
+  def filter_by_username
+    @resources = @resources.joins(:user).where!('username = ?', params[:username]) unless params[:username].nil?
+  end
+
   def filter_by_tags
     @resources.where!("tags && (ARRAY[?]::varchar[])", params[:tags].split(',')) unless params[:tags].nil?
   end
@@ -56,6 +65,7 @@ private
   def filter_by_license
     @resources.where!(license_id: params[:license_id]) unless params[:license_id].nil?
   end
+
 
   def pagination_meta
     # TODO: Maybe just send the navigation links here as well, the header is hard to work with
