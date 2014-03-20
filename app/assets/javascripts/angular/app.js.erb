@@ -19,8 +19,9 @@ oereoApp.config(function ($routeProvider) {
           options = {};
 
           options.page = $route.current.params.page || 1;
-          if ($route.current.params.license) {
-            options.license = $route.current.params.license;
+
+          if ($route.current.params.license_id) {
+            options.license_id = $route.current.params.license_id;
           }
           if ($route.current.params.search) {
             options.search = $route.current.params.search;

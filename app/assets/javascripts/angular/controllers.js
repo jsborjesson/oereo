@@ -5,9 +5,11 @@ angular.module('oereoApp')
 
   $scope.resources = resources;
 
-  $scope.query = {};
+  $scope.query = $route.current.params;
   $scope.query.page = resources.meta.page;
   $scope.totalItems = resources.meta.total;
+
+  console.log($scope.query.license_id);
 
 
   // Filtering
