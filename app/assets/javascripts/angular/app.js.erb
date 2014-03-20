@@ -25,6 +25,9 @@ oereoApp.config(function ($routeProvider) {
           if (params.license_id && params.license_id != 'null') {
             options.license_id = params.license_id;
           }
+          if (params.category_id && params.category_id != 'null') {
+            options.category_id = params.category_id;
+          }
           if (params.search) {
             options.search = params.search;
           }

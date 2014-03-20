@@ -30,6 +30,11 @@
         </select>
         <br />
 
+        <select ng-model="query.category_id" ng-options="c.id as c.category for c in categories">
+          <option value="">-- filter on category --</option>
+        </select>
+        <br />
+
         <button class="btn btn-success pull-right">Go!</button>
       </form>
     </div>
