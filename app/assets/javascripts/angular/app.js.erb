@@ -16,18 +16,19 @@ oereoApp.config(function ($routeProvider) {
       templateUrl: '<%= asset_url("templates/resource_list.html") %>',
       resolve: {
         resources: function (Restangular, $route) {
-          options = {};
+          var options = {},
+              params = $route.current.params;
 
-          options.page = $route.current.params.page || 1;
+          options.page = params.page || 1;
 
-          if ($route.current.params.license_id) {
-            options.license_id = $route.current.params.license_id;
+          if (params.license_id) {
+            options.license_id = params.license_id;
           }
-          if ($route.current.params.search) {
-            options.search = $route.current.params.search;
+          if (params.search) {
+            options.search = params.search;
           }
 
-          console.log('Requested with options:', options);
+          console.log('Requesting with options:', options);
 
           return Restangular.all('resources').getList(options);
         }
