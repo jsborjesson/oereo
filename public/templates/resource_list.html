@@ -19,6 +19,12 @@
         </label>
         <br />
 
+        <label>
+          <input type="text" ng-model="query.username" />
+          By username
+        </label>
+        <br />
+
         <select ng-model="query.license_id" ng-options="l.id as l.title for l in licenses">
           <option value="">-- filter on license --</option>
         </select>

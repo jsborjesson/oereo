@@ -31,6 +31,9 @@ oereoApp.config(function ($routeProvider) {
           if (params.tags) {
             options.tags = params.tags;
           }
+          if (params.username) {
+            options.username = params.username;
+          }
 
           console.log('Requesting with options:', options);
 
