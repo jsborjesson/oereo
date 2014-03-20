@@ -153,10 +153,16 @@
 /api/resources?tags=ruby,python
 
 # resources with license of id 1
-/api/resources?license=1
+/api/resources?license_id=1
+
+# resources with category of id 1
+/api/resources?category_id=1
 
 # resources with a title containing 'something'
 /api/resources?search=something
+
+# resources by user with username john
+/api/resources?username=john
 </code></pre>
 <h2 id="creatingchanging-resorces">Creating/changing resorces</h2>
 <p>This is a complete <code>POST</code> with all possible keys set.</p>
