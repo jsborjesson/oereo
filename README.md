@@ -8,6 +8,12 @@ and **oreo**. It is an API build with Rails and an AngularJS app.
 It is [documented](http://alcesleo.github.io/oereo) and [running](http://oereo.herokuapp.com/)
 on Heroku.
 
+## Usage
+
+The client is still pretty rough around the edges, it uses HTTP Basic for
+authentication, and you can only edit your own resources so you will get an
+alert when you try to do any unsafe actions on other resources.
+
 ## Paths
 
 At the root `/` there is an AngularJS application that uses the API
@@ -172,3 +178,6 @@ The API was built before the SPA, here are the changes to the API I had to make
 for it to work:
 
 - Add a `meta` object with more pagination info in `/api/resources`
+- Implemented filtering
+- Switched to Postgres array type for tagging because it made it much easier to
+filter
