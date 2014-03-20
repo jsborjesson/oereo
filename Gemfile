@@ -48,6 +48,8 @@ gem 'api-pagination'
 # url/email validation
 gem 'validates_formatting_of', '~> 0.8.1'
 
+gem 'faker', '~> 1.3'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -62,7 +64,6 @@ end
 
 group :test do
   gem 'shoulda-matchers'
-  gem 'faker', '~> 1.3'
   gem 'capybara', '~> 2.1.0'
   gem 'database_cleaner', '~> 1.2.0'
   gem 'launchy', '~> 2.3.0'
