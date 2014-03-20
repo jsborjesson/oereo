@@ -7,12 +7,7 @@ class Api::V1::ResourcesController < Api::ApiController
 
   def index
 
-    # TODO: refactor to a method-object
-    set_resources
-    filter_by_tags
-    filter_by_license
-    filter_by_search
-    filter_by_username
+    filter_results
 
     @resources = @resources.page(params[:page]).per(params[:per_page])
     respond_with @resources, meta: pagination_meta
@@ -43,9 +38,16 @@ class Api::V1::ResourcesController < Api::ApiController
 
 private
 
-  def set_resources
+  # TODO: refactor to a method-object
+  def filter_results
     # TODO: This is lazy in Rails 4 right.. right?
     @resources = Resource.all
+
+    filter_by_tags
+    filter_by_license
+    filter_by_search
+    filter_by_username
+    filter_by_category
   end
 
   def filter_by_username
@@ -64,6 +66,10 @@ private
 
   def filter_by_license
     @resources.where!(license_id: params[:license_id]) unless params[:license_id].nil?
+  end
+
+  def filter_by_category
+    @resources.where!(resource_category_id: params[:category_id]) unless params[:category_id].nil?
   end
 
 

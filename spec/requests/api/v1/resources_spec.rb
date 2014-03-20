@@ -84,6 +84,19 @@ describe "Resources API" do
         expect(response_json['resources'][0]['id']).to eq r1.id
       end
 
+      it "filters based on category" do
+        c1 = create(:resource_category)
+        c2 = create(:resource_category)
+
+        r1 = create(:resource, resource_category: c1)
+        r2 = create(:resource, resource_category: c2)
+
+        get "/api/resources?category_id=#{c1.id}", {}, @env
+
+        expect(response_json['resources'].length).to eq 1
+        expect(response_json['resources'][0]['id']).to eq r1.id
+      end
+
       it "searches for resources by title" do
 
         r1 = create(:resource, title: "One")

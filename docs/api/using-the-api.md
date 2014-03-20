@@ -35,6 +35,9 @@ A list of example URL:s
     # resources with license of id 1
     /api/resources?license_id=1
 
+    # resources with category of id 1
+    /api/resources?category_id=1
+
     # resources with a title containing 'something'
     /api/resources?search=something
 
