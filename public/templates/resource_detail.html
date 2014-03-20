@@ -20,6 +20,14 @@
     </div>
   </div>
 
+  <div class="form-group">
+    <label for="resource-license">License</label>
+    <!-- TODO: DRY -->
+    <select ng-model="resource.license_id" ng-options="l.id as l.title for l in licenses">
+      <option value="">-- select license --</option>
+    </select>
+  </div>
+
   <!-- FIXME: don't depend on id:s -->
   <div class="btn-group">
     <button type="button" class="btn btn-primary" ng-model="resource.resource_category_id" btn-radio="1">Site</button>

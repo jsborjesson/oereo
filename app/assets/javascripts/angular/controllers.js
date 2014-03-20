@@ -8,7 +8,20 @@ angular.module('oereoApp')
   $scope.meta = resources.meta;
 
   // Filtering
-  $scope.licenses = Restangular.all('licenses').getList().$object;
+
+  Restangular.all('licenses').getList().then(function (licenses) {
+    $scope.licenses = licenses;
+
+    // FIXME: So ugly...
+    // Makes an array indexed by license-keys so you can say licensesById[license_id]
+    $scope.licensesById = (function () {
+      var licensesById = [];
+      _.each(licenses, function (license) {
+        licensesById[license.id] = license;
+      });
+      return licensesById;
+    }());
+  });
 
   $scope.loadQuery = function(opts) {
     params = _.extend($scope.query, opts);
@@ -26,6 +39,8 @@ angular.module('oereoApp')
 })
 
 .controller('EditController', function ($scope, $location, Restangular, resource) {
+  // TODO: DRY
+  $scope.licenses = Restangular.all('licenses').getList().$object;
 
   // BUG: this doesn't get the resource correctly
   var original = resource;
@@ -43,6 +58,8 @@ angular.module('oereoApp')
 })
 
 .controller('CreateController', function ($scope, $location, Restangular) {
+  // TODO: DRY
+  $scope.licenses = Restangular.all('licenses').getList().$object;
 
   $scope.resource = $scope.resource || {};
   $scope.resource.resource_category_id = 1;

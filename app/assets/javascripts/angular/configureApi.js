@@ -24,4 +24,8 @@ oereoApp.run(function (Restangular, parsePaginationHeader) {
     return extracted;
   });
 
+  Restangular.addRequestInterceptor(function (data, operation, what, url) {
+    console.log('Requested ' + url + ' with: ', data);
+  });
+
 });

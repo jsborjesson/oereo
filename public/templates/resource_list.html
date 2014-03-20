@@ -38,7 +38,7 @@
     <p>{{ resource.description }}</p>
 
     <p>by: <strong>{{ resource.username }}</strong></p>
-    <p>license: <strong>{{ resource.license.title }}</strong></p>
+    <p>license: <strong>{{ licensesById[resource.license_id].title }}</strong></p>
     <p ng-if="resource.tags">tags: {{ resource.tags | commatize }}</p>
 
     <a href="#/edit/{{ resource.id }}" class="btn btn-warning btn-xs">Edit</a>
