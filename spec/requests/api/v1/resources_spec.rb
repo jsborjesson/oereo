@@ -71,6 +71,19 @@ describe "Resources API" do
         expect(response_json['resources'][0]['id']).to eq r1.id
       end
 
+      it "filters based on username" do
+        u1 = create(:user)
+        u2 = create(:user)
+
+        r1 = create(:resource, user: u1)
+        r2 = create(:resource, user: u2)
+
+        get "/api/resources?username=#{u1.username}", {}, @env
+
+        expect(response_json['resources'].length).to eq 1
+        expect(response_json['resources'][0]['id']).to eq r1.id
+      end
+
       it "searches for resources by title" do
 
         r1 = create(:resource, title: "One")
