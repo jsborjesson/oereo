@@ -12,7 +12,7 @@ namespace :oereo do
     end
 
     20.times do
-      Resource.create!(
+      Resource.create(
         user: User.order("RANDOM()").first,
         resource_category: ResourceCategory.order("RANDOM()").first,
         license: License.order("RANDOM()").first,
