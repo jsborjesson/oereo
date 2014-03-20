@@ -38,6 +38,9 @@ A list of example URL:s
     # resources with a title containing 'something'
     /api/resources?search=something
 
+    # resources by user with username john
+    /api/resources?username=john
+
 ## Creating/changing resorces
 
 This is a complete `POST` with all possible keys set.
