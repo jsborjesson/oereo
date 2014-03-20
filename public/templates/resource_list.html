@@ -45,6 +45,7 @@
 
     <p>by: <strong>{{ resource.username }}</strong></p>
     <p>license: <strong>{{ licensesById[resource.license_id].title }}</strong></p>
+    <p>category: <strong>{{ categoriesById[resource.resource_category_id].category }}</strong></p>
     <p ng-if="resource.tags">tags: {{ resource.tags | commatize }}</p>
 
     <a href="#/edit/{{ resource.id }}" class="btn btn-warning btn-xs">Edit</a>

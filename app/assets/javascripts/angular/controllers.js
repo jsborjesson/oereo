@@ -7,20 +7,32 @@ angular.module('oereoApp')
   $scope.query = $route.current.params;
   $scope.meta = resources.meta;
 
+  // FIXME: Still pretty ugly
+  // Extracts a key from every object in a collection and uses it as the key
+  // Returns the new collection, and if scopeKey is set, sets it on the scope
+  function indexOnValue(collection, keyToIndex, scopeKey) {
+    var collectionByIndex = [];
+    _.each(collection, function (item) {
+      collectionByIndex[item[keyToIndex]] = item;
+    });
+
+    if (scopeKey) {
+      $scope[scopeKey] = collectionByIndex;
+    }
+    return collectionByIndex;
+  }
+
   // Filtering
 
+  // FIXME: DRY
   Restangular.all('licenses').getList().then(function (licenses) {
     $scope.licenses = licenses;
+    $scope.licensesById = indexOnValue(licenses, 'id');
+  });
 
-    // FIXME: So ugly...
-    // Makes an array indexed by license-keys so you can say licensesById[license_id]
-    $scope.licensesById = (function () {
-      var licensesById = [];
-      _.each(licenses, function (license) {
-        licensesById[license.id] = license;
-      });
-      return licensesById;
-    }());
+  Restangular.all('resource_categories').getList().then(function (categories) {
+    $scope.categories = categories ;
+    $scope.categoriesById = indexOnValue(categories, 'id');
   });
 
   $scope.loadQuery = function(opts) {
