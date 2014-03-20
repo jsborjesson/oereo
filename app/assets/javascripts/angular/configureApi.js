@@ -25,7 +25,13 @@ oereoApp.run(function (Restangular, parsePaginationHeader) {
   });
 
   Restangular.addRequestInterceptor(function (data, operation, what, url) {
-    console.log('Requested ' + url + ' with: ', data);
+    if (data) {
+      if (data.tags) {
+        data.tags = data.tags.split(',');
+      }
+      console.log('Requested ' + url + ' with: ', data);
+    }
+    return data;
   });
 
 
