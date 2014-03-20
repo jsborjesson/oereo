@@ -28,4 +28,14 @@ oereoApp.run(function (Restangular, parsePaginationHeader) {
     console.log('Requested ' + url + ' with: ', data);
   });
 
+
+  Restangular.setErrorInterceptor(function (error) {
+    console.error('Request error: ', error);
+    var message = 'Something went wrong';
+    if (error.status == 403) {
+      message = 'Not allowed';
+    }
+    alert(message);
+  });
+
 });
